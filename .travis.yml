@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: n/wj9gitUFGdZYfuAWhYYUIUy3fJ/WcHwWg1Rcw7W69bkb7hlRLp+A2Zwf9N8MtEsCrOAaCtZWlaolLUhL9UN5p/+4ALS443Lz0d/ia9SfrBW2B4kY+V6pgY5f6E6e0ntF6IQHCtPdPYZ+90l512ND0qWA6GwjJT2bsshoYbMpJjqy8s8shAIoy7QmHZuvG0+xKdso2ymVewbBIoaHG7g+4Sn+80AOqpbICJbnFTuGzRQDbI+tQ5gbQr8Rr+CbglrjZjjfOLeltmXVYQWLU6kVfgRvn7LkWT0ffkAl2/1RvuRgjdFhs4S3v771E9hyvCwilhfzMswRYz7wpo8o/+EhnN7UzBYKEoP/3zzjXs5M5K0H1qNL5ejw1667VpDZMx5K2IdG5vb5ayaBqeDcb+NBtlBKyzO2c1qpSvilWKqkJZPbVnqb2m7nTrPnRe8P8m5rrAHvg8Syg63uGJ5qFGiQ/MXbhgsSKqeOt0dZtYpme330co75ec5M75Hmb0XYKWzlUGTTAx1uqM6+hG+KhYxXwbcw9L6WLLqOXXk+WDmGDHS1sM3CXaGXDy2IYUkgPPxKKwLLgOSo8lrCcJfwcrCt2ODpr3NB/MjmVuhjZITlYN4sjGp1Fgd5WSDwtmb8I3h9VtJ190Lh0mHq0tzqCmI2NBtyi4E/eaLWzYWV6tveQ=
+  app: crop-swap
+  on:
+    repo: oneEyedBunny/Crop-Swap
