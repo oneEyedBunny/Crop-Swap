@@ -1,14 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Crop Swap</title>
-    <link href="main.css" rel="stylesheet" type="text/css" />
-    <link href="media.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <main role="main">
-      <p>Hello World</p>
-    </main>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Crop Swap</title>
+  <link href="main.css" rel="stylesheet" type="text/css" />
+  <link href="media.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+  <nav role="navigation" id="navigation-container">
+    <div class="left-nav-container">
+      <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
+    </div>
+    <div class="right-nav-container">
+      <a href="profile.html" class="nav-link">New Post</a>
+      <a href="swap.html" class="nav-link">All Swaps</a>
+    </div>
+  </nav>
+
+  <main role="main">
+    <img src="images/indexBackground.jpg" id="background-image"/>
+    <div id="welcome-message-container">
+      <h1 class="welcome-quote"> SHARING IS CARING</h1>
+      <p class ="welcome-message"> Welcome to Crop Swap </p>
+      <p class ="welcome-message"> Your kitchen and your neighbor's backyard are now one and the same </p>
+    </div>
+
+    <div id="what-to-do">
+      <p> It's simple...</p>
+      <ul id="welcome-list">
+        <li> Create an account below</li>
+        <li> <a href = "post.html">Post</a> what produce you have to swap</li>
+        <li> <a href = "results.html"> Find</a> produce that you want to swap for</li>
+        <li> Then message your neighbors to see if they want to swap</li>
+      </ul>
+    </div>
+    <div id="profile-forms-container" class="profile-forms">
+      <form id="login-user" name="login_user">
+        <label> Username:
+          <input type ="text" name="userName" maxLength="20"/>
+        </label>
+        <label> Password:
+          <input type ="password" name= "password" maxlength="20"/><br><br>
+        </label>
+        <input id="existingUser" input type = "button" value = "Login" onclick = "loginUser()"/>
+      </form>
+      <input id="new-user" type="button" value="Join Now!" onclick="createAccountForm()"/>
+    </div>
+    <script type= "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type= "text/javascript" src = "scripts/app.js"></script>
+  </main>
+  <footer role="content info"></footer>
+</body>
+</html>

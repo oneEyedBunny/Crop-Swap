@@ -1,0 +1,112 @@
+body {
+  font-family: "Lora","open sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+#logo {
+  height: 60px;
+}
+
+#background-image {
+    opacity: .4;
+    /* min-width: 100vw;
+    min-height:100vh; */
+    position: fixed;
+    z-index: -1;
+}
+
+#navigation-container {
+  position: fixed;
+  width: 100%;
+  background-color: rgba(255,255,255,0.90);
+  z-index: 1;
+}
+
+.right-nav-container {
+  float: right;
+  margin: 25px;
+}
+
+.left-nav-container {
+  float: left;
+  margin: 10px 0 1px 10px;
+}
+
+.nav-link {
+  color: green;
+  font-size: 15px;
+  text-align: right;
+  padding: 0px 10px;
+}
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+}
+
+/* --------- */
+
+#welcome-message-container {
+  display: inline-block;
+  margin-top: 50px;
+  padding: 25px;
+}
+
+.welcome-quote {
+  text-align: center;
+  color: green;
+  font-size: 50px;
+  margin: 45px 0px 45px;
+}
+
+.welcome-message {
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  color: black;
+  margin: 5px;
+}
+
+#what-to-do {
+  background-color: #c78262;
+  padding-bottom: 5px;
+  width: 75%;
+  margin: auto;
+  border-radius: 3px;
+}
+
+#what-to-do > p {
+  padding: 25px 0px 0px 25px;
+  font-size: 19px;
+}
+
+#welcome-list {
+  font-size: 15px;
+  color: black;
+  list-style-type: none;
+  margin: 8px 0px 20px;
+  padding: 5px;
+}
+
+#welcome-list >li {
+  list-style-type: none;
+  padding: 10px 15px;
+}
+
+/* --------- */
+#profile-forms-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: #F2EFEA;
+  padding: 50px 35px 100px;
+  opacity: .65;
+}
+
+#new-user, #existingUser {
+  border: 1px solid black;
+  border-radius: 3px;
+  font-size: 15px;
+}
