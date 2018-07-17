@@ -14,8 +14,8 @@
       <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
     </div>
     <div class="right-nav-container">
-      <a href="profile.html" class="nav-link">New Post</a>
-      <a href="swap.html" class="nav-link">All Swaps</a>
+      <a href="#profile-forms-container" class="nav-link">Login</a>
+      <a href="results.html" class="nav-link">Search Swaps</a>
     </div>
   </nav>
 
@@ -37,12 +37,13 @@
       </ul>
     </div>
     <div id="profile-forms-container" class="profile-forms">
-      <form id="login-user" name="login_user">
+      <form role="form" id="login-user" name="login-user">
+        <fieldset name="user-info">
         <label> Username:
           <input type ="text" name="userName" maxLength="20"/>
         </label>
         <label> Password:
-          <input type ="password" name= "password" maxlength="20"/><br><br>
+          <input type ="password" name= "password" maxlength="20"/>
         </label>
         <input id="existingUser" input type = "button" value = "Login" onclick = "loginUser()"/>
       </form>

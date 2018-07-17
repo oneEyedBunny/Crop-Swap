@@ -1,16 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Crop Swap</title>
-    <link href="main.css" rel="stylesheet" type="text/css" />
-    <link href="media.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <main role="main">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Crop Swap</title>
+  <link href="main.css" rel="stylesheet" type="text/css" />
+  <link href="media.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <nav role="navigation" id="navigation-container">
+    <div class="left-nav-container">
+      <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
+    </div>
+    <div class="right-nav-container">
+      <a href="/" class="nav-link">Logout</a>
+      <a href="post.html" class="nav-link">New Post</a>
+    </div>
+  </nav>
 
-    </main>
-    <footer role="content info"></footer>
-  </body>
+  <main role="main">
+    <img src="images/indexBackground.jpg" id="background-image"/>
+    <div id="page-display-container">
+      <div id="form-container">
+        <form role="form" id="search-form">
+          <fieldset>
+            <input id="search-data" name="search-data" type="search" placeholder="Tomatoes" required onfocus="this.value=''"></input>
+            <input id="search-loc" name="search-loc" type="search" placeholder="97212" required onfocus="this.value=''"></input>
+            <button role="button" type="submit" class="search-button">Search</button>
+          </fieldset>
+        </form>
+      </div>
+      <div id="search-results-container">
+        <!-- all of this will be created in JS, this is placeholder data -->
+        <div id=search-results-card>
+          <h5>catchy post title</h5>
+          <h6>date</h6>
+        </div>
+        <div id=search-results-card>
+          <h5>catchy post title</h5>
+          <h6>date</h6>
+        </div>
+        <div id=search-results-card>
+          <h5>catchy post title</h5>
+          <h6>date</h6>
+        </div>
+        <div id=search-results-card>
+          <h5>catchy post title</h5>
+          <h6>date</h6>
+        </div>
+        <div id=search-results-card>
+          <h5>catchy post title</h5>
+          <h6>date</h6>
+        </div>
+        <!-- end -->
+      </div>
+    </div>
+
+  </main>
+  <footer role="content info"></footer>
+</body>
 </html>
