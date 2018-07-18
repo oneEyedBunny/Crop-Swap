@@ -1,6 +1,5 @@
 body {
-  font-family: "Lora","open sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-  margin: 0;
+  font-family: 'Nunito', serif;
   min-height: 100vh;
 }
 
@@ -68,6 +67,7 @@ a:active {
   text-align: center;
   color: black;
   margin: 5px;
+  font-family: 'Indie Flower', cursive;
 }
 
 #what-to-do {
@@ -112,7 +112,7 @@ a:active {
 
 /********** body  results.html ************/
 
-#page-display-container {
+#page-display-container, #page-display-container-2 {
   display: inline-block;
   margin: 90px 20px;
   padding: 25px;

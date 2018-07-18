@@ -6,6 +6,7 @@
   <title>Crop Swap</title>
   <link href="main.css" rel="stylesheet" type="text/css" />
   <link href="media.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Cardo|Indie+Flower" rel="stylesheet" />
 </head>
 <body>
   <nav role="navigation" id="navigation-container">
@@ -14,7 +15,7 @@
     </div>
     <div class="right-nav-container">
       <a href="/" class="nav-link">Logout</a>
-      <a href="post.html" class="nav-link">New Post</a>
+      <a href="createPost.html" class="nav-link">New Post</a>
     </div>
   </nav>
 
@@ -24,7 +25,9 @@
       <div id="form-container">
         <form role="form" id="search-form">
           <fieldset>
-            <input id="search-data" name="search-data" type="search" placeholder="Tomatoes" required onfocus="this.value=''"></input>
+            <label>
+              <input id="search-data" name="search-data" type="search" placeholder="Tomatoes" required onfocus="this.value=''"></input>
+            </label>
             <input id="search-loc" name="search-loc" type="search" placeholder="97212" required onfocus="this.value=''"></input>
             <button role="button" type="submit" class="search-button">Search</button>
           </fieldset>

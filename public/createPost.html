@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Crop Swap</title>
+  <link href="main.css" rel="stylesheet" type="text/css" />
+  <link href="media.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Cardo|Indie+Flower" rel="stylesheet" /> 
+</head>
+<body>
+
+  <nav role="navigation" id="navigation-container">
+    <div class="left-nav-container">
+      <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
+    </div>
+    <div class="right-nav-container">
+      <a href="/" class="nav-link">Logout</a>
+      <a href="results.html" class="nav-link">Search Swaps</a>
+    </div>
+  </nav>
+
+  <main role="main">
+    <img src="images/indexBackground.jpg" id="background-image"/>
+    <div id="page-display-container-2">
+      <div id="post-form-container">
+        <form role="form" id="create-post-form">
+          <fieldset>
+            <label> Title:
+              <input id="title" name="title" type="text" placeholder="Catchy Title" maxlength="100" required onfocus="this.value=''"></input>
+            </label>
+            <label>Description:
+              <input id="description" name="description" type="text" placeholder="Super cool description. BlahBlahblahblahblahblahb" maxlength="400" required onfocus="this.value=''"></input>
+            </label>
+            <label>I'm looking to swap for:
+              <input id="desired-swap-item" name="desired-swap-item" type="text" placeholder="Tomatoes" maxlength="400" required onfocus="this.value=''"></input>
+            </label>
+            <button role="button" type="submit" class="submit-button">Submit</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+
+
+
+    </main>
+    <footer role="content info"></footer>
+  </body>
+</html>
