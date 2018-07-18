@@ -26,7 +26,7 @@ describe('index page', function() {
 describe('posts page', function() {
   it('should return post.html', function() {
     return chai.request(app)
-    .get('/post.html')
+    .get('/createPost.html')
     .then(function(res) {
       expect(res).to.have.status(200);
     });
