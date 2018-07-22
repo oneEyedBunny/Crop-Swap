@@ -25,35 +25,48 @@
       <div id="form-container">
         <form role="form" id="search-form">
           <fieldset>
-            <label>
-              <input id="search-data" name="search-data" type="search" placeholder="Tomatoes" required onfocus="this.value=''"></input>
-            </label>
-            <input id="search-loc" name="search-loc" type="search" placeholder="97212" required onfocus="this.value=''"></input>
-            <button role="button" type="submit" class="search-button">Search</button>
+            <legend>Search Swaps</legend>
+            <div id="search-selection">
+              <input type="radio" name="option-0" id="option-0" value="0" checked/>
+              <label for="option-0">I want</label>
+              <input type="radio" name="option-1" id="option-1" value="1"/>
+              <label for="option-1">I want</label><br><br>
+            </div>
+            <div id="search-details">
+              <label>Item
+                <input id="search-data" name="search-data" type="search" placeholder="Tomatoes" required onfocus="this.value=''" />
+              </label>Location
+              <input id="search-loc" name="search-loc" type="search" placeholder="Portland or 97212" required onfocus="this.value=''" />
+              <button role="button" type="submit" class="search-button">Search</button>
+            </div>
           </fieldset>
         </form>
       </div>
       <div id="search-results-container">
         <!-- all of this will be created in JS, this is placeholder data -->
         <div id=search-results-card>
-          <h5>catchy post title</h5>
-          <h6>date</h6>
+          <h5>theConsimentGardener</h5><h6>2hrs</h6>
+          <h5>I have approximately 10 large heirloom tomatoes. They're all medium size and are very sweet<h5>
         </div>
         <div id=search-results-card>
-          <h5>catchy post title</h5>
-          <h6>date</h6>
+          <h5>dbIrvington</h5>
+          <h6>5hrs</h6>
+          <h5>My plant went gangbusters and I've got 5 or so extra cucumbers</h5>
         </div>
         <div id=search-results-card>
-          <h5>catchy post title</h5>
-          <h6>date</h6>
+          <h5>oneEyedBunny77</h5>
+          <h6>Yesterday</h6>
+          <h5>Extra granny smith apples. A few bruises but they're super crisp</h5>
         </div>
         <div id=search-results-card>
-          <h5>catchy post title</h5>
-          <h6>date</h6>
+          <h5>UserName</h5>
+          <h6>posted how long ago</h6>
+          <h5>Description<h5>
         </div>
         <div id=search-results-card>
-          <h5>catchy post title</h5>
-          <h6>date</h6>
+          <h5>UserName</h5>
+          <h6>posted how long ago</h6>
+          <h5>Description<h5>
         </div>
         <!-- end -->
       </div>
