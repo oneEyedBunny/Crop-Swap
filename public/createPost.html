@@ -6,7 +6,7 @@
   <title>Crop Swap</title>
   <link href="main.css" rel="stylesheet" type="text/css" />
   <link href="media.css" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Cardo|Indie+Flower" rel="stylesheet" /> 
+  <link href="https://fonts.googleapis.com/css?family=Cardo|Indie+Flower" rel="stylesheet" />
 </head>
 <body>
 
@@ -26,14 +26,13 @@
       <div id="post-form-container">
         <form role="form" id="create-post-form">
           <fieldset>
-            <label> Title:
-              <input id="title" name="title" type="text" placeholder="Catchy Title" maxlength="100" required onfocus="this.value=''"></input>
-            </label>
-            <label>Description:
-              <input id="description" name="description" type="text" placeholder="Super cool description. BlahBlahblahblahblahblahb" maxlength="400" required onfocus="this.value=''"></input>
-            </label>
+            <legend>Create a Swap Posting</legend>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" maxlength="100" wrap="hard"
+              required cols="55" rows="5" onfocus="this.value=''">I have approximately 10 large heirloom tomatoes</textarea>
             <label>I'm looking to swap for:
-              <input id="desired-swap-item" name="desired-swap-item" type="text" placeholder="Tomatoes" maxlength="400" required onfocus="this.value=''"></input>
+              <textarea id="desired-swap-item" name="desired-swap-item" placeholder="Tomatoes"
+                maxlength="100" cols="33" rows="3" onfocus="this.value=''">Carrots, apples, lettuce</textarea>
             </label>
             <button role="button" type="submit" class="submit-button">Submit</button>
           </fieldset>
