@@ -12,7 +12,7 @@ mongoose.Promise = global.Promise;
 swapPostSchema.set("timestamps", true);
 commentSchema.set("timestamps", true);
 
-//defining user schema
+//defining schema for users
 const userSchema = mongoose.Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
@@ -21,7 +21,6 @@ const userSchema = mongoose.Schema({
     city: { type: String, required: true },
     zipCode: { type: Number, required: true }
 });
-
 
 //defining schema for comments on the posts
 const commentSchema = mongoose.Schema({
@@ -45,6 +44,9 @@ const swapPostSchema = mongoose.Schema({
 // userSchema.statics.hashPassword = function(password) {
 //   return bcrypt.hash(password, 10);
 // }
+
+//create a virtual so the username can be retrieved for serialize
+
 
 //represents how swap posts are represented outside our app via our api
 swapPostSchema.methods.serialize = function() {
