@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const app = express()
 
 // Modularize routes
-const appRouter = require('./appRouter');
+const postsRouter = require('./routes/postsRouter');
 
 // constants for the app
 const {PORT, DATABASE_URL} = require('./config');
@@ -18,7 +18,7 @@ const {PORT, DATABASE_URL} = require('./config');
 app.use(express.static('public'));
 
 //when requests come into the landing page, they get routed to the express router
-app.use('/', appRouter);
+app.use('/', postsRouter);
 
 //log the http layer
 app.use(morgan('common'));
