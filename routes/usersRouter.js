@@ -13,4 +13,21 @@ mongoose.Promise = global.Promise;
 const {User} = require('../models');
 
 
+router.get('/', (req, res, next) => {
+  User
+  .find()
+  .then(users => {
+    console.log(users)
+    res.json(users);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+
+
+
+
+
 module.exports = router;
