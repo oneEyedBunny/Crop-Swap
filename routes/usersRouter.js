@@ -12,7 +12,7 @@ mongoose.Promise = global.Promise;
 // Modularize routes
 const {User} = require('../models');
 
-
+//route to return a specific user
 router.get('/', (req, res, next) => {
   User
   .find()

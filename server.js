@@ -12,7 +12,6 @@ const app = express()
 // Modularize routes
 const swapPostsRouter = require('./routes/swapPostsRouter');
 const usersRouter = require('./routes/usersRouter');
-const commentsRouter = require('./routes/commentsRouter');
 
 // constants for the app
 const {PORT, DATABASE_URL} = require('./config');
@@ -23,7 +22,6 @@ app.use(express.static('public'));
 //when requests come in, they get routed to the express router
 app.use('/posts', swapPostsRouter);
 app.use('/users', usersRouter);
-app.use('/comments', commentsRouter);
 
 // app.get('/', (req, res) => {
 //   res.sendFile(__dirname + "/public/index.html");

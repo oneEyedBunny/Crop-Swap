@@ -52,28 +52,28 @@ router.get('/:id', (req, res) => {
 });
 
 //creates a new swap post after checking all required fields are present
-// router.post('/', (req, res) => {
-//   const requiredFields =  ['have', 'user'];
-//   for(let i = 0; i < requiredFields.length; i++) {
-//     if(!(requiredFields[i] in req.body)) {
-//       const errorMessage = (`Missing \`${requiredFields[i]}\` in request body`);
-//       console.error(errorMessage);
-//       return res.status(400).send(errorMessage);
-//     }
-//   }
-//   SwapPost
-//     .create({
-//       have: req.body.have,
-//       user: req.body.user,
-//       createdAt: req.body.createdAt,
-//       want: req.body.want
-//     })
-//     .then(post => {res.status(201).json(post.serialize())
-//     })
-//     .catch(err => {
-//       console.error(err);
-//       res.status(500).json({message: "Internal server error"})
-//     });
-//   });
+router.post('/', (req, res) => {
+  const requiredFields =  ['have', 'user'];
+  for(let i = 0; i < requiredFields.length; i++) {
+    if(!(requiredFields[i] in req.body)) {
+      const errorMessage = (`Missing \`${requiredFields[i]}\` in request body`);
+      console.error(errorMessage);
+      return res.status(400).send(errorMessage);
+    }
+  }
+  SwapPost
+    .create({
+      have: req.body.have,
+      user: req.body.user,
+      createdAt: req.body.createdAt,
+      want: req.body.want
+    })
+    .then(post => {res.status(201).json(post.serialize())
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({message: "Internal server error"})
+    });
+  });
 
 module.exports = router;

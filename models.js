@@ -18,22 +18,19 @@ const userSchema = mongoose.Schema({
     zipCode: { type: Number, required: true }
 });
 
-//defining schema for comments on the posts
-const commentSchema = mongoose.Schema({
-      content: { type: String }
-});
-
 //defining schema for posts
 const swapPostSchema = mongoose.Schema({
       have: { type: String, required: true },
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
       want: { type: String },
-      comments: [commentSchema],
+      comments: [ {
+       content: { type: String },
+       postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+   }]
 });
 
 //Mongoogse uses timestamps for createAt and updateAt for specified schemas
 swapPostSchema.set("timestamps", true);
-commentSchema.set("timestamps", true);
 
 //validate that password is sufficient
 // userSchema.methods.validatePassword = function(password) {
@@ -55,16 +52,15 @@ swapPostSchema.methods.serialize = function() {
   return {
     id: this._id,
     have: this.have,
-    //userName: this.userName,
+    //userName: this.user.userName,
     //created: this.createdAt,
     want: this.want,
     comments: this.comments
   };
 };
 
-//Creates new Mongoose models (User, Comments, & swapPosts) off the users comments, & posts collection in the DB using the Schema defined above
+//Creates new Mongoose models (User & swapPosts) off the users & swapPosts collection in the DB using the Schema defined above
 const User = mongoose.model('Users', userSchema);
 const SwapPost = mongoose.model('swapPosts', swapPostSchema, 'swapPosts');
-const Comment = mongoose.model('Comments', commentSchema);
 
-module.exports = {User, SwapPost, Comment};
+module.exports = {User, SwapPost};
