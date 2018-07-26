@@ -9,7 +9,7 @@ const timestamps = require('mongoose-timestamp');
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
 
-// Modularize routes to posts
+// Modularize routes
 const {User} = require('../models');
 
 

@@ -55,8 +55,8 @@ swapPostSchema.methods.serialize = function() {
   return {
     id: this._id,
     have: this.have,
-    // userName: this.userName,
-    // created: this.created,
+    //userName: this.userName,
+    //created: this.createdAt,
     want: this.want,
     comments: this.comments
   };
@@ -64,7 +64,7 @@ swapPostSchema.methods.serialize = function() {
 
 //Creates new Mongoose models (User, Comments, & swapPosts) off the users comments, & posts collection in the DB using the Schema defined above
 const User = mongoose.model('Users', userSchema);
+const SwapPost = mongoose.model('swapPosts', swapPostSchema, 'swapPosts');
 const Comment = mongoose.model('Comments', commentSchema);
-const SwapPost = mongoose.model('swapPosts', swapPostSchema);
 
-module.exports = {User, Comment, SwapPost};
+module.exports = {User, SwapPost, Comment};

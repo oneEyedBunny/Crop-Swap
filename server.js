@@ -36,7 +36,7 @@ app.use(morgan('common'));
 mongoose.Promise = global.Promise;
 
 //catch all in case user enters non-existent endpoint
-router.use("*", function(req, res) {
+router.use('*', function(req, res) {
     res.status(404).json({message: "Sorry, Not Found"});
 })
 

@@ -1,5 +1,4 @@
 # Pending
-1. need to test serialize method > maybe why GET:id isn't working
 1. make virtual for swapPosts to get username from user
 1. code post routes >>>> swapposts
 1. code delete routes  >>>> swapposts

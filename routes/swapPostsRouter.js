@@ -9,15 +9,18 @@ const timestamps = require('mongoose-timestamp');
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
 
-// Modularize routes to posts
+// Modularize routes
 const {SwapPost} = require('../models');
 
 //return all the posts or if a specified item is searched for, only those items
 router.get('/', (req, res) => {
+  let regex = { $regex: new RegExp(req.query.have, 'i')};
   SwapPost
-    .find()
+    //.find({'have': new RegExp(req.query.have, 'i')})
+    //.find( {$or:[ {'have': new RegExp(req.query.have, 'i')}, {'want': new RegExp(req.query.want, 'i')} ]})
+    //.find( {$or:[ {'have': regex}, { 'want': [new RegExp(req.query.want, 'i') ]} ]})
+    .find({'have': new RegExp(req.query.have, 'i')})
     .then(swapPosts => {
-      console.log(swapPosts);
       res.json({
         swapPosts: swapPosts.map(swapPost =>
          swapPost.serialize()
@@ -31,7 +34,8 @@ router.get('/', (req, res) => {
 
 //return the results of a specified search item
 router.get('/:id', (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+  console.log(req.params.id);
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     const err = new Error("The `id` is not valid");
     err.status = 400;
     return next(err);
@@ -48,7 +52,7 @@ router.get('/:id', (req, res) => {
 });
 
 //creates a new swap post after checking all required fields are present
-// router.post('/posts', (req, res) => {
+// router.post('/', (req, res) => {
 //   const requiredFields =  ['have', 'user'];
 //   for(let i = 0; i < requiredFields.length; i++) {
 //     if(!(requiredFields[i] in req.body)) {
