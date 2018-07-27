@@ -23,10 +23,6 @@ const swapPostSchema = mongoose.Schema({
       have: { type: String, required: true },
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true },
       want: { type: String },
-      comments: [ {
-       content: { type: String },
-       postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true }
-   }]
 });
 
 //Mongoogse uses timestamps for createAt and updateAt for specified schemas
@@ -55,7 +51,6 @@ swapPostSchema.methods.serialize = function() {
     userName: this.user.userName,
     created: this.createdAt,
     want: this.want,
-    comments: this.comments
   };
 };
 
