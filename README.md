@@ -1,14 +1,9 @@
 # Pending
-1. make virtual for swapPosts to get username from user
-1. code post routes >>>> swapposts
-1. code delete routes  >>>> swapposts
 1. code put routes  >>>> swapposts
+1. code post, delete, put for comments
 1. code get routes >>>> users
 1. code post routes >>>> users
 1. code delete routes >>>> users
-1. code post routes >>>> comments
-1. code delete routes  >>>> comments
-1. code put routes  >>>> comments
 
 
 

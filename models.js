@@ -12,8 +12,8 @@ mongoose.Promise = global.Promise;
 const userSchema = mongoose.Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    userName: { type: String, required: true, unique: true  },
-    password: { type: String, required: true },
+    userName: { type: String, required: true, unique: true, minlength: 5, maxlength: 50 },
+    password: { type: String, required: true , minlength: 5, maxlength: 200 },
     city: { type: String, required: true },
     zipCode: { type: Number, required: true }
 });
@@ -21,11 +21,11 @@ const userSchema = mongoose.Schema({
 //defining schema for posts
 const swapPostSchema = mongoose.Schema({
       have: { type: String, required: true },
-      user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+      user: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true },
       want: { type: String },
       comments: [ {
        content: { type: String },
-       postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+       postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true }
    }]
 });
 
@@ -52,8 +52,8 @@ swapPostSchema.methods.serialize = function() {
   return {
     id: this._id,
     have: this.have,
-    //userName: this.user.userName,
-    //created: this.createdAt,
+    userName: this.user.userName,
+    created: this.createdAt,
     want: this.want,
     comments: this.comments
   };

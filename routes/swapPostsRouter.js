@@ -5,12 +5,17 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const timestamps = require('mongoose-timestamp');
+const bodyParser = require('body-parser');
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
 
 // Modularize routes
 const {SwapPost} = require('../models');
+
+//applies body parser to all router calls
+router.use(bodyParser.json({ limit: '500kb', extended: true }));
+router.use(bodyParser.urlencoded({ limit: '500kb', extended: true }));
 
 //return all the posts or if a specified item is searched for, only those items
 router.get('/', (req, res) => {
@@ -20,6 +25,7 @@ router.get('/', (req, res) => {
     //.find( {$or:[ {'have': new RegExp(req.query.have, 'i')}, {'want': new RegExp(req.query.want, 'i')} ]})
     //.find( {$or:[ {'have': regex}, { 'want': [new RegExp(req.query.want, 'i') ]} ]})
     .find({'have': new RegExp(req.query.have, 'i')})
+    .populate('user')
     .then(swapPosts => {
       res.json({
         swapPosts: swapPosts.map(swapPost =>
@@ -34,7 +40,6 @@ router.get('/', (req, res) => {
 
 //return the results of a specified search item
 router.get('/:id', (req, res) => {
-  console.log(req.params.id);
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     const err = new Error("The `id` is not valid");
     err.status = 400;
@@ -65,7 +70,6 @@ router.post('/', (req, res) => {
     .create({
       have: req.body.have,
       user: req.body.user,
-      createdAt: req.body.createdAt,
       want: req.body.want
     })
     .then(post => {res.status(201).json(post.serialize())
@@ -75,5 +79,7 @@ router.post('/', (req, res) => {
       res.status(500).json({message: "Internal server error"})
     });
   });
+
+
 
 module.exports = router;
