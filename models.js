@@ -15,7 +15,8 @@ const userSchema = mongoose.Schema({
     userName: { type: String, required: true, unique: true, minlength: 5, maxlength: 50 },
     password: { type: String, required: true , minlength: 5, maxlength: 200 },
     city: { type: String, required: true },
-    zipCode: { type: Number, required: true }
+    zipCode: { type: Number, required: true },
+    email: { type: String, required: true, unique: true, lowercase: true }
 });
 
 //defining schema for posts
@@ -49,6 +50,7 @@ swapPostSchema.methods.serialize = function() {
     id: this._id,
     have: this.have,
     userName: this.user.userName,
+    email: this.user.email,
     created: this.createdAt,
     want: this.want,
   };

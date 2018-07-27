@@ -1,10 +1,12 @@
 # Pending
-1. code put routes  >>>> swapposts
-1. code post, delete, put for comments
-1. code get routes >>>> users
-1. code post routes >>>> users
-1. code delete routes >>>> users
-
+1. Create test cases for all GET/DELETE/POST routes in swapPosts
+1. put route  >>>> swapposts
+1. Create put test case
+1. post route for when they create a new account >>>> users
+1. JWT
+1. create post test case for users
+1. Add form on posts page that allows them to Edit/delete their existing posts
+1. Add email into form submission and ensure it transforms to lowercase
 
 
 # Stretch Goal

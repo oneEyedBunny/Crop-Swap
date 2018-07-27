@@ -57,6 +57,25 @@ router.get('/', (req, res) => {
     });
   });
 
+ //displays all posts for a specific user
+  router.get('/user/:id', (req, res) => {
+    let id = req.params.id;
+    console.log(id);
+  SwapPost
+    .find( { user: id } )
+    .then(swapPosts => {
+      res.json({
+        swapPosts: swapPosts.map(swapPost =>
+          swapPost.serialize()
+        )});
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({error: "internal server error"});
+      });
+    });
+
+
   //creates a new swap post after checking all required fields are present
   router.post('/', (req, res) => {
     const requiredFields =  ['have', 'user'];
@@ -94,6 +113,7 @@ router.get('/', (req, res) => {
     })
   });
 
+  //updates a specified swap
 
 
 module.exports = router;
