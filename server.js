@@ -4,7 +4,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const router = express.Router();
+// const router = express.Router();
 
 //creates the new express app
 const app = express()
@@ -16,25 +16,25 @@ const usersRouter = require('./routes/usersRouter');
 // constants for the app
 const {PORT, DATABASE_URL} = require('./config');
 
-//serves static assets
+//log the http layer
+app.use(morgan('common'));
+
+//creates a static web server, servers static assets
 app.use(express.static('public'));
 
 //when requests come in, they get routed to the express router
-app.use('/posts', swapPostsRouter);
+app.use('/swapPostsRouter', swapPostsRouter);
 app.use('/users', usersRouter);
 
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + "/public/index.html");
-// });
-
-//log the http layer
-app.use(morgan('common'));
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
 
 //catch all in case user enters non-existent endpoint
-router.use('*', function(req, res) {
+app.use('*', function(req, res) {
     res.status(404).json({message: "Sorry, Not Found"});
 })
 
