@@ -23,7 +23,7 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 
 //when requests come in, they get routed to the express router
-app.use('/swapPostsRouter', swapPostsRouter);
+app.use('/posts', swapPostsRouter);
 app.use('/users', usersRouter);
 
 app.get('/', (req, res) => {
@@ -43,8 +43,8 @@ let server;
 //connects to DB, starts the http server and returns a promise > facilitates async testing
 function runServer(databaseURL, port = PORT) {
   return new Promise((resolve, reject) => {
-    mongoose.connect(
-      databaseURL, { useNewUrlParser: true }, err => {
+    //tried adding this in for 2nd param and it's throwing error ...{ useNewUrlParser: true }
+    mongoose.connect(databaseURL, err => {
         if(err) {
           return reject(err);
         }

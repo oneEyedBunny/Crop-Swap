@@ -3,7 +3,7 @@
 //import dependencies
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
 const {app} = require('../server.js');
 
@@ -33,6 +33,7 @@ describe('posts page', function() {
     .get('/createPost.html')
     .then(function(res) {
       expect(res).to.have.status(200);
+      expect(res).to.be.html;
     });
   });
 });
