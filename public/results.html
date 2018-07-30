@@ -6,7 +6,7 @@
   <title>Crop Swap</title>
   <link href="main.css" rel="stylesheet" type="text/css" />
   <link href="media.css" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Cardo|Indie+Flower" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Nunito" rel="stylesheet" />
 </head>
 <body>
   <nav role="navigation" id="navigation-container">
@@ -27,16 +27,18 @@
           <fieldset>
             <legend>Search Swaps</legend>
             <div id="search-selection">
-              <input type="radio" name="option-0" id="option-0" value="0" checked/>
-              <label for="option-0">I want</label>
-              <input type="radio" name="option-1" id="option-1" value="1"/>
-              <label for="option-1">I want</label><br><br>
+              <input type="radio" name="search-have" id="search-have" value="0" checked/>
+              <label for="search-have">I have</label>
+              <input type="radio" name="search-want" id="search-want" value="1"/>
+              <label for="search-want">I want</label><br><br>
             </div>
             <div id="search-details">
               <label>Item
                 <input id="search-data" name="search-data" type="search" placeholder="Tomatoes" required onfocus="this.value=''" />
-              </label>Location
+              </label>
+              <label>Location
               <input id="search-loc" name="search-loc" type="search" placeholder="Portland or 97212" required onfocus="this.value=''" />
+              </label>
               <button role="button" type="submit" class="search-button">Search</button>
             </div>
           </fieldset>

@@ -9,9 +9,9 @@ body {
 }
 
 #background-image {
-    opacity: .4;
-    position: fixed;
-    z-index: -1;
+  opacity: .4;
+  position: fixed;
+  z-index: -1;
 }
 
 #navigation-container {
@@ -47,7 +47,7 @@ a:active {
   color: green;
 }
 
-/********** body index.html ************/
+/********** index.html ************/
 
 #welcome-message-container {
   display: inline-block;
@@ -107,15 +107,15 @@ a:active {
 }
 
 fieldset {
- border-radius: 4px;
- padding-top: 15px;
+  border-radius: 4px;
+  padding-top: 15px;
 }
 
 fieldset p {
   margin-left: 15px;
 }
 
-#new-user, #existingUser {
+#new-user, #existingUser, .search-button {
   border: 1px solid black;
   border-radius: 3px;
   font-size: 15px;
@@ -125,12 +125,12 @@ fieldset p {
 }
 
 input {
-/* background-color: #E8E8E8; */
-border: 1px solid #DBDBDB;
-border-radius: 4px;
+  /* background-color: #E8E8E8; */
+  border: 1px solid #DBDBDB;
+  border-radius: 4px;
 }
 
-/********** body  results.html ************/
+/********** results.html ************/
 
 #page-display-container, #page-display-container-2 {
   display: inline-block;
@@ -139,12 +139,38 @@ border-radius: 4px;
   background-color: white;
 }
 
-#form-container {
+/* #form-container {
 background-color: #FFCF9E;
+} */
+
+#search-selection {
+  margin-bottom: -15px;
+  text-align: center;
 }
 
-#search-loc, #search-data, .search-button {
-  border: 1px solid black
+#search-selection label {
+  margin-right: 15px;
+}
+
+#search-details label {
+  margin-top: 10px;
+  display: inline-block;
+}
+
+#search-loc, #search-data {
+  border: 1px solid #DBDBDB;
+  border-radius: 4px;
+  font-size: 15px;
+  margin: 5px 0px;
+  padding: 4px;
+}
+
+#search-data::placeholder , #search-loc::placeholder {
+  color: #E0E0E0;
+  font-size: 12px;
+}
+  .search-button {
+    margin: 20px auto;
 }
 
 #search-results-card {
@@ -154,3 +180,5 @@ background-color: #FFCF9E;
 h5, h6 {
   margin: 0;
 }
+
+/********** createPost.html ************/
