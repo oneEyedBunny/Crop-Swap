@@ -75,7 +75,6 @@ router.get('/', (req, res) => {
       });
     });
 
-
   //creates a new swap post after checking all required fields are present
   router.post('/', (req, res) => {
     const requiredFields =  ['have', 'user'];
@@ -92,9 +91,11 @@ router.get('/', (req, res) => {
       user: req.body.user,
       want: req.body.want
     })
-    .find('user')
-    .populate('user')
-    .then(swapPost => {res.status(201).json(swapPost.serialize())
+    .then(swapPost => {
+      SwapPost.populate(swapPost, "user")
+      .then(swapPostUser => {
+      res.status(201).json(swapPost.serialize())
+      })
     })
     .catch(err => {
       console.error(err);

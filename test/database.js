@@ -18,7 +18,7 @@ function seedAllData() {
   console.info('seeding testDB data');
   return User.insertMany(seedUsers)
   .then(() => {
-    SwapPost.insertMany(seedSwapPosts)
+    return SwapPost.insertMany(seedSwapPosts)
   });
 }
 

@@ -44,7 +44,7 @@ describe("Obtaining swap posts", function () {
   describe('GET all endpoint', function() {
 
     //normal test case for returning all posts- no filter, checking count
-    it.only('should return the correct number of swap posts', function() {
+    it('should return the correct number of swap posts', function() {
       let res;
       return chai.request(app)
       .get('/posts')
@@ -90,12 +90,12 @@ describe("Obtaining swap posts", function () {
 
     //normal test case for returning all posts- with a filter condition
     describe('GET all endpoint with filter', function() {
-      
+
       it('should return the correct swap posts when filtered', function() {
         const type = 'have';
         const item = 'cucumbers';
         return chai.request(app)
-        .get('/posts?type=${type}&item=${item}')
+        .get(`/posts?type=${type}&item=${item}`)
         .then(function(res) {
           expect(res).to.have.status(200);
           expect(res).to.be.json;
@@ -108,20 +108,24 @@ describe("Obtaining swap posts", function () {
     // //normal test case for returning all posts for a specific user
     describe('GET all for a specific user endpoint', function() {
 
-      it('should return the correct number of swap posts for a user', function() {
+      it.only('should return the correct number of swap posts for a user', function() {
         let testUserId = '5b566d443fedefe19eb684d9';
+        let swapPosts;
         return chai.request(app)
-        .get('/posts/user/${testUserId}')
+        .get(`/posts/user/${testUserId}`)
         .then(function(res) {
           expect(res).to.have.status(200);
           expect(res).to.be.json;
           expect(res).to.be.a("object");
-
-          return SwapPost.findById(testUserId);//res.body.user
+          //response to have correct fields
+          //console.log("test case-user id=", swapPosts.id);
+          console.log("res.body=", res.body);
+          return SwapPost.findById(testUserId);
         })
-        .then(function(swapPosts) {
-          expect(swapPosts.user).to.equal(testUserId);
-          //does this do it, or am I missing something
+        .then(function(_swapPosts) {
+          swapPosts = _swapPosts;
+          expect(swapPosts.id).to.equal(testUserId);
+          expect(swapPosts).to.have.lengthOf(2);
         });
       });
     });
