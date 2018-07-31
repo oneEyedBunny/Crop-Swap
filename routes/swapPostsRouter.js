@@ -92,7 +92,9 @@ router.get('/', (req, res) => {
       user: req.body.user,
       want: req.body.want
     })
-    .then(post => {res.status(201).json(post.serialize())
+    .find('user')
+    .populate('user')
+    .then(swapPost => {res.status(201).json(swapPost.serialize())
     })
     .catch(err => {
       console.error(err);
