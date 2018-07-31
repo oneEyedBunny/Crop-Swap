@@ -115,7 +115,7 @@ fieldset p {
   margin-left: 15px;
 }
 
-#new-user, #existingUser, .search-button, .submit-button {
+#new-user, #existingUser, .search-button, .submit-button, .edit-button, .delete-button  {
   border: 1px solid black;
   border-radius: 3px;
   font-size: 15px;
@@ -195,23 +195,46 @@ h5, h6 {
   border: 1px solid #DBDBDB;
   border-radius: 4px;
   font-size: 15px;
-  margin-bottom: 15px;
-  padding: 4px;
+  margin: 15px 0 5px;
+  padding: 8px;
 }
 
+/* need to set a margin on the label still */
+
 #swapPosting-have::placeholder , #swapPosting-want::placeholder {
+  /* color: #E0E0E0; */
   color: #E0E0E0;
   font-size: 12px;
+  padding: 5px;
 }
 
 .submit-button {
-    margin: 20px auto;
+  margin: 20px auto;
+}
+
+#user-post-listing-container {
+  text-align: center;
+  width: 75%
 }
 
 #user-post-listing-container h2 {
-    margin-top: 65px
+    margin-top: 65px;
+}
+
+.individual-list-card {
+  margin-bottom: 25px;
 }
 
 .active-swap-listing {
-  text-decoration: none;
+  list-style-type: none;
+  color: orange;
+  max-width: 20ch;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.edit-button, .delete-button {
+ display: inline-block;
+ margin: 10px;
+ font-size: 12px;
 }
