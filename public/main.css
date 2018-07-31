@@ -166,7 +166,7 @@ background-color: #FFCF9E;
 }
 
 #search-data::placeholder , #search-loc::placeholder {
-  color: #E0E0E0;
+  color: #C8C8C8;
   font-size: 12px;
 }
 
@@ -197,13 +197,14 @@ h5, h6 {
   font-size: 15px;
   margin: 15px 0 5px;
   padding: 8px;
+  width: 90%;
+  resize: none; /* removes corner dashes */
 }
 
 /* need to set a margin on the label still */
 
 #swapPosting-have::placeholder , #swapPosting-want::placeholder {
-  /* color: #E0E0E0; */
-  color: #E0E0E0;
+  color: #C8C8C8;
   font-size: 12px;
   padding: 5px;
 }
