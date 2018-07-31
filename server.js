@@ -4,39 +4,47 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+// const router = express.Router();
 
 //creates the new express app
 const app = express()
 
 // Modularize routes
-const appRouter = require('./appRouter');
+const swapPostsRouter = require('./routes/swapPostsRouter');
+const usersRouter = require('./routes/usersRouter');
 
 // constants for the app
 const {PORT, DATABASE_URL} = require('./config');
 
-//serves static assets
-app.use(express.static('public'));
-
-//when requests come into the landing page, they get routed to the express router
-app.use('/', appRouter);
-
 //log the http layer
 app.use(morgan('common'));
 
-//Mongoose use built in es6 promises
+//creates a static web server, servers static assets
+app.use(express.static('public'));
+
+//when requests come in, they get routed to the express router
+app.use('/posts', swapPostsRouter);
+app.use('/users', usersRouter);
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
+//Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
 
-// app.get("/", (req, res) => {
-//   res.sendFile(__dirname + "/public/index.html");
-// });
+//catch all in case user enters non-existent endpoint
+app.use('*', function(req, res) {
+    res.status(404).json({message: "Sorry, Not Found"});
+})
 
 let server;
 
 //connects to DB, starts the http server and returns a promise > facilitates async testing
 function runServer(databaseURL, port = PORT) {
   return new Promise((resolve, reject) => {
-    mongoose.connect(
-      databaseURL, err => {
+    //tried adding this in for 2nd param and it's throwing error ...{ useNewUrlParser: true }
+    mongoose.connect(databaseURL, err => {
         if(err) {
           return reject(err);
         }

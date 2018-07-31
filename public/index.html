@@ -25,14 +25,14 @@
     <div id="welcome-message-container">
       <h1 class="welcome-quote"> SHARING IS CARING</h1>
       <p class ="welcome-message"> Welcome to Crop Swap </p>
-      <p class ="welcome-message"> Your kitchen and your neighbor's backyard are now one and the same </p>
+      <p class ="welcome-message"> Your kitchen and your neighbor's garden are now one and the same </p>
     </div>
 
     <div id="what-to-do">
       <p> It's simple...</p>
       <ul id="welcome-list">
         <li> Create an account below</li>
-        <li> <a href = "createPost.html">Post</a> what produce you have to swap</li>
+        <li> <a href = "createPost.html">Post</a> what fruits, veggies, or herbs you have to swap</li>
         <li> <a href = "results.html"> Find</a> produce that you want to swap for</li>
         <li> Then message your neighbors to see if they want to swap</li>
       </ul>
@@ -40,19 +40,21 @@
     <div id="profile-forms-container" class="profile-forms">
       <form role="form" id="login-user" name="login-user">
         <fieldset name="user-info">
-        <label> Username:
-          <input type ="text" name="userName" maxLength="20"/>
-        </label>
-        <label> Password:
-          <input type ="password" name= "password" maxlength="20"/>
-        </label>
-        <input id="existingUser" input type = "button" value = "Login" onclick = "loginUser()"/>
+          <label> Username:
+            <input type ="text" name="userName" maxLength="20"/>
+          </label>
+          <label> Password:
+            <input type ="password" name= "password" maxlength="20"/>
+          </label>
+          <input id="existingUser" input type = "button" value = "Login" onclick = "loginUser()"/>
+          <p>OR</p>
+          <input id="new-user" type="button" value="Join Now!" onclick="createAccountForm()"/>
+        </fieldset>
       </form>
-      <input id="new-user" type="button" value="Join Now!" onclick="createAccountForm()"/>
-    </div>
-    <script type= "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type= "text/javascript" src = "scripts/app.js"></script>
-  </main>
-  <footer role="content info"></footer>
-</body>
-</html>
+      </div>
+      <script type= "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script type= "text/javascript" src = "scripts/app.js"></script>
+    </main>
+    <footer role="content info"></footer>
+  </body>
+  </html>

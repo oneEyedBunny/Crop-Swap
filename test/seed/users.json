@@ -1,0 +1,29 @@
+[
+  {
+    "firstName": "Sally",
+    "lastName": "Harris",
+    "userName": "theConsimentGardener89",
+    "password":"testing123",
+    "city": "Portland",
+    "zipCode": "97212",
+    "email":"sallyh@yahoo.com"
+  },
+  {
+    "firstName": "Justin",
+    "lastName": "Swanson",
+    "userName": "dkIrvington",
+    "password":"testing1234",
+    "city": "Portland",
+    "zipCode": "97218",
+    "email":"justins@yahoo.com"
+  },
+  {
+    "firstName": "Tessa",
+    "lastName": "Pena",
+    "userName": "veggieGirl89",
+    "password":"testing12345",
+    "city": "Portland",
+    "zipCode": "97211",
+    "email":"tessap@gmail.com"
+  }
+]

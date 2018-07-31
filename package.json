@@ -4,14 +4,17 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "mocha",
-    "start": "node server.js"
+    "test": "mocha --exit",
+    "start": "nodemon --inspect"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "mongoose": "^5.2.4",
+    "mongoose-timestamp": "^0.6.0",
     "morgan": "^1.9.0",
     "uuid": "^3.3.2"
   },

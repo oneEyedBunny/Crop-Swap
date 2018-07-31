@@ -1,34 +1,63 @@
 "use strict";
 
 //import 3rd party libraries
-const uuid = require('uuid');
+const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const timestamps = require('mongoose-timestamp');
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
 
-//defining schema for posts
-const postSchema = mongoose.Schema({
-      title: { type: String, required: true },
-      description: { type: String, required: true },
-      username: { type: String, required: true },
-      created: { type: Date, default: Date.now },
-      swap_for: [String]
+//defining schema for users
+const userSchema = mongoose.Schema({
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    userName: { type: String, required: true, unique: true, minlength: 5, maxlength: 50 },
+    password: { type: String, required: true , minlength: 5, maxlength: 200 },
+    city: { type: String, required: true },
+    zipCode: { type: Number, required: true },
+    email: { type: String, required: true, unique: true, lowercase: true }
 });
 
-//represents how posts are represented outside our app via our api
-postSchema.methods.serialize = function() {
+//defining schema for posts
+const swapPostSchema = mongoose.Schema({
+      have: { type: String, required: true },
+      user: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true },
+      want: { type: String },
+});
+
+//Mongoogse uses timestamps for createAt and updateAt for specified schemas
+swapPostSchema.set("timestamps", true);
+
+//validate that password is sufficient
+// userSchema.methods.validatePassword = function(password) {
+//   return bcrypt.compare(password, this.password);
+// };
+//
+// //encrpts pw with 10 salt rounds
+// userSchema.statics.hashPassword = function(password) {
+//   return bcrypt.hash(password, 10);
+// }
+
+//create a virtual so the username can be retrieved for serialize
+// userSchema.virtual('userName').get(function(user) {
+//   return
+// });
+
+//represents how swap posts are represented outside our app via our api
+swapPostSchema.methods.serialize = function() {
   return {
     id: this._id,
-    title: this.title,
-    description: this.description,
-    username: this.username,
-    created: this.created,
-    swap_for: this.swap_for
+    have: this.have,
+    userName: this.user.userName,
+    email: this.user.email,
+    created: this.createdAt,
+    want: this.want,
   };
 };
 
-//Creates a new Mongoose model (Posts) off the posts collection in the DB using the Schema defined above
-const Post = mongoose.model('Posts', postSchema);
+//Creates new Mongoose models (User & swapPosts) off the users & swapPosts collection in the DB using the Schema defined above
+const User = mongoose.model('Users', userSchema);
+const SwapPost = mongoose.model('swapPosts', swapPostSchema, 'swapPosts');
 
-module.exports = {Post};
+module.exports = {User, SwapPost};

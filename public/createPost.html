@@ -6,7 +6,7 @@
   <title>Crop Swap</title>
   <link href="main.css" rel="stylesheet" type="text/css" />
   <link href="media.css" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Cardo|Indie+Flower" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Nunito" rel="stylesheet" />
 </head>
 <body>
 
@@ -26,22 +26,36 @@
       <div id="post-form-container">
         <form role="form" id="create-post-form">
           <fieldset>
-            <legend>Create a Swap Posting</legend>
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" maxlength="100" wrap="hard"
+            <legend>Create a New Swap Post</legend>
+            <label for="description">Description of what you have:</label>
+            <textarea id="swapPosting-have" name="swapPosting-have" maxlength="100" wrap="hard"
               required cols="55" rows="5" onfocus="this.value=''">I have approximately 10 large heirloom tomatoes</textarea>
-            <label>I'm looking to swap for:
-              <textarea id="desired-swap-item" name="desired-swap-item" placeholder="Tomatoes"
-                maxlength="100" cols="33" rows="3" onfocus="this.value=''">Carrots, apples, lettuce</textarea>
+            <label>What would you like to swap for (not required):
+            <textarea id="swapPosting-want" name="swapPosting-want" placeholder="Tomatoes"
+              maxlength="100" cols="55" rows="5" onfocus="this.value=''">You dont need to provide anything here, but it can help facilitate swaps</textarea>
             </label>
             <button role="button" type="submit" class="submit-button">Submit</button>
           </fieldset>
         </form>
       </div>
+    <div id="user-post-listing-container">
+      <h2>My Active Swap Posts</h2>
+      <!-- this is placeholder data, will be built out with javascript -->
+      <ul id="active-swap-list">
+        <div class="individual-list-card">
+          <li class="active-swap-listing">Swap Listing 1</li>
+          <button role ="button" type="submit" class="edit-button">Edit</button>
+          <button role ="button" type="submit" class="delete-button">Delete</button>
+        </div>
+        <div class="individual-list-card">
+          <li class="active-swap-listing">Swap Listing 2</li>
+          <button role ="button" type="submit" class="edit-button">Edit</button>
+          <button role ="button" type="submit" class="delete-button">Delete</button>
+        </div>
+      </ul>
+      <!-- end placeholder data -->
     </div>
-
-
-
+  </div> <!-- closes page container -->
 
     </main>
     <footer role="content info"></footer>
