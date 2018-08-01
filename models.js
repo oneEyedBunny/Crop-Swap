@@ -19,6 +19,28 @@ const userSchema = mongoose.Schema({
     email: { type: String, required: true, unique: true, lowercase: true }
 });
 
+//represents how the outside world sees our users
+userSchema.methods.serialize = function() {
+  return {
+    userName: this.userName || '',
+    firstName: this.firstName || '',
+    lastName: this.lastName || '',
+    id: this.id || '',
+    email: this.email || ''
+  };
+};
+
+//validate that password is sufficient
+userSchema.methods.validatePassword = function(password) {
+  return bcrypt.compare(password, this.password);
+};
+
+//encrpts pw with 10 salt rounds
+userSchema.statics.hashPassword = function(password) {
+  return bcrypt.hash(password, 10);
+}
+
+
 //defining schema for posts
 const swapPostSchema = mongoose.Schema({
       have: { type: String, required: true },
@@ -46,21 +68,3 @@ const User = mongoose.model('Users', userSchema);
 const SwapPost = mongoose.model('swapPosts', swapPostSchema, 'swapPosts');
 
 module.exports = {User, SwapPost};
-
-
-
-
-//validate that password is sufficient
-// userSchema.methods.validatePassword = function(password) {
-//   return bcrypt.compare(password, this.password);
-// };
-//
-// //encrpts pw with 10 salt rounds
-// userSchema.statics.hashPassword = function(password) {
-//   return bcrypt.hash(password, 10);
-// }
-
-//create a virtual so the username can be retrieved for serialize
-// userSchema.virtual('userName').get(function(user) {
-//   return
-// });

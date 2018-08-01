@@ -4,8 +4,9 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const timestamps = require('mongoose-timestamp');
+// const timestamps = require('mongoose-timestamp');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
@@ -17,22 +18,128 @@ const {User} = require('../models');
 router.use(bodyParser.json({ limit: '500kb', extended: true }));
 router.use(bodyParser.urlencoded({ limit: '500kb', extended: true }));
 
-//route to return a specific user
-router.get('/', (req, res, next) => {
-  User
-  .find()
-  .then(users => {
-    console.log(users)
-    res.json(users);
+
+//called when a new user is created
+router.post('/', (req, res, next) => {
+  const requiredFields = ["firstName", "lastName", "userName", "password", "email", "city", "zipCode"];
+  const missingField = requiredFields.find(field => !(field in req.body));
+
+  if (missingField) {
+      return res.status(422).json({
+        code: 422,
+        reason: 'ValidationError',
+        message: 'Missing field',
+        location: missingField
+      });
+    }
+  const stringFields = ["firstName", "lastName", "userName", "password", "email", "city", "zipCode"];
+  const nonStringField = stringFields.find(field =>
+      (field in req.body) && typeof req.body[field] !== 'string'
+    );
+
+  if (nonStringField) {
+    return res.status(422).json({
+      code: 422,
+      reason: 'ValidationError',
+      message: 'Incorrect field type: expected string',
+      location: nonStringField
+    });
+ }
+  const explicitlyTrimmedFields = ['userName', 'password'];
+  const nonTrimmedField = explicitlyTrimmedFields.find(field =>
+    req.body[field].trim() !== req.body[field]
+  );
+  const sizedFields = {
+    userName: {
+      min: 1
+    },
+    password: {
+      min: 10,
+      max: 72
+    }
+  };
+  const tooSmallField = Object.keys(sizedFields).find(field =>
+    'min' in sizedFields[field] &&
+    req.body[field].trim().length < sizedFields[field].min
+  );
+  const tooLargeField = Object.keys(sizedFields).find(field =>
+    'max' in sizedFields[field] &&
+    req.body[field].trim().length > sizedFields[field].max
+  );
+  if (tooSmallField || tooLargeField) {
+    return res.status(422).json({
+      code: 422,
+      reason: 'ValidationError',
+      message: tooSmallField
+        ? `Must be at least ${sizedFields[tooSmallField]
+          .min} characters long`
+        : `Must be at most ${sizedFields[tooLargeField]
+          .max} characters long`,
+      location: tooSmallField || tooLargeField
+    });
+  }
+
+  let {userName, password, firstName = '', lastName = '', email = '', city = '', zipCode = ''} = req.body;
+  // Username and password come in pre-trimmed, otherwise we throw an error
+  // before this
+  firstName = firstName.trim();
+  lastName = lastName.trim();
+
+  return User.find({userName})
+  .count()
+  .then(count => {
+    if (count > 0) {
+    // There is an existing user with the same username
+        return Promise.reject({
+          code: 422,
+          reason: 'ValidationError',
+          message: 'Username already taken',
+          location: 'userName'
+        });
+      }
+      // If there is no existing user, hash the password
+      return User.hashPassword(password);
+    })
+    .then(hash => {
+      return User.create({
+        userName,
+        password: hash,
+        firstName,
+        lastName,
+        email,
+        city,
+        zipCode
+      });
+    })
+    .then(user => {
+      return res.status(201).json(user.serialize());
     })
     .catch(err => {
-      next(err);
+      // Forward validation errors on to the client, otherwise give a 500
+      // error because something unexpected has happened
+      if (err.reason === 'ValidationError') {
+        return res.status(err.code).json(err);
+      }
+      res.status(500).json({code: 500, message: 'Internal server error'});
     });
+});
+
+// Never expose all your users like below in a prod application, we're just
+// this so we have a quick way to see if we're creating users.
+router.get('/', (req, res) => {
+  return User.find()
+    .then(users =>
+      res.json(users.map(user => user.serialize())))
+    .catch(err =>
+      res.status(500).json({message: 'Internal server error'}));
 });
 
 
 
-
-
+//called to login an existing user > check credentials
+// router.get('/auth', (req, res, next) => {
+//   User
+//
+// })
 
 module.exports = router;
