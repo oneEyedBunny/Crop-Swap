@@ -1,10 +1,9 @@
 # Pending
-1. Create test cases for all GET/POST routes in swapPosts
-1. put route  >>>> swapposts
+1. fix tests GET/POST routes in swapPosts
 1. Create put test case >>>swapposts
 1. post route for when they create a new account >>>> users
 1. JWT
-1. create post test case >>>users
+1. create post test case >>> users
 1. Add form on posts page that allows them to Edit/delete their existing posts
 1. Add email into form submission and ensure it transforms to lowercase
 1. Add user to mLab- heroku config

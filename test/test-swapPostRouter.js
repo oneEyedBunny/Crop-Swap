@@ -191,5 +191,10 @@ describe("Obtaining swap posts", function () {
         });
       });
 
+      // describe('PUT endpoint', function() {
+      // 
+      //   it('updates a swapPost by id', function() {
+      //   })
+      // })
 
     }) //closes describe stmt with hooks

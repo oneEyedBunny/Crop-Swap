@@ -48,7 +48,7 @@ router.get('/', (req, res) => {
     }
     SwapPost
     .findById(req.params.id)
-    // .populate('user')
+    .populate('user')
     .then(swapPost => {
       res.json(swapPost.serialize()
     )})
@@ -119,6 +119,30 @@ router.get('/', (req, res) => {
   });
 
   //updates a specified swap
+  router.put('/:id', (req, res) => {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      const err = new Error("The `id` is not valid");
+      err.status = 400;
+      return next(err);
+    }
+    let updatedPost = {};
+    let updateableFields = ['have', 'want'];
+    updateableFields.forEach(field => {
+      if(field in req.body) {
+        updatedPost[field] = req.body[field];
+      }
+    });
+    SwapPost
+    .findByIdAndUpdate(req.params.id, {$set:updatedPost})
+    .then(swapPost => {
+      console.log(`Updating blog post with blog id ${req.params.id}`);
+      res.status(204).end()
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: "Something went wrong"});
+    });
+  });
 
 
 module.exports = router;
