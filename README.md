@@ -5,8 +5,9 @@
 1. JWT
 1. create post test case >>> users
 1. Add form on posts page that allows them to Edit/delete their existing posts
-1. Add email into form submission and ensure it transforms to lowercase
-1. Add user to mLab- heroku config
+1. Index page >> Add email into form & ensure it transforms to lowercase
+1. Results page>> fix radio toggle
+
 
 
 # Stretch Goal
