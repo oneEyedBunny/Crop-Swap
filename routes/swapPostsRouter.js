@@ -48,6 +48,7 @@ router.get('/', (req, res) => {
     }
     SwapPost
     .findById(req.params.id)
+    // .populate('user')
     .then(swapPost => {
       res.json(swapPost.serialize()
     )})
@@ -63,6 +64,7 @@ router.get('/', (req, res) => {
     console.log(id);
   SwapPost
     .find( { user: id } )
+    .populate('user')
     .then(swapPosts => {
       res.json({
         swapPosts: swapPosts.map(swapPost =>

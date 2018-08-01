@@ -74,15 +74,13 @@ describe("Obtaining swap posts", function () {
             'id', 'have', 'userName','email','created','want');
           });
           post = res.body.swapPosts[0];
-          console.log("POST",post.id);
+          console.log("POST", post);
           return SwapPost.findById(post.id);
         })
         .then(function(swapPost) {
           expect(post.id).to.equal(swapPost.id);
           expect(post.have).to.equal(swapPost.have);
-          // expect(post.userName).to.equal(swapPost.userName); not working till I can get serialize to work
-          // expect(post.email).to.equal(swapPost.email);
-          // expect(post.created).to.equal(swapPost.created);
+          //expect(post.created).to.equal(swapPost.created);
           expect(post.want).to.equal(swapPost.want);
         });
       });
@@ -100,73 +98,77 @@ describe("Obtaining swap posts", function () {
           expect(res).to.have.status(200);
           expect(res).to.be.json;
           expect(res).to.be.a("object");
-          //how do I test that it actually found haves with cucumbers
+          expect(res).to.have.lengthOf(2); //visually checked how many posts have cucumber in them
         });
       });
     });
 
-    // //normal test case for returning all posts for a specific user
+     //normal test case for returning all posts for a specific user
     describe('GET all for a specific user endpoint', function() {
 
-      it.only('should return the correct number of swap posts for a user', function() {
+      it('should return the correct number of swap posts for a user', function() {
         let testUserId = '5b566d443fedefe19eb684d9';
-        let swapPosts;
+        let res ;
         return chai.request(app)
         .get(`/posts/user/${testUserId}`)
-        .then(function(res) {
+        .then(function(_res) {
+          res = _res;
           expect(res).to.have.status(200);
           expect(res).to.be.json;
           expect(res).to.be.a("object");
-          //response to have correct fields
-          //console.log("test case-user id=", swapPosts.id);
-          console.log("res.body=", res.body);
-          return SwapPost.findById(testUserId);
+
+          res.body.swapPosts.forEach(function(swapPost) {
+            expect(swapPost).to.include.all.keys(
+              'id', 'have', 'userName','email','created','want');
+            });
+          console.log("res.body=", res.body, typeof res.body);
+          return SwapPost.find({user: testUserId});
         })
-        .then(function(_swapPosts) {
-          swapPosts = _swapPosts;
-          expect(swapPosts.id).to.equal(testUserId);
-          expect(swapPosts).to.have.lengthOf(2);
+        .then(function(swapPosts) {
+          console.log("swapPosts=", swapPosts);
+          //expect(swapPosts[0].user).equals(test); //need to find a way to connect username and user
+          expect(swapPosts).to.have.lengthOf(res.body.swapPosts.length);
         });
       });
     });
 
-    describe('POST endpoint', function() {
-
-      it('should add a new swapPost', function() {
-        const newPost = {
-          "have": "Carrots",
-          "want": "Mushrooms",
-          "user": "5b566d443fedefe19eb684d9"
-        };
-        let res;
-
-        return chai.request(app)
-        .post('/posts')
-        .send(newPost)
-        .then(function(_res) {
-          res= _res;
-          console.log("Body", res.body);
-          expect(res).to.have.status(201);
-          expect(res).to.be.json;
-          expect(res.body).to.be.a('object');
-          expect(res.body).to.include.all.keys(
-            'id', 'have', 'want', 'userName', 'email', 'created');
-            expect(res.body.id).to.not.be.null; // cause Mongo should have created id on insertion
-            expect(res.body.have).to.equal(newPost.have);
-            expect(res.body.want).to.equal(newPost.want);
-            expect(res.body.user).to.equal(newPost.user);
-
-            return SwapPost.findById(res.body.id);
-          })
-          .then(function(swapPost) {
-            expect(swapPost.have).to.equal(newPost.have);
-            expect(swapPost.want).to.equal(newPost.want);
-            expect(swapPost.userName).to.equal(res.body.userName);
-            expect(swapPost.created).to.equal(res.body.created);
-            expect(swapPost.email).to.equal(res.body.email);
-          });
-        });
-      });
+    // describe('POST endpoint', function() {
+    //
+    //   it.only('should add a new swapPost', function() {
+    //     const newPost = {
+    //       "have": "Carrots",
+    //       "want": "Mushrooms",
+    //       "user": "5b566d443fedefe19eb684d9"
+    //     };
+    //     let res;
+    //
+    //     return chai.request(app)
+    //     .post('/posts')
+    //     .send(newPost)
+    //     .then(function(_res) {
+    //       res= _res;
+    //       console.log("Body", res.body);
+    //       expect(res).to.have.status(201);
+    //       expect(res).to.be.json;
+    //       expect(res.body).to.be.a('object');
+    //       expect(res.body).to.include.all.keys(
+    //         'id', 'have', 'want', 'userName', 'email', 'created');
+    //         expect(res.body.id).to.not.be.null; // cause Mongo should have created id on insertion
+    //         expect(res.body.have).to.equal(newPost.have);
+    //         expect(res.body.want).to.equal(newPost.want);
+    //         expect(res.body.user).to.equal(newPost.user);
+    //
+    //         return SwapPost.findById(res.body.id);
+    //       })
+    //       .then(function(swapPost) {
+    //         expect(swapPost.have).to.equal(newPost.have);
+    //         expect(swapPost.want).to.equal(newPost.want);
+    //         expect(swapPost.userName).to.equal(res.body.userName);
+    //         expect(swapPost.created).to.equal(res.body.created);
+    //         expect(swapPost.email).to.equal(res.body.email);
+    //       });
+    //     });
+    //   });
 
       describe('DELETE endpoint', function() {
 
