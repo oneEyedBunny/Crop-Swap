@@ -29,21 +29,6 @@ const swapPostSchema = mongoose.Schema({
 //Mongoogse uses timestamps for createAt and updateAt for specified schemas
 swapPostSchema.set("timestamps", true);
 
-//validate that password is sufficient
-// userSchema.methods.validatePassword = function(password) {
-//   return bcrypt.compare(password, this.password);
-// };
-//
-// //encrpts pw with 10 salt rounds
-// userSchema.statics.hashPassword = function(password) {
-//   return bcrypt.hash(password, 10);
-// }
-
-//create a virtual so the username can be retrieved for serialize
-// userSchema.virtual('userName').get(function(user) {
-//   return
-// });
-
 //represents how swap posts are represented outside our app via our api
 swapPostSchema.methods.serialize = function() {
   return {
@@ -61,3 +46,21 @@ const User = mongoose.model('Users', userSchema);
 const SwapPost = mongoose.model('swapPosts', swapPostSchema, 'swapPosts');
 
 module.exports = {User, SwapPost};
+
+
+
+
+//validate that password is sufficient
+// userSchema.methods.validatePassword = function(password) {
+//   return bcrypt.compare(password, this.password);
+// };
+//
+// //encrpts pw with 10 salt rounds
+// userSchema.statics.hashPassword = function(password) {
+//   return bcrypt.hash(password, 10);
+// }
+
+//create a virtual so the username can be retrieved for serialize
+// userSchema.virtual('userName').get(function(user) {
+//   return
+// });
