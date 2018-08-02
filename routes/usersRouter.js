@@ -4,7 +4,6 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-// const timestamps = require('mongoose-timestamp');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 
@@ -133,13 +132,5 @@ router.get('/', (req, res) => {
     .catch(err =>
       res.status(500).json({message: 'Internal server error'}));
 });
-
-
-
-//called to login an existing user > check credentials
-// router.get('/auth', (req, res, next) => {
-//   User
-//
-// })
 
 module.exports = router;

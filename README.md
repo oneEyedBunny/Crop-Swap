@@ -12,8 +12,6 @@
 1. Write code
 1. Make sure Index page >> Add email into form & ensure it transforms to lowercase
 
-# MISC
-1. Set up demo user in mLab
 
 -----------------------------
 

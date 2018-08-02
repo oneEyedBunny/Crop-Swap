@@ -4,6 +4,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const passport = require('passport'); //protects endpoints
 // const router = express.Router();
 
 //creates the new express app
@@ -12,6 +13,21 @@ const app = express()
 // Modularize routes
 const swapPostsRouter = require('./routes/swapPostsRouter');
 const usersRouter = require('./routes/usersRouter');
+
+const { router: localStrategy, jwtStrategy } = require('./auth/authStrategy');
+const { router: authRouter } = require('./routes/authRouter');
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+//use strategy to protect endpoint
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+//example of pretected endpoint
+app.get('/api/protected', jwtAuth, (req, res) => {
+  return res.json({
+    data: 'rosebud'
+  });
+});
 
 // constants for the app
 const {PORT, DATABASE_URL} = require('./config');
@@ -28,6 +44,17 @@ app.use('/users', usersRouter);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
+});
+
+// CORS
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+    return res.send(204);
+  }
+  next();
 });
 
 //Mongoose uses built in es6 promises
