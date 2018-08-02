@@ -1,10 +1,11 @@
 "user strict";
 
+require('dotenv').config();
 //importing 3rd party libraries
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-// const router = express.Router();
+const passport = require('passport'); //protects endpoints
 
 //creates the new express app
 const app = express()
@@ -12,12 +13,32 @@ const app = express()
 // Modularize routes
 const swapPostsRouter = require('./routes/swapPostsRouter');
 const usersRouter = require('./routes/usersRouter');
+const { router: authRouter } = require('./routes/authRouter');
+
+const { localStrategy, jwtStrategy } = require('./auth/authStrategy');
+
+//use strategy to protect endpoint
+const jwtAuth = passport.authenticate('jwt', { session: false });
 
 // constants for the app
 const {PORT, DATABASE_URL} = require('./config');
 
+// CORS
+// app.use(function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+//   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+//   if (req.method === 'OPTIONS') {
+//     return res.send(204);
+//   }
+//   next();
+// });
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
 //log the http layer
-app.use(morgan('common'));
+app.use(morgan('combined'));
 
 //creates a static web server, servers static assets
 app.use(express.static('public'));
@@ -25,6 +46,7 @@ app.use(express.static('public'));
 //when requests come in, they get routed to the express router
 app.use('/posts', swapPostsRouter);
 app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/public/index.html");

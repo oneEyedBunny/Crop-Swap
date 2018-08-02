@@ -1,14 +1,18 @@
-# Pending
-1. fix tests GET/POST routes in swapPosts
-1. Create put test case >>>swapposts
-1. post route for when they create a new account >>>> users
-1. JWT
-1. create post test case >>> users
-1. Add form on posts page that allows them to Edit/delete their existing posts
-1. Index page >> Add email into form & ensure it transforms to lowercase
-1. Results page>> fix radio toggle
+
+# Pending server side
+1. fix tests GET/POST routes >>> swapPosts
+1. Create put test case >>> swapposts
+1. create post test case >>>users
+
+# Pending CSS
+1. Create non mobile css
+
+# Pending JS
+1. Write code
+1. Make sure Index page >> Add email into form & ensure it transforms to lowercase
 
 
+-----------------------------
 
 # Stretch Goal
 1. Create way for user to use gravatar for photo of self or users to upload a
@@ -21,13 +25,7 @@
 
 
 
-
-
-
-
-
-
-
+-------------------------------
 # Crop-Swap
 https://crop-swap.herokuapp.com/
 
