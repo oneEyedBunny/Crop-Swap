@@ -6,6 +6,9 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const timestamps = require('mongoose-timestamp');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+
+const jwtAuth = passport.authenticate('jwt', {session: false});
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
@@ -78,7 +81,7 @@ router.get('/', (req, res) => {
     });
 
   //creates a new swap post after checking all required fields are present
-  router.post('/', (req, res) => {
+  router.post('/', jwtAuth, (req, res) => {
     const requiredFields =  ['have', 'user'];
     for(let i = 0; i < requiredFields.length; i++) {
       if(!(requiredFields[i] in req.body)) {
@@ -106,7 +109,7 @@ router.get('/', (req, res) => {
   });
 
   //deletes a specified swap
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id', jwtAuth, (req, res) => {
     SwapPost
     .findByIdAndRemove(req.params.id)
     .then(swapPost => {
@@ -119,7 +122,7 @@ router.get('/', (req, res) => {
   });
 
   //updates a specified swap
-  router.put('/:id', (req, res) => {
+  router.put('/:id', jwtAuth, (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
       const err = new Error("The `id` is not valid");
       err.status = 400;

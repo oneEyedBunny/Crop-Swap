@@ -8,9 +8,10 @@ const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 const { User } = require('../models');
 const { JWT_SECRET } = require('../config');
 
-const localStrategy = new LocalStrategy((userName, password, callback) => {
+const localStrategy = new LocalStrategy((username, password, callback) => {
   let user;
-  User.findOne({ userName: userName })
+  console.log(username);
+  User.findOne({ userName: username })
     .then(_user => {
       user = _user;
       if (!user) {
@@ -40,6 +41,7 @@ const localStrategy = new LocalStrategy((userName, password, callback) => {
     });
 });
 
+//provides the auth token
 const jwtStrategy = new JwtStrategy(
   {
     secretOrKey: JWT_SECRET,
