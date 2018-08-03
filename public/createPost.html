@@ -24,24 +24,24 @@
     <img src="images/indexBackground.jpg" id="background-image"/>
     <div id="page-display-container-2">
       <div id="post-form-container">
-        <form role="form" id="create-post-form" action="/posts/user/:id" method"post">
+        <form role="form" id="create-post-form"> <!-- action="/posts/user/:id" method"post"-->
           <fieldset>
             <legend>Create a New Swap Post</legend>
             <label for="description">Description of what you have:</label>
-            <textarea id="swapPosting-have" name="swapPosting-have" maxlength="100" wrap="hard" placeholder= "I have approximately 10 large heirloom tomatoes"
+            <textarea id="swapPosting-have" name="swapPostingHave" maxlength="100" wrap="hard" placeholder= "I have approximately 10 large heirloom tomatoes"
               required rows="5" onfocus="this.value=''"></textarea>
             <label>What would you like to swap for (not required):
-            <textarea id="swapPosting-want" name="swapPosting-want" placeholder="You dont need to provide anything here, but it can help facilitate swaps"
+            <textarea id="swapPosting-want" name="swapPostingWant" placeholder="You dont need to provide anything here, but it can help facilitate swaps"
               maxlength="100" rows="5" onfocus="this.value=''"></textarea>
             </label>
-            <button role="button" type="submit" class="submit-button">Submit</button>
+            <button role="button" type="submit" class="create-post-button">Submit</button>
           </fieldset>
         </form>
       </div>
     <div id="user-post-listing-container">
       <h2>My Active Swap Posts</h2>
-      <!-- this is placeholder data, will be built out with javascript -->
       <ul id="active-swap-list">
+        <!-- this is placeholder data, will be built out with javascript -->
         <div class="individual-list-card">
           <li class="active-swap-listing">Swap Listing 1</li>
           <button role ="button" type="submit" class="edit-button">Edit</button>
@@ -52,8 +52,8 @@
           <button role ="button" type="submit" class="edit-button">Edit</button>
           <button role ="button" type="submit" class="delete-button">Delete</button>
         </div>
+        <!-- end placeholder data -->
       </ul>
-      <!-- end placeholder data -->
     </div>
   </div> <!-- closes page container -->
 

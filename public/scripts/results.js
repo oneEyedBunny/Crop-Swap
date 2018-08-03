@@ -10,7 +10,7 @@ function loadSwaps() {
 
 //renders the swaps onto the page
  function renderSwapPosts(data) {
-   console.log("data", data);
+   //console.log("data", data);
    let post = data.swapPosts.map(swapPost => {
      return  `
       <div class="search-results-card">
@@ -32,10 +32,11 @@ $('.search-button').click(function(event) {
       item: event.target.form.searchdata.value,
       loc: event.target.form.searchloc.value,
     };
-  console.log("search=", requestData);
+  //console.log("search=", requestData);
   $.get('/posts', requestData)
  .then(res => {
   renderSwapPosts(res);
+  //what if there are no swaps meeting critera, need to display message
  });
 });
 
@@ -52,7 +53,6 @@ $('.search-button').click(function(event) {
 //Document ready functions for jQuery
 $(function() {
   loadSwaps();
-  renderSwapPosts();
 });
 
 

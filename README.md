@@ -15,9 +15,13 @@
 
 # Pending results.html
 1. Need way for users email to display when they hover?
+1. "No swaps that match your criteria" message for search 
 
 # Pending createPost.html
-1. Write code
+1. renderUserPostList() > how do I set char limit of "have", so it only shows snippit
+1.
+1.
+1.
 
 
 -----------------------------
