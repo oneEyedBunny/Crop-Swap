@@ -10,11 +10,11 @@ function loadSwaps() {
 
 //renders the swaps onto the page
  function renderSwapPosts(data) {
-   //console.log("data", data);
    let post = data.swapPosts.map(swapPost => {
      return  `
       <div class="search-results-card">
       <h5 class="userName">${swapPost.userName}</h5>
+      <h5 class="email">${swapPost.email}</h5>
       <h6 class="created">${swapPost.created}</h6>
       <h5 class="have">I have: ${swapPost.have}<h5>
       <h5 class="want">Swap for: ${swapPost.want}<h5>
@@ -22,9 +22,9 @@ function loadSwaps() {
       `
     })
    $('#search-results-container').html(post);
-  };
+};
 
-//submit button > get request to server for specified search params
+//submit button > AJAX get request to server for specified search params
 $('.search-button').click(function(event) {
   event.preventDefault();
     let requestData = {
@@ -32,23 +32,17 @@ $('.search-button').click(function(event) {
       item: event.target.form.searchdata.value,
       loc: event.target.form.searchloc.value,
     };
-  //console.log("search=", requestData);
   $.get('/posts', requestData)
  .then(res => {
-  renderSwapPosts(res);
-  //what if there are no swaps meeting critera, need to display message
+   if(!res.swapPosts.length) {
+    $('#search-results-container').html("");
+    const noDataMessage = "There are no swaps meeting your search criteria";
+     $('<p>').fadeIn().appendTo('#search-results-container').html(noDataMessage).attr('id', 'no-data-error');
+  } else {
+    renderSwapPosts(res);
+  }
  });
 });
-
-//clicking on userName > provides email address in popup??
-// $(document).on("mouseenter", "li", function() {
-//     // hover starts code here
-// });
-//
-// $(document).on("mouseleave", ".userName", function() {
-//     // hover ends code here
-// });
-
 
 //Document ready functions for jQuery
 $(function() {
@@ -63,6 +57,18 @@ $(function() {
 
 
 //------------------------------------------------
+
+//clicking on userName > provides email address in popup??
+// $(document).on("mouseenter", "li", function() {
+//     // hover starts code here
+// });
+//
+// $(document).on("mouseleave", ".userName", function() {
+//     // hover ends code here
+// });
+
+
+
 // function testing() {
 // $.get('/posts')
 // .then(function(swapPosts) {

@@ -38,7 +38,7 @@ passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 //log the http layer
-app.use(morgan('combined'));
+app.use(morgan('common'));
 
 //creates a static web server, servers static assets
 app.use(express.static('public'));

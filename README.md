@@ -1,28 +1,33 @@
+#Pending
 
-# Pending server side
+# server side
 1. NEED TO MODIFY GET REQUEST WITH SEARCH TO INCLUDE ZIPCODE/CITY
 1. FIX CREATED DATE IN SERIALIZE
 1. fix tests GET/POST routes >>> swapPosts
 1. Create put test case >>> swapposts
 1. create post test case >>>users
 
-# Pending CSS
+# CSS
 1. Create non mobile css
+1. Picture boarders off on all pgs
+1. format create-profile form
+1. fix form box sizing on login fields, too small
 
-# Pending index.html
+# index.html
 1. Write code
-1. Make sure Index page >> Add email into form & ensure it transforms to lowercase
+1. make sure inputs transform to lower case on all items
 
-# Pending results.html
-1. Need way for users email to display when they hover?
-1. "No swaps that match your criteria" message for search 
-
-# Pending createPost.html
+# createPost.html
 1. renderUserPostList() > how do I set char limit of "have", so it only shows snippit
-1.
-1.
-1.
+1. Need to integrate user ID into request > local storage?
+1. Not sure what needs to be passed for JWT
+1. Need to determine when rendering, how to assign a value from the response object...aka post id
 
+---------------------------------
+# If time permits
+
+# results.HTML
+1. set form to clear
 
 -----------------------------
 
