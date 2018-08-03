@@ -1,8 +1,8 @@
 "use strict"
 
-//validate the username/password inputs to see if the user has an account
-$('#login-user').submit(function(e) {
-  e.preventDefault();
+//DONE: validate the username/password inputs, recieves token from server if so
+$('#login-user').submit(event => {
+  event.preventDefault();
   let userData = {
     username: $('.username').val(),
     password: $('.password').val()
@@ -14,28 +14,28 @@ $('#login-user').submit(function(e) {
      data: JSON.stringify(userData),
      success: function(res) {
        console.log(res);
+       localStorage.setItem("authToken", JSON.stringify(res.authToken));
+       $('#login-user').hide();
+       $('<p>').appendTo('#profile-forms-container').addClass('login-success-message').html(`Welcome back ${userData.username}! `);
      },
+      error: function() {
+        $('#login-user').hide();
+        $('<p>').appendTo('#profile-forms-container').addClass('login-error-message').html("We could not find an account. Please create one here -----> ");
+        renderCreateAccountForm();
+       },
      dataType: 'json',
      contentType: "application/json"
   });
- //  // if(!userMatch) {
- //  //   $('<p>').appendTo('#profile-forms-container').addClass('error-message').html("We could not find an account. Please create one here -----> ");
- //  //   createAccountForm ();
- //  // } else {
- //  //   localStorage.setItem("currentUserKey", JSON.stringify(userMatch));
- //  //   window.location = "results.html";
- //  // }
- // })
-
 });
 
-//removes existing form and calls function that renders new form
-$('#new-user').click (function() {
+//DONE: removes existing form and calls function that renders new form
+$('#new-user').click(event => {
+  event.preventDefault()
   $('#login-user').hide();
   renderCreateAccountForm();
 });
 
-//creates the new user form
+//DONE: creates the new user form
 function renderCreateAccountForm() {
   $('<form>').fadeIn().appendTo('#profile-forms-container').attr('id', 'new-user-form');
   $('<fieldset>').appendTo('#new-user-form').attr('id', 'new-user-fieldset');
@@ -58,15 +58,17 @@ function renderCreateAccountForm() {
   $('<input>').appendTo('.new-user-div').attr("name", "password").attr("type","password");
 
   let $newUserButton=$('<input>').attr({
-      type: "button",
+      type: "submit",
       value: "Create Profile",
       id: "create-profile-button"
     }).appendTo('#new-user-fieldset');
 }
 
+///// NEED TO REMAKE THIS TO MODEL AJAX CALL ABOVE. DATA ISN'T REGISTERING WITH THIS FORMAT
 //submits a post request for users, clears form & displays success message
-$('#new-user-submit-button').click (function(event) {
+$('#create-profile-button').submit(event => {
     event.preventDefault();
+    console.log("hi");
     let userData = {
       firstNname: event.target.form.firstName.value,
       lastName: event.target.form.lastName.value,
@@ -76,11 +78,11 @@ $('#new-user-submit-button').click (function(event) {
       userName: event.target.form.userName.value,
       password: event.target.form.password.value,
     };
-
+    console.log(userData);
     $.post('/user', userData)
-    .then(function(userData) {
-      //clears forms & displays success message
-      localStorage.setItem("currentUserKey", JSON.stringify(userData.userName));
-      window.location = "profile.html";
+    .then(function(userData, res) {
+      $('#new-user-form').hide();
+      $('<p>').appendTo('#profile-forms-container').addClass('create-account-success-message').html(`Thanks for signing up ${userData.username}! Now you can create a swap `);
+      localStorage.setItem("authToken", JSON.stringify(res.authToken));
     })
   });

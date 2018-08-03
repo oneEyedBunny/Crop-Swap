@@ -130,6 +130,13 @@ input {
   border-radius: 4px;
 }
 
+.login-error-message {
+  width: 100%;
+  color: red;
+  text-align: center;
+  padding: 25px;
+}
+
 /********** results.html ************/
 
 #page-display-container, #page-display-container-2  {
