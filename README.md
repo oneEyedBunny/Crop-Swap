@@ -1,6 +1,7 @@
 
 # Pending server side
 1. NEED TO MODIFY GET REQUEST WITH SEARCH TO INCLUDE ZIPCODE/CITY
+1. FIX CREATED DATE IN SERIALIZE
 1. fix tests GET/POST routes >>> swapPosts
 1. Create put test case >>> swapposts
 1. create post test case >>>users
@@ -8,9 +9,15 @@
 # Pending CSS
 1. Create non mobile css
 
-# Pending JS
+# Pending index.html
 1. Write code
 1. Make sure Index page >> Add email into form & ensure it transforms to lowercase
+
+# Pending results.html
+1. Need way for users email to display when they hover?
+
+# Pending createPost.html
+1. Write code
 
 
 -----------------------------
