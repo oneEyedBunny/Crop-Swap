@@ -18,7 +18,7 @@ router.use(bodyParser.json({ limit: '500kb', extended: true }));
 router.use(bodyParser.urlencoded({ limit: '500kb', extended: true }));
 
 
-//called when a new user is created
+//called when a new user has created a profile
 router.post('/', (req, res, next) => {
   const requiredFields = ["firstName", "lastName", "userName", "password", "email", "city", "zipCode"];
   const missingField = requiredFields.find(field => !(field in req.body));

@@ -16,7 +16,7 @@
 1. style messages on index.html related to login
 
 # index.HTML
-1.
+1. New user form not working
 
 # createPost.html
 1. renderUserPostList() > how do I set char limit of "have", so it only shows snippit

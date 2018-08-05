@@ -137,6 +137,10 @@ input {
   padding: 25px;
 }
 
+#new-form-fields {
+  margin:3px;
+}
+
 /********** results.html ************/
 
 #page-display-container, #page-display-container-2  {
