@@ -15,14 +15,14 @@
 1. format create-profile form
 1. fix form box sizing on login fields, too small
 1. style messages on index.html related to login
+1. format layout of My Active swaps section 
 
 # index.HTML
 1. Error handling for new users > not displaying helpful message
 
 # createPost.html
-1. renderUserPostList() > how do I set char limit of "have", so it only shows snippit
-1. Need to integrate user ID into request > local storage?
-1. Need to determine when rendering, how to assign a value from the response object...aka post id
+1. renderUserPostList() > how can I add ... to represent the last few chars of the cutoff words?
+1. ***Need to determine when rendering, how to assign a value from the response object...aka post id to the buttons***
 
 ---------------------------------
 # If time permits

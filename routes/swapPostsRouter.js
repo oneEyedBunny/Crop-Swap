@@ -82,7 +82,7 @@ router.get('/', (req, res) => {
 
   //creates a new swap post after checking all required fields are present
   router.post('/', jwtAuth, (req, res) => {
-    const requiredFields =  ['have', 'user'];
+    const requiredFields =  ['have', 'user', 'user'];
     for(let i = 0; i < requiredFields.length; i++) {
       if(!(requiredFields[i] in req.body)) {
         const errorMessage = (`Missing \`${requiredFields[i]}\` in request body`);
