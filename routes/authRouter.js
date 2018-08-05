@@ -12,7 +12,7 @@ const router = express.Router();
 //create a signed jwt
 const createAuthToken = function(user) {
   return jwt.sign({user}, config.JWT_SECRET, {
-    subject: user.userName,
+    subject: user.username,
     expiresIn: config.JWT_EXPIRY,
     algorithm: 'HS256'
   });
@@ -29,7 +29,7 @@ router.post('/login', localAuth, (req, res) => {
   res.json({
     authToken: authToken,
     userId: user.id,
-    userName: user.userName
+    username: user.username
   });
 });
 

@@ -18,6 +18,7 @@
 
 # index.HTML
 1. Add local storage key to new user profile, so all other create page works this way not just with a logged in user
+1. Error handling for new users > not displaying helpful message
 
 # createPost.html
 1. renderUserPostList() > how do I set char limit of "have", so it only shows snippit

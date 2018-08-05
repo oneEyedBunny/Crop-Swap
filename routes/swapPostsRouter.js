@@ -130,15 +130,17 @@ router.get('/', (req, res) => {
     }
     let updatedPost = {};
     let updateableFields = ['have', 'want'];
+    console.log('req.body=', req.body);
     updateableFields.forEach(field => {
       if(field in req.body) {
         updatedPost[field] = req.body[field];
       }
+      //console.log("Updated Post = ", updatedPost);
     });
     SwapPost
     .findByIdAndUpdate(req.params.id, {$set:updatedPost})
     .then(swapPost => {
-      console.log(`Updating blog post with blog id ${req.params.id}`);
+      console.log(`Updating swap post with id of ${req.params.id}`);
       res.status(204).end()
     })
     .catch(err => {

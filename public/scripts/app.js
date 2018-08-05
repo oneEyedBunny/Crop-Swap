@@ -16,7 +16,7 @@ $('#login-user').submit(event => {
        console.log(res);
        localStorage.setItem("authToken", JSON.stringify(res.authToken));
        localStorage.setItem("userId", JSON.stringify(res.userId));
-       localStorage.setItem("userName", JSON.stringify(res.userName));
+       localStorage.setItem("username", JSON.stringify(res.username));
        $('#login-user').hide();
        $('<p>').appendTo('#profile-forms-container').addClass('login-success-message').html(`Welcome back ${userData.username}! `);
      },
@@ -56,7 +56,7 @@ function renderCreateAccountForm() {
   $('<label>').appendTo('.new-user-div').html("Zip Code: ");
   $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "zipCode").attr("id", "zipCode").attr('required');
   $('<label>').appendTo('.new-user-div').html("User Name: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "userName").attr("id", "userName").attr('required');
+  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "username").attr("id", "username").attr('required');
   $('<label>').appendTo('.new-user-div').html("Password: ");
   $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "password").attr("id", "password").attr("type","password").attr('required');
 
@@ -76,7 +76,7 @@ $('#profile-forms-container').on('submit','#new-user-form', (event => {
         email: $('#email').val(),
         city: $('#city').val(),
         zipCode: $('#zipCode').val(),
-        userName: $('#userName').val(), //if I add JWT into user, then this needs to change to lowercase username, and change all code in userRouter.js
+        username: $('#username').val(), //if I add JWT into user, then this needs to change to lowercase username, and change all code in userRouter.js
         password: $('#password').val(),
     };
     console.log("userData=", userData);
@@ -88,7 +88,7 @@ $('#profile-forms-container').on('submit','#new-user-form', (event => {
          console.log(res);
          localStorage.setItem("authToken", JSON.stringify(res.authToken)); //need JWT in usersRouter for this
          localStorage.setItem("userId", JSON.stringify(res.userId));
-         localStorage.setItem("userName", JSON.stringify(res.userName));
+         localStorage.setItem("username", JSON.stringify(res.username));
          $('#new-user-form').hide();
          $('<p>').appendTo('#profile-forms-container').addClass('create-account-success-message').html(`Welcome to the swap community ${userData.firstName}! Now you can create a swap `);
          //need to add> switch header from login to logout
@@ -109,7 +109,7 @@ $('#profile-forms-container').on('submit','#new-user-form', (event => {
 //   $('<div>').appendTo('#new-user-fieldset').addClass('new-user-div');
 //
 //   let labels = ["First Name", "Last Name", "Email", "City", "Zip Code", "User Name"];
-//   let name = ["firstName", "lastName", "email", "city", "zipCode", "userName"];
+//   let name = ["firstName", "lastName", "email", "city", "zipCode", "username"];
 // for(let i =0 ; i < labels.length; i++) {
 //   $('<label>').appendTo('.new-user-div').html(labels[0]);
 //   $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", name[0]).attr('required');

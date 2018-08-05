@@ -13,7 +13,7 @@ function loadSwaps() {
    let post = data.swapPosts.map(swapPost => {
      return  `
       <div class="search-results-card">
-      <h5 class="userName">${swapPost.userName}</h5>
+      <h5 class="username">${swapPost.username}</h5>
       <h5 class="email">${swapPost.email}</h5>
       <h6 class="created">${swapPost.created}</h6>
       <h5 class="have">I have: ${swapPost.have}<h5>
@@ -58,12 +58,12 @@ $(function() {
 
 //------------------------------------------------
 
-//clicking on userName > provides email address in popup??
+//clicking on username > provides email address in popup??
 // $(document).on("mouseenter", "li", function() {
 //     // hover starts code here
 // });
 //
-// $(document).on("mouseleave", ".userName", function() {
+// $(document).on("mouseleave", ".username", function() {
 //     // hover ends code here
 // });
 
@@ -88,7 +88,7 @@ $(function() {
 //    swapPost.map(swapPost => {
 //      return results = `
 //       <div class="search-results-card">
-//       <h5>${swapPost.userName}</h5>
+//       <h5>${swapPost.username}</h5>
 //       <h6>${swapPost.created}</h6>
 //       <h5>${swapPost.have}<h5>
 //       </div>

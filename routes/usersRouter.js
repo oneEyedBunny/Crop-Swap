@@ -6,6 +6,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
+const morgan = require('morgan');
 //const jwt = require("jsonwebtoken");
 //const passport = require('passport');
 
@@ -25,7 +26,7 @@ router.use(bodyParser.urlencoded({ limit: '500kb', extended: true }));
 //called when a new user has created a profile
 //router.post('/', localAuth, (req, res, next) => {
 router.post('/', (req, res, next) => {
-  const requiredFields = ["firstName", "lastName", "userName", "password", "email", "city", "zipCode"];
+  const requiredFields = ["firstName", "lastName", "username", "password", "email", "city", "zipCode"];
   const missingField = requiredFields.find(field => !(field in req.body));
 
   if (missingField) {
@@ -36,7 +37,7 @@ router.post('/', (req, res, next) => {
         location: missingField
       });
     }
-  const stringFields = ["firstName", "lastName", "userName", "password", "email", "city", "zipCode"];
+  const stringFields = ["firstName", "lastName", "username", "password", "email", "city", "zipCode"];
   const nonStringField = stringFields.find(field =>
       (field in req.body) && typeof req.body[field] !== 'string'
     );
@@ -49,13 +50,13 @@ router.post('/', (req, res, next) => {
       location: nonStringField
     });
  }
-  const explicitlyTrimmedFields = ['userName', 'password'];
+  const explicitlyTrimmedFields = ['username', 'password'];
   const nonTrimmedField = explicitlyTrimmedFields.find(field =>
     req.body[field].trim() !== req.body[field]
   );
   const sizedFields = {
-    userName: {
-      min: 1
+    username: {
+      min: 5
     },
     password: {
       min: 10,
@@ -83,13 +84,13 @@ router.post('/', (req, res, next) => {
     });
   }
 
-  let {userName, password, firstName = '', lastName = '', email = '', city = '', zipCode = ''} = req.body;
+  let {username, password, firstName = '', lastName = '', email = '', city = '', zipCode = ''} = req.body;
   // Username and password come in pre-trimmed, otherwise we throw an error
   // before this
   firstName = firstName.trim();
   lastName = lastName.trim();
 
-  return User.find({userName})
+  return User.find({username})
   .count()
   .then(count => {
     if (count > 0) {
@@ -98,15 +99,17 @@ router.post('/', (req, res, next) => {
           code: 422,
           reason: 'ValidationError',
           message: 'Username already taken',
-          location: 'userName'
+          location: 'username'
         });
       }
       // If there is no existing user, hash the password
       return User.hashPassword(password);
     })
     .then(hash => {
+      console.log("pw", hash);
+      console.log("user", req.body);
       return User.create({
-        userName,
+        username,
         password: hash,
         firstName,
         lastName,
@@ -125,7 +128,7 @@ router.post('/', (req, res, next) => {
     //   return res.status(201).json({
     //     authToken: authToken,
     //     userId: user.id,
-    //     userName: user.userName
+    //     username: user.username
     //   })
     // })
     .catch(err => {

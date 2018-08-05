@@ -19,7 +19,7 @@ function renderUserPostList(data) {
      <li class="active-swap-listing">${swapPost.have}</li>
      <button role ="button" type="submit" class="edit-button">Edit</button>
      <button role ="button" type="submit" class="delete-button">Delete</button>
-     <h5 class="userName">${swapPost.userName}</h5>
+     <h5 class="username">${swapPost.username}</h5>
      </div>
      `
    })

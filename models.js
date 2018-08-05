@@ -12,8 +12,8 @@ mongoose.Promise = global.Promise;
 const userSchema = mongoose.Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    userName: { type: String, required: true, unique: true, minlength: 5, maxlength: 50 },
-    password: { type: String, required: true , minlength: 5, maxlength: 200 },
+    username: { type: String, required: true, unique: true, minlength: 5, maxlength: 50 },
+    password: { type: String, required: true , minlength: 10, maxlength: 200 },
     city: { type: String, required: true },
     zipCode: { type: Number, required: true },
     email: { type: String, required: true, unique: true, lowercase: true }
@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema({
 //represents how the outside world sees our users
 userSchema.methods.serialize = function() {
   return {
-    userName: this.userName || '',
+    username: this.username || '',
     firstName: this.firstName || '',
     lastName: this.lastName || '',
     id: this.id || '',
@@ -56,7 +56,7 @@ swapPostSchema.methods.serialize = function() {
   return {
     id: this._id,
     have: this.have,
-    userName: this.user.userName,
+    username: this.user.username,
     email: this.user.email,
     created: this.createdAt,
     want: this.want,
@@ -64,7 +64,7 @@ swapPostSchema.methods.serialize = function() {
 };
 
 //Creates new Mongoose models (User & swapPosts) off the users & swapPosts collection in the DB using the Schema defined above
-const User = mongoose.model('Users', userSchema);
+const User = mongoose.model('Users', userSchema, 'Uses');
 const SwapPost = mongoose.model('swapPosts', swapPostSchema, 'swapPosts');
 
 module.exports = {User, SwapPost};
