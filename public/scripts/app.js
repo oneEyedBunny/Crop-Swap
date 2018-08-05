@@ -15,6 +15,8 @@ $('#login-user').submit(event => {
      success: function(res) {
        console.log(res);
        localStorage.setItem("authToken", JSON.stringify(res.authToken));
+       localStorage.setItem("userId", JSON.stringify(res.userId));
+       localStorage.setItem("userName", JSON.stringify(res.userName));
        $('#login-user').hide();
        $('<p>').appendTo('#profile-forms-container').addClass('login-success-message').html(`Welcome back ${userData.username}! `);
      },
@@ -35,7 +37,8 @@ $('#new-user').click(event => {
   renderCreateAccountForm();
 });
 
-//DONE: creates the new user form
+//NEED TO REFACTOR THIS CODE < STARTED DOWN BELOW
+//creates the new user form
 function renderCreateAccountForm() {
   $('<form>').fadeIn().appendTo('#profile-forms-container').attr('id', 'new-user-form');
   $('<fieldset>').appendTo('#new-user-form').attr('id', 'new-user-fieldset');
@@ -64,9 +67,8 @@ function renderCreateAccountForm() {
     }).appendTo('#new-user-fieldset');
 }
 
-//submits a post request for users, clears form & displays success message
+//DONE: submits a post request for users, clears form & displays success message
 $('#profile-forms-container').on('submit','#new-user-form', (event => {
-    console.log("hi");
     event.preventDefault();
     let userData = {
         firstName: $('#firstName').val(),
@@ -74,7 +76,7 @@ $('#profile-forms-container').on('submit','#new-user-form', (event => {
         email: $('#email').val(),
         city: $('#city').val(),
         zipCode: $('#zipCode').val(),
-        username: $('#userName').val(),
+        userName: $('#userName').val(), //if I add JWT into user, then this needs to change to lowercase username, and change all code in userRouter.js
         password: $('#password').val(),
     };
     console.log("userData=", userData);
@@ -84,9 +86,11 @@ $('#profile-forms-container').on('submit','#new-user-form', (event => {
        data: JSON.stringify(userData),
        success: function(res) {
          console.log(res);
-         //localStorage.setItem("authToken", JSON.stringify(res.authToken)); need to add to user route to provide a token
-         //$('#new-user-form').hide();
-         $('<p>').appendTo('#profile-forms-container').addClass('create-account-success-message').html(`Thanks for signing up ${userData.username}! Now you can create a swap `);
+         localStorage.setItem("authToken", JSON.stringify(res.authToken)); //need JWT in usersRouter for this
+         localStorage.setItem("userId", JSON.stringify(res.userId));
+         localStorage.setItem("userName", JSON.stringify(res.userName));
+         $('#new-user-form').hide();
+         $('<p>').appendTo('#profile-forms-container').addClass('create-account-success-message').html(`Welcome to the swap community ${userData.firstName}! Now you can create a swap `);
          //need to add> switch header from login to logout
        },
         error: function() {
@@ -97,26 +101,6 @@ $('#profile-forms-container').on('submit','#new-user-form', (event => {
        contentType: "application/json"
     });
   }));
-
-// $('#create-profile-button').submit(event => {
-//     event.preventDefault();
-//     let userData = {
-//       firstName: event.target.form.firstName.value,
-//       lastName: event.target.form.lastName.value,
-//       email: event.target.form.email.value,
-//       city: event.target.form.city.value,
-//       zipCode: event.target.form.zipCode.value,
-//       username: event.target.form.userName.value,
-//       password: event.target.form.password.value,
-//     };
-//     console.log(userData);
-//     $.post('/user', userData)
-//     .then(function(userData, res) {
-//       $('#new-user-form').hide();
-//       $('<p>').appendTo('#profile-forms-container').addClass('create-account-success-message').html(`Thanks for signing up ${userData.username}! Now you can create a swap `);
-//       localStorage.setItem("authToken", JSON.stringify(res.authToken));
-//     })
-//   });
 
 // function renderCreateAccountForm() {
 //   $('<form>').fadeIn().appendTo('#profile-forms-container').attr('id', 'new-user-form');

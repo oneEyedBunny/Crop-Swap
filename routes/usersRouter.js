@@ -6,19 +6,24 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
+//const jwt = require("jsonwebtoken");
+//const passport = require('passport');
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
 
 // Modularize routes
 const {User} = require('../models');
+//const {createAuthToken} = require('./authRouter')
 
 //applies body parser to all router calls
 router.use(bodyParser.json({ limit: '500kb', extended: true }));
 router.use(bodyParser.urlencoded({ limit: '500kb', extended: true }));
 
+//const localAuth = passport.authenticate('local', {session: false});
 
 //called when a new user has created a profile
+//router.post('/', localAuth, (req, res, next) => {
 router.post('/', (req, res, next) => {
   const requiredFields = ["firstName", "lastName", "userName", "password", "email", "city", "zipCode"];
   const missingField = requiredFields.find(field => !(field in req.body));
@@ -113,6 +118,16 @@ router.post('/', (req, res, next) => {
     .then(user => {
       return res.status(201).json(user.serialize());
     })
+    // .then(req => {
+    //   const authToken = createAuthToken(req.user.serialize());
+    //   const user = req.user.serialize();
+    //   console.log(user)
+    //   return res.status(201).json({
+    //     authToken: authToken,
+    //     userId: user.id,
+    //     userName: user.userName
+    //   })
+    // })
     .catch(err => {
       // Forward validation errors on to the client, otherwise give a 500
       // error because something unexpected has happened

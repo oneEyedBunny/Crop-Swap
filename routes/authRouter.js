@@ -25,7 +25,12 @@ router.use(express.json());
 // The user provides a username and password to login and is given a token
 router.post('/login', localAuth, (req, res) => {
   const authToken = createAuthToken(req.user.serialize());
-  res.json({authToken});
+  const user = req.user.serialize();
+  res.json({
+    authToken: authToken,
+    userId: user.id,
+    userName: user.userName
+  });
 });
 
 const jwtAuth = passport.authenticate('jwt', {session: false});
@@ -36,4 +41,4 @@ router.post('/refresh', jwtAuth, (req, res) => {
   res.json({authToken});
 });
 
-module.exports = {router};
+module.exports = {router, createAuthToken};
