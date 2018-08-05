@@ -49,6 +49,7 @@ app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {
+  //add check here to see if they're info is in local storage
   res.sendFile(__dirname + "/public/index.html");
 });
 

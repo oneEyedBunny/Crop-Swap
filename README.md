@@ -1,10 +1,10 @@
 #Pending
 
 # server side
+1. Restructure pages, so when it loads, it checks if your set in local storage. If yes> welcome back message. if no> login form/join now load. Check in Server.js???
 1. NEED TO MODIFY GET REQUEST WITH SEARCH TO INCLUDE ZIPCODE/CITY
 1. FIX CREATED DATE IN SERIALIZE
 1. make sure new user inputs transform to lower case on all items
-1. Add JWT/passport into userRouter???
 1. fix tests GET/POST routes >>> swapPosts
 1. Create put test case >>> swapposts
 1. create post test case >>>users
@@ -17,7 +17,6 @@
 1. style messages on index.html related to login
 
 # index.HTML
-1. Add local storage key to new user profile, so all other create page works this way not just with a logged in user
 1. Error handling for new users > not displaying helpful message
 
 # createPost.html
@@ -30,8 +29,8 @@
 
 # results.HTML
 1. set form to clear
+
 # index.HTML
-1. Restructure page, so when it loads, it checks if your set in local storage. If yes> welcome back message. if no> login form/join now load
 1. refactor (DRY) renderCreateAccountForm()
 
 -----------------------------

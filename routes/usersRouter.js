@@ -7,21 +7,21 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const morgan = require('morgan');
-//const jwt = require("jsonwebtoken");
-//const passport = require('passport');
+const jwt = require("jsonwebtoken");
+const passport = require('passport');
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
 
 // Modularize routes
 const {User} = require('../models');
-//const {createAuthToken} = require('./authRouter')
+const {createAuthToken} = require('./authRouter')
 
 //applies body parser to all router calls
 router.use(bodyParser.json({ limit: '500kb', extended: true }));
 router.use(bodyParser.urlencoded({ limit: '500kb', extended: true }));
 
-//const localAuth = passport.authenticate('local', {session: false});
+const localAuth = passport.authenticate('local', {session: false});
 
 //called when a new user has created a profile
 //router.post('/', localAuth, (req, res, next) => {
@@ -85,8 +85,7 @@ router.post('/', (req, res, next) => {
   }
 
   let {username, password, firstName = '', lastName = '', email = '', city = '', zipCode = ''} = req.body;
-  // Username and password come in pre-trimmed, otherwise we throw an error
-  // before this
+  // Username and password come in pre-trimmed, otherwise we throw an error before this
   firstName = firstName.trim();
   lastName = lastName.trim();
 
@@ -106,8 +105,6 @@ router.post('/', (req, res, next) => {
       return User.hashPassword(password);
     })
     .then(hash => {
-      console.log("pw", hash);
-      console.log("user", req.body);
       return User.create({
         username,
         password: hash,
@@ -119,25 +116,21 @@ router.post('/', (req, res, next) => {
       });
     })
     .then(user => {
-      return res.status(201).json(user.serialize());
+      console.log("user1 = ", user);
+      const authToken = createAuthToken(user.serialize());
+      return res.status(201).json({
+          authToken: authToken,
+          userId: user._id,
+          username: user.username
+        })
     })
-    // .then(req => {
-    //   const authToken = createAuthToken(req.user.serialize());
-    //   const user = req.user.serialize();
-    //   console.log(user)
-    //   return res.status(201).json({
-    //     authToken: authToken,
-    //     userId: user.id,
-    //     username: user.username
-    //   })
-    // })
     .catch(err => {
       // Forward validation errors on to the client, otherwise give a 500
       // error because something unexpected has happened
       if (err.reason === 'ValidationError') {
         return res.status(err.code).json(err);
       }
-      res.status(500).json({code: 500, message: 'Internal server error'});
+      res.status(500).json({code: 500, message: 'Internal server error- hello'});
     });
 });
 
