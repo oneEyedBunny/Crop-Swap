@@ -27,13 +27,10 @@ function loadSwaps() {
 //submit button > AJAX get request to server for specified search params
 $('.search-button').click(function(event) {
   event.preventDefault();
-    // let requestData = {
-    //   type: event.target.form.search.value,
-    //   item: event.target.form.searchdata.value,
-    //   loc: event.target.form.searchloc.value,
-    // };
     let requestData = {
-
+      type: event.target.form.search.value,
+      item: event.target.form.searchdata.value,
+      loc: event.target.form.searchloc.value,
     };
   $.get('/posts', requestData)
  .then(res => {

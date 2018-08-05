@@ -229,6 +229,17 @@ h5, h6 {
   margin: 20px auto;
 }
 
+#create-post-sucess-message, #create-post-error-message {
+  font-size: 20x;
+  color: green;
+  font-weight: bold;
+  text-align: center;
+}
+
+#create-post-error-message {
+  color: red;
+}
+
 #user-post-listing-container {
   text-align: center;
   width: 75%
@@ -254,4 +265,12 @@ h5, h6 {
  display: inline-block;
  margin: 10px;
  font-size: 12px;
+}
+
+.popup-overlay {
+visibility:hidden;
+}
+
+.popup-content {
+visibility:hidden;
 }

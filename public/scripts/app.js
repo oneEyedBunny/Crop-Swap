@@ -76,7 +76,7 @@ $('#profile-forms-container').on('submit','#new-user-form', (event => {
         email: $('#email').val(),
         city: $('#city').val(),
         zipCode: $('#zipCode').val(),
-        username: $('#username').val(), //if I add JWT into user, then this needs to change to lowercase username, and change all code in userRouter.js
+        username: $('#username').val(), 
         password: $('#password').val(),
     };
     console.log("userData=", userData);
