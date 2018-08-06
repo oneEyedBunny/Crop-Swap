@@ -26,7 +26,9 @@ userSchema.methods.serialize = function() {
     firstName: this.firstName || '',
     lastName: this.lastName || '',
     id: this.id || '',
-    email: this.email || ''
+    email: this.email || '',
+    zipCode: this.zipCode || '',
+    city: this.city || ''
   };
 };
 
@@ -60,6 +62,8 @@ swapPostSchema.methods.serialize = function() {
     email: this.user.email,
     created: this.createdAt,
     want: this.want,
+    zipCode: this.zipCode,
+    city: this.city
   };
 };
 

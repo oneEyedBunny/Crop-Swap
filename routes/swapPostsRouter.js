@@ -28,8 +28,8 @@ router.get('/', (req, res) => {
     item = {'want': new RegExp(req.query.item, 'i')};
   }
   SwapPost
-  //.find(item)
-  .find(item).or([{zipCode: req.query.loc}, {city: req.query.loc}])
+  .find(item)
+  //.find(item).or([{zipCode: req.query.loc}, {city: req.query.loc}])
   //.find({$or:[
     //   {'have': new RegExp(req.query.item, 'i')},
     //   {'want': new RegExp(req.query.item, 'i')},
@@ -42,6 +42,7 @@ router.get('/', (req, res) => {
   //     ] })
   .populate('user')
   .then(swapPosts => {
+
     res.json({
       swapPosts: swapPosts.map(swapPost =>
         swapPost.serialize()
@@ -103,15 +104,21 @@ router.get('/', (req, res) => {
         return res.status(400).send(errorMessage);
       }
     }
+    // SwapPost
+    // .populate('user')
+    // .then(swapPost => {
     SwapPost
     .create({
       have: req.body.have,
       user: req.body.user,
-      want: req.body.want
+      want: req.body.want,
+      // city: this.user.city,
+      // zipCode: this.user.zipCode
     })
+    //})
     .then(swapPost => {
       SwapPost.populate(swapPost, "user")
-      .then(swapPostUser => {
+      .then(swapPost => {
       res.status(201).json(swapPost.serialize())
       })
     })
