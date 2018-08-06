@@ -12,30 +12,25 @@
 # CSS
 1. Create non mobile css
 1. Picture boarders off on all pgs
-1. format create-profile form
-1. fix form box sizing on login fields, too small
-1. style messages on index.html related to login
-1. format layout of My Active swaps section 
+1. format layout of My Active swaps section
 
 # index.HTML
 1. Error handling for new users > not displaying helpful message
+1. Form not requiring all inputs
 
-# createPost.html
-1. renderUserPostList() > how can I add ... to represent the last few chars of the cutoff words?
-1. ***Need to determine when rendering, how to assign a value from the response object...aka post id to the buttons***
 
 ---------------------------------
 # If time permits
 
-# results.HTML
-1. set form to clear
+# createPost.html
+1. renderEditSwap() isn't populating values in text area fields
 
 # index.HTML
-1. refactor (DRY) renderCreateAccountForm()
+1. refactor (DRY) renderCreateAccountForm() >> app.js
 
 -----------------------------
 
-# Stretch Goal
+# Stretch Goals
 1. Create way for user to use gravatar for photo of self or users to upload a
     photo of themselves
 1. Create way for users to upload photos of their swaps (S3)

@@ -39,16 +39,18 @@
     </div>
     <div id="profile-forms-container" class="profile-forms">
       <form role="form" id="login-user" name="loginUser">
-        <fieldset name="user-info">
+        <fieldset name="user-info" id="user-info">
           <label> Username:
             <input type ="text" class="username" name="username" required/>
           </label>
           <label> Password:
             <input type ="password" class="password" name="password" required/>
           </label>
-          <input id="existingUser" type = "submit" value = "Login"/>
-          <p>OR</p>
-          <input id="new-user" type="button" value="Join Now!"/>
+          <div id="profile-buttons-container">
+            <input id="existingUser" type = "submit" value = "Login"/>
+            <p>OR</p>
+            <input id="new-user" type="button" value="Join Now!"/>
+          </div>
         </fieldset>
       </form>
       </div>

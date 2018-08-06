@@ -76,7 +76,7 @@ $('#profile-forms-container').on('submit','#new-user-form', (event => {
         email: $('#email').val(),
         city: $('#city').val(),
         zipCode: $('#zipCode').val(),
-        username: $('#username').val(), 
+        username: $('#username').val(),
         password: $('#password').val(),
     };
     console.log("userData=", userData);
@@ -90,7 +90,7 @@ $('#profile-forms-container').on('submit','#new-user-form', (event => {
          localStorage.setItem("userId", JSON.stringify(res.userId));
          localStorage.setItem("username", JSON.stringify(res.username));
          $('#new-user-form').hide();
-         $('<p>').appendTo('#profile-forms-container').addClass('create-account-success-message').html(`Welcome to the swap community ${userData.firstName}! Now you can create a swap `);
+         $('<p>').appendTo('#profile-forms-container').addClass('create-account-success-message').html(`Welcome to the swap community ${userData.firstName}!`);
          //need to add> switch header from login to logout
        },
         error: function() {

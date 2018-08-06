@@ -53,8 +53,10 @@ router.get('/', (req, res) => {
     .findById(req.params.id)
     .populate('user')
     .then(swapPost => {
-      res.json(swapPost.serialize()
-    )})
+      res.json({
+        swapPost: swapPost.serialize()
+      })
+    })
     .catch(err => {
       console.error(err);
       res.status(500).json({error: "internal server error"});

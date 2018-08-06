@@ -40,6 +40,7 @@ $('.search-button').click(function(event) {
      $('<p>').fadeIn().appendTo('#search-results-container').html(noDataMessage).attr('id', 'no-data-error');
   } else {
     renderSwapPosts(res);
+    $("#search-form")[0].reset();
   }
  });
 });

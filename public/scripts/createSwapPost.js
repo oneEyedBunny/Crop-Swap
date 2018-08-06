@@ -5,27 +5,14 @@ let authToken = JSON.parse(localStorage.getItem("authToken"));
 
 //submits GET request for all swaps by user using path variables
 function loadUserSwaps() {
-  // $.ajax({
-  //   type: 'GET',
-  //   url: '/posts/user/' + id,
-  //   data: JSON.stringify(id),
-  //   success: renderUserSwapList,
-  //   error: function(err) {
-  //      console.error(err)
-  //     },
-  //   dataType: 'json',
-  //   contentType: "application/json"
-  // });
-
   $.get('/posts/user/' + id)
   .then(res => {
     renderUserSwapList(res);
   });
 };
 
-//renders all user swap posts
+//renders all user swap posts to the page
 function renderUserSwapList(data) {
-  console.log("data", data);
   let post = data.swapPosts.map(swapPost => {
     return  `
      <div class="individual-list-card" id="${swapPost.id}">
@@ -47,7 +34,6 @@ function renderUserSwapList(data) {
      user: id,
      authToken: authToken
    };
-    console.log("delete id=", requestId);
 
     $.ajax({
       type: 'DELETE',
@@ -55,7 +41,8 @@ function renderUserSwapList(data) {
       data: JSON.stringify(requestData),
       success: function() {
         console.log("delete worked!");
-        $('#requestId').remove();
+        console.log($('#' + requestId));
+        $('#' + requestId).remove();
        },
       error: function(err) {
          console.log(err);
@@ -66,60 +53,80 @@ function renderUserSwapList(data) {
     });
  });
 
- //get request by id for post that was clicked
- // $('#active-swap-list').on("click", ".edit-button", event => {
- //   event.preventDefault();
- //   let requestId = $('.edit-button').val();
- //   console.log("edit id=", requestId);
- //
- //   $.get('/posts/' + requestId)
- //   .then(res => {
- //     renderEditSwap(res);
- //   });
- // });
+  //get request by id for post that was clicked
+ $('#active-swap-list').on("click", '.edit-button', event => {
+   event.preventDefault();
+   let requestId = $(event.target).attr("value");
+   let requestData = {
+     id: requestId,
+   };
+    $.get('/posts/' + requestId)
+    .then(res => {
+      renderEditSwap(res);
+      $(".popup, .popup-content").addClass("active");
+    });
+  });
 
 // takes response from server and renders it to a pop up box
-//  function renderEditSwap(res) {
-  // <div class="popup-overlay">
-  //  <div class="popup-content">
-      // <form role="form" id="create-post-form">
-      //   <fieldset>
-      //     <legend>Edit My Swap Post</legend>
-      //     <label for="description">Description of what you have:</label>
-      //     <textarea id="swapPosting-have" name="swapPostingHave" value=${res.swapPost.have} maxlength="100" wrap="hard"></textarea>
-      //     <label>What would you like to swap for (not required):
-      //     <textarea id="swapPosting-want" name="swapPostingWant" value=${res.swapPost.have} maxlength="100"></textarea>
-      //     </label>
-      //     <button role="button" type="submit" class="edit-swap-button">Submit</button>
-      //   </fieldset>
-      // </form>
-  // </div>
-  // </div>
-//  }
+ function renderEditSwap(res) {
+   console.log("swap id=", res.swapPost.id);
+   console.log("have", res.swapPost.have);
+   console.log("want", res.swapPost.want);
+   let popup =`
+   <div class="popup-overlay">
+    <div class="popup-content">
+       <form role="form" id="edit-post-form">
+         <fieldset>
+           <legend>Edit My Swap Post</legend>
+           <label for="description">Description of what you have:</label>
+           <textarea id="edit-swap-posting-have" name="swapPostingHave" value=${res.swapPost.have} rows="3" maxlength="100" wrap="hard"></textarea>
+           <label>What would you like to swap for (not required):
+           <textarea id="edit-swap-posting-want" name="swapPostingWant" value=${res.swapPost.want} rows="3" maxlength="100"></textarea>
+           </label>
+           <button role="button" type="submit" id="edit-swap-button" value=${res.swapPost.id}>Submit</button>
+         </fieldset>
+       </form>
+    </div>
+   </div>
+ `
+  $('#active-swap-list').html(popup);
+}
 
-//  //submits a put request with the changes
-//  //closes the pop up box, and calls loadUserSwaps() so the updated data is shown
-//  $('???').on("submit", ".edit-swap-button", event => {
-//    event.preventDefault();
-//    let changeData = {
-//      //these form.swap... items need to be adjusted for what you set pop up box to be
-//      // have: event.target.form.swapPostingHave.value,
-//      // want: event.target.form.swapPostingWant.value,
-//      id: // local storage??
-//    };
-//    //console.log("submitted data=", requestData);
-//    $.put('/posts/:id', changeData)
-//   .then(changeData => {
-//    loadUserSwaps(changeData.id)
-//   });
-// });
+ //submits a put request with the swap post changes, closes popup box, and reflects updated data in active list
+ $('#active-swap-list').on('click', '#edit-swap-button', event => {
+   event.preventDefault();
+   let changeData = {
+     id: $('#edit-swap-button').val(),
+     have: $('#edit-swap-posting-have').val(),
+     want: $('#edit-swap-posting-want').val(),
+     user:  id,
+     authToken: authToken
+   };
+   console.log("submitted data=", changeData);
 
-//submits post request, clears form and reloads the page w/swap in Active section
+  $.ajax({
+   type: 'PUT',
+   url: '/posts/' + changeData.id,
+   data: JSON.stringify(changeData),
+   success: function() {
+     $(".popup, .popup-content").removeClass("active");
+     loadUserSwaps()
+     },
+   error: function(err) {
+     console.log(err);
+    },
+   dataType: 'json',
+   contentType: "application/json",
+   headers: { "Authorization": 'Bearer ' + authToken }
+ });
+});
+
+//submits post request, clears form and reloads the page w/new swap in Active section
 $('.create-post-button').click(function(event) {
   event.preventDefault();
     let requestData = {
-      have: $('#swapPosting-have').val(),
-      want: $('#swapPosting-want').val(),
+      have: $('#swap-posting-have').val(),
+      want: $('#swap-posting-want').val(),
       user:  id,
       authToken: authToken
     }
@@ -139,6 +146,7 @@ $('.create-post-button').click(function(event) {
     contentType: "application/json",
     headers: { "Authorization": 'Bearer ' + authToken }
   });
+  loadUserSwaps();
 });
 
 //Document ready functions for jQuery
