@@ -23,12 +23,23 @@ router.use(bodyParser.urlencoded({ limit: '500kb', extended: true }));
 //return all the posts or if a specified item is searched for, only those items
 router.get('/', (req, res) => {
   let type = req.query.type || 'have';
-  let regex = {'have': new RegExp(req.query.item, 'i')};
+  let item = {'have': new RegExp(req.query.item, 'i')};
   if (type === 'want') {
-    regex = {'want': new RegExp(req.query.item, 'i')};
+    item = {'want': new RegExp(req.query.item, 'i')};
   }
   SwapPost
-  .find(regex)
+  //.find(item)
+  .find(item).or([{zipCode: req.query.loc}, {city: req.query.loc}])
+  //.find({$or:[
+    //   {'have': new RegExp(req.query.item, 'i')},
+    //   {'want': new RegExp(req.query.item, 'i')},
+    //   {'zipCode' :req.query.loc},
+    //   {'city' :req.query.loc}
+    // ]})
+  // .find({item} ,{ $or: [
+  //     {'zipCode' :req.query.loc},
+  //     {'city' :req.query.loc}
+  //     ] })
   .populate('user')
   .then(swapPosts => {
     res.json({
