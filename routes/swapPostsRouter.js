@@ -53,8 +53,10 @@ router.get('/', (req, res) => {
     .findById(req.params.id)
     .populate('user')
     .then(swapPost => {
-      res.json(swapPost.serialize()
-    )})
+      res.json({
+        swapPost: swapPost.serialize()
+      })
+    })
     .catch(err => {
       console.error(err);
       res.status(500).json({error: "internal server error"});
@@ -82,7 +84,7 @@ router.get('/', (req, res) => {
 
   //creates a new swap post after checking all required fields are present
   router.post('/', jwtAuth, (req, res) => {
-    const requiredFields =  ['have', 'user'];
+    const requiredFields =  ['have', 'user', 'user'];
     for(let i = 0; i < requiredFields.length; i++) {
       if(!(requiredFields[i] in req.body)) {
         const errorMessage = (`Missing \`${requiredFields[i]}\` in request body`);
@@ -130,15 +132,17 @@ router.get('/', (req, res) => {
     }
     let updatedPost = {};
     let updateableFields = ['have', 'want'];
+    console.log('req.body=', req.body);
     updateableFields.forEach(field => {
       if(field in req.body) {
         updatedPost[field] = req.body[field];
       }
+      //console.log("Updated Post = ", updatedPost);
     });
     SwapPost
     .findByIdAndUpdate(req.params.id, {$set:updatedPost})
     .then(swapPost => {
-      console.log(`Updating blog post with blog id ${req.params.id}`);
+      console.log(`Updating swap post with id of ${req.params.id}`);
       res.status(204).end()
     })
     .catch(err => {

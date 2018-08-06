@@ -27,54 +27,30 @@
           <fieldset>
             <legend>Search Swaps</legend>
             <div id="search-selection">
-              <input type="radio" name="search" id="search-have" value="0" checked/>
+              <input type="radio" name="search" id="search-have" value="want" checked/> <!-- the value fields are deliberately switched -->
               <label for="search-have">I have</label>
-              <input type="radio" name="search" id="search-want" value="1"/>
+              <input type="radio" name="search" id="search-want" value="have"/>
               <label for="search-want">I want</label>
             </div>
             <div id="search-details">
               <label>Item
-                <input id="search-data" name="search-data" type="search" placeholder="Tomatoes" required onfocus="this.value=''" />
+                <input id="search-data" name="searchdata" type="search" placeholder="Tomatoes" val="" required />
               </label>
               <label>Location
-              <input id="search-loc" name="search-loc" type="search" placeholder="Portland or 97212" required onfocus="this.value=''" />
+              <input id="search-loc" name="searchloc" type="search" placeholder="Portland or 97212" val="" />
               </label>
               <button role="button" type="submit" class="search-button">Search</button>
             </div>
           </fieldset>
         </form>
       </div>
-      <div id="search-results-container">
-        <!-- all of this will be created in JS, this is placeholder data -->
-        <div id=search-results-card>
-          <h5>theConsimentGardener</h5><h6>2hrs</h6>
-          <h5>I have approximately 10 large heirloom tomatoes. They're all medium size and are very sweet<h5>
-        </div>
-        <div id=search-results-card>
-          <h5>dbIrvington</h5>
-          <h6>5hrs</h6>
-          <h5>My plant went gangbusters and I've got 5 or so extra cucumbers</h5>
-        </div>
-        <div id=search-results-card>
-          <h5>oneEyedBunny77</h5>
-          <h6>Yesterday</h6>
-          <h5>Extra granny smith apples. A few bruises but they're super crisp</h5>
-        </div>
-        <div id=search-results-card>
-          <h5>UserName</h5>
-          <h6>posted how long ago</h6>
-          <h5>Description<h5>
-        </div>
-        <div id=search-results-card>
-          <h5>UserName</h5>
-          <h6>posted how long ago</h6>
-          <h5>Description<h5>
-        </div>
-        <!-- end -->
+      <div id="search-results-container"> <!-- Javascript populates here -->
       </div>
     </div>
 
   </main>
   <footer role="content info"></footer>
+  <script type= "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type= "text/javascript" src = "scripts/results.js"></script>
 </body>
 </html>

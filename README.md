@@ -1,20 +1,36 @@
+#Pending
 
-# Pending server side
+# server side
+1. Restructure pages, so when it loads, it checks if your set in local storage. If yes> welcome back message. if no> login form/join now load. Check in Server.js???
+1. NEED TO MODIFY GET REQUEST WITH SEARCH TO INCLUDE ZIPCODE/CITY
+1. FIX CREATED DATE IN SERIALIZE
+1. make sure new user inputs transform to lower case on all items
 1. fix tests GET/POST routes >>> swapPosts
 1. Create put test case >>> swapposts
 1. create post test case >>>users
 
-# Pending CSS
+# CSS
 1. Create non mobile css
+1. Picture boarders off on all pgs
+1. format layout of My Active swaps section
 
-# Pending JS
-1. Write code
-1. Make sure Index page >> Add email into form & ensure it transforms to lowercase
+# index.HTML
+1. Error handling for new users > not displaying helpful message
+1. Form not requiring all inputs
 
+
+---------------------------------
+# If time permits
+
+# createPost.html
+1. renderEditSwap() isn't populating values in text area fields
+
+# index.HTML
+1. refactor (DRY) renderCreateAccountForm() >> app.js
 
 -----------------------------
 
-# Stretch Goal
+# Stretch Goals
 1. Create way for user to use gravatar for photo of self or users to upload a
     photo of themselves
 1. Create way for users to upload photos of their swaps (S3)

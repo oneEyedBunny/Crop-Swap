@@ -24,40 +24,30 @@
     <img src="images/indexBackground.jpg" id="background-image"/>
     <div id="page-display-container-2">
       <div id="post-form-container">
-        <form role="form" id="create-post-form">
+        <form role="form" id="create-post-form"> <!-- action="/posts/user/:id" method"post"-->
           <fieldset>
             <legend>Create a New Swap Post</legend>
             <label for="description">Description of what you have:</label>
-            <textarea id="swapPosting-have" name="swapPosting-have" maxlength="100" wrap="hard" placeholder= "I have approximately 10 large heirloom tomatoes"
-              required rows="5" onfocus="this.value=''"></textarea>
+            <textarea id="swap-posting-have" name="swapPostingHave" maxlength="100" wrap="hard" placeholder= "I have approximately 10 large heirloom tomatoes"
+              required rows="5"></textarea>
             <label>What would you like to swap for (not required):
-            <textarea id="swapPosting-want" name="swapPosting-want" placeholder="You dont need to provide anything here, but it can help facilitate swaps"
-              maxlength="100" rows="5" onfocus="this.value=''"></textarea>
+            <textarea id="swap-posting-want" name="swapPostingWant" placeholder="You dont need to provide anything here, but it can help facilitate swaps"
+              maxlength="100" rows="5"></textarea>
             </label>
-            <button role="button" type="submit" class="submit-button">Submit</button>
+            <button role="button" type="submit" class="create-post-button">Submit</button>
           </fieldset>
         </form>
       </div>
     <div id="user-post-listing-container">
       <h2>My Active Swap Posts</h2>
-      <!-- this is placeholder data, will be built out with javascript -->
-      <ul id="active-swap-list">
-        <div class="individual-list-card">
-          <li class="active-swap-listing">Swap Listing 1</li>
-          <button role ="button" type="submit" class="edit-button">Edit</button>
-          <button role ="button" type="submit" class="delete-button">Delete</button>
-        </div>
-        <div class="individual-list-card">
-          <li class="active-swap-listing">Swap Listing 2</li>
-          <button role ="button" type="submit" class="edit-button">Edit</button>
-          <button role ="button" type="submit" class="delete-button">Delete</button>
-        </div>
+      <ul id="active-swap-list"> <!-- data from JS goes here -->
       </ul>
-      <!-- end placeholder data -->
     </div>
   </div> <!-- closes page container -->
 
     </main>
     <footer role="content info"></footer>
+    <script type= "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type= "text/javascript" src = "scripts/createSwapPost.js"></script>
   </body>
 </html>

@@ -38,7 +38,7 @@ passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 //log the http layer
-app.use(morgan('combined'));
+app.use(morgan('common'));
 
 //creates a static web server, servers static assets
 app.use(express.static('public'));
@@ -49,6 +49,7 @@ app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {
+  //add check here to see if they're info is in local storage
   res.sendFile(__dirname + "/public/index.html");
 });
 

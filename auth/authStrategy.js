@@ -10,8 +10,7 @@ const { JWT_SECRET } = require('../config');
 
 const localStrategy = new LocalStrategy((username, password, callback) => {
   let user;
-  console.log(username);
-  User.findOne({ userName: username })
+  User.findOne({ username: username })
     .then(_user => {
       user = _user;
       if (!user) {
@@ -19,7 +18,7 @@ const localStrategy = new LocalStrategy((username, password, callback) => {
         // Any errors like this will be handled in the catch block.
         return Promise.reject({
           reason: 'LoginError',
-          message: "userName doesn't exist"
+          message: "username doesn't exist"
         });
       }
       return user.validatePassword(password);

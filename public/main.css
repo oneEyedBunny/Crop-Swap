@@ -106,28 +106,63 @@ a:active {
   margin-top: 50px;
 }
 
-fieldset {
+#login-user {
+  width: 85%;
+}
+
+#profile-buttons-container {
+  margin: 15px 0px;
+}
+
+#user-info {
   border-radius: 4px;
-  padding-top: 15px;
+  padding: 15px;
 }
 
-fieldset p {
-  margin-left: 15px;
+#user-info p {
+  text-align: center;
+  margin-bottom: 15px;
 }
 
-#new-user, #existingUser, .search-button, .submit-button, .edit-button, .delete-button  {
+#user-info input {
+  /* background-color: #E8E8E8; */
+  border: 1px solid #DBDBDB;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+#new-user, #existingUser, #create-profile-button, .search-button, .submit-button, .create-post-button, .edit-button, .delete-button, #edit-swap-button  {
   border: 1px solid black;
   border-radius: 3px;
   font-size: 15px;
   display: block;
-  margin: 15px 0px;
+  margin: 0 auto;
   padding: 4px 10px;
 }
 
-input {
-  /* background-color: #E8E8E8; */
+.login-error-message {
+  width: 100%;
+  color: red;
+  text-align: center;
+  padding: 25px;
+}
+
+.new-form-fields {
+  margin: 5px;
+  width: 90%;
+  clear: both;
   border: 1px solid #DBDBDB;
   border-radius: 4px;
+  font-size: 13px;
+}
+
+/* needs to be set like this to stay centered with other settings */
+#create-profile-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.create-account-success-message {
+  text-align: center;
 }
 
 /********** results.html ************/
@@ -179,12 +214,16 @@ background-color: #FFCF9E;
     margin: 20px auto;
 }
 
-#search-results-card {
+.search-results-card {
   margin-top: 25px;
 }
 
 h5, h6 {
   margin: 0;
+}
+
+#no-data-error {
+  text-align: center;
 }
 
 /********** createPost.html ************/
@@ -196,7 +235,7 @@ h5, h6 {
   background-color: white;
 } */
 
-#swapPosting-have, #swapPosting-want {
+#swap-posting-have, #swap-posting-want, #edit-swap-posting-have, #edit-swap-posting-want {
   border: 1px solid #DBDBDB;
   border-radius: 4px;
   font-size: 15px;
@@ -208,19 +247,30 @@ h5, h6 {
 
 /* need to set a margin on the label still */
 
-#swapPosting-have::placeholder , #swapPosting-want::placeholder {
+#swap-posting-have::placeholder , #swap-posting-want::placeholder {
   color: #C8C8C8;
   font-size: 12px;
   padding: 5px;
 }
 
-.submit-button {
+.create-post-button {
   margin: 20px auto;
+}
+
+#create-post-sucess-message, #create-post-error-message {
+  font-size: 20x;
+  color: green;
+  font-weight: bold;
+  text-align: center;
+}
+
+#create-post-error-message {
+  color: red;
 }
 
 #user-post-listing-container {
   text-align: center;
-  width: 75%
+  /* width: 75% */
 }
 
 #user-post-listing-container h2 {
@@ -234,8 +284,9 @@ h5, h6 {
 .active-swap-listing {
   list-style-type: none;
   color: orange;
-  max-width: 20ch;
+  max-width: 15ch;
   overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -243,4 +294,29 @@ h5, h6 {
  display: inline-block;
  margin: 10px;
  font-size: 12px;
+}
+
+.popup-overlay {
+visibility:hidden;
+/* text-align: center; */
+}
+
+.popup-content {
+visibility:hidden;
+}
+
+.popup-overlay.active{
+visibility:visible;
+}
+
+.popup-content.active {
+visibility:visible;
+}
+
+#active-swap-list {
+  text-align: center;
+}
+
+#edit-post-form {
+  width: 85%;
 }

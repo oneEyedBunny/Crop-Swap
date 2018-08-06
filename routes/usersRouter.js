@@ -6,21 +6,27 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
+const morgan = require('morgan');
+const jwt = require("jsonwebtoken");
+const passport = require('passport');
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
 
 // Modularize routes
 const {User} = require('../models');
+const {createAuthToken} = require('./authRouter')
 
 //applies body parser to all router calls
 router.use(bodyParser.json({ limit: '500kb', extended: true }));
 router.use(bodyParser.urlencoded({ limit: '500kb', extended: true }));
 
+const localAuth = passport.authenticate('local', {session: false});
 
-//called when a new user is created
+//called when a new user has created a profile
+//router.post('/', localAuth, (req, res, next) => {
 router.post('/', (req, res, next) => {
-  const requiredFields = ["firstName", "lastName", "userName", "password", "email", "city", "zipCode"];
+  const requiredFields = ["firstName", "lastName", "username", "password", "email", "city", "zipCode"];
   const missingField = requiredFields.find(field => !(field in req.body));
 
   if (missingField) {
@@ -31,7 +37,7 @@ router.post('/', (req, res, next) => {
         location: missingField
       });
     }
-  const stringFields = ["firstName", "lastName", "userName", "password", "email", "city", "zipCode"];
+  const stringFields = ["firstName", "lastName", "username", "password", "email", "city", "zipCode"];
   const nonStringField = stringFields.find(field =>
       (field in req.body) && typeof req.body[field] !== 'string'
     );
@@ -44,13 +50,13 @@ router.post('/', (req, res, next) => {
       location: nonStringField
     });
  }
-  const explicitlyTrimmedFields = ['userName', 'password'];
+  const explicitlyTrimmedFields = ['username', 'password'];
   const nonTrimmedField = explicitlyTrimmedFields.find(field =>
     req.body[field].trim() !== req.body[field]
   );
   const sizedFields = {
-    userName: {
-      min: 1
+    username: {
+      min: 5
     },
     password: {
       min: 10,
@@ -78,13 +84,12 @@ router.post('/', (req, res, next) => {
     });
   }
 
-  let {userName, password, firstName = '', lastName = '', email = '', city = '', zipCode = ''} = req.body;
-  // Username and password come in pre-trimmed, otherwise we throw an error
-  // before this
+  let {username, password, firstName = '', lastName = '', email = '', city = '', zipCode = ''} = req.body;
+  // Username and password come in pre-trimmed, otherwise we throw an error before this
   firstName = firstName.trim();
   lastName = lastName.trim();
 
-  return User.find({userName})
+  return User.find({username})
   .count()
   .then(count => {
     if (count > 0) {
@@ -93,7 +98,7 @@ router.post('/', (req, res, next) => {
           code: 422,
           reason: 'ValidationError',
           message: 'Username already taken',
-          location: 'userName'
+          location: 'username'
         });
       }
       // If there is no existing user, hash the password
@@ -101,7 +106,7 @@ router.post('/', (req, res, next) => {
     })
     .then(hash => {
       return User.create({
-        userName,
+        username,
         password: hash,
         firstName,
         lastName,
@@ -111,7 +116,13 @@ router.post('/', (req, res, next) => {
       });
     })
     .then(user => {
-      return res.status(201).json(user.serialize());
+      console.log("user1 = ", user);
+      const authToken = createAuthToken(user.serialize());
+      return res.status(201).json({
+          authToken: authToken,
+          userId: user._id,
+          username: user.username
+        })
     })
     .catch(err => {
       // Forward validation errors on to the client, otherwise give a 500
@@ -119,7 +130,7 @@ router.post('/', (req, res, next) => {
       if (err.reason === 'ValidationError') {
         return res.status(err.code).json(err);
       }
-      res.status(500).json({code: 500, message: 'Internal server error'});
+      res.status(500).json({code: 500, message: 'Internal server error- hello'});
     });
 });
 

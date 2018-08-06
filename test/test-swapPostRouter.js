@@ -71,7 +71,7 @@ describe("Obtaining swap posts", function () {
         console.log("BODY", res.body.swapPosts);
         res.body.swapPosts.forEach(function(swapPost) {
           expect(swapPost).to.include.all.keys(
-            'id', 'have', 'userName','email','created','want');
+            'id', 'have', 'username','email','created','want');
           });
           post = res.body.swapPosts[0];
           console.log("POST", post);
@@ -119,7 +119,7 @@ describe("Obtaining swap posts", function () {
 
           res.body.swapPosts.forEach(function(swapPost) {
             expect(swapPost).to.include.all.keys(
-              'id', 'have', 'userName','email','created','want');
+              'id', 'have', 'username','email','created','want');
             });
           console.log("res.body=", res.body, typeof res.body);
           return SwapPost.find({user: testUserId});
@@ -152,7 +152,7 @@ describe("Obtaining swap posts", function () {
     //       expect(res).to.be.json;
     //       expect(res.body).to.be.a('object');
     //       expect(res.body).to.include.all.keys(
-    //         'id', 'have', 'want', 'userName', 'email', 'created');
+    //         'id', 'have', 'want', 'username', 'email', 'created');
     //         expect(res.body.id).to.not.be.null; // cause Mongo should have created id on insertion
     //         expect(res.body.have).to.equal(newPost.have);
     //         expect(res.body.want).to.equal(newPost.want);
@@ -163,7 +163,7 @@ describe("Obtaining swap posts", function () {
     //       .then(function(swapPost) {
     //         expect(swapPost.have).to.equal(newPost.have);
     //         expect(swapPost.want).to.equal(newPost.want);
-    //         expect(swapPost.userName).to.equal(res.body.userName);
+    //         expect(swapPost.username).to.equal(res.body.username);
     //         expect(swapPost.created).to.equal(res.body.created);
     //         expect(swapPost.email).to.equal(res.body.email);
     //       });
@@ -192,7 +192,7 @@ describe("Obtaining swap posts", function () {
       });
 
       // describe('PUT endpoint', function() {
-      // 
+      //
       //   it('updates a swapPost by id', function() {
       //   })
       // })

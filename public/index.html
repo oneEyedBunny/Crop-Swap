@@ -38,23 +38,25 @@
       </ul>
     </div>
     <div id="profile-forms-container" class="profile-forms">
-      <form role="form" id="login-user" name="login-user">
-        <fieldset name="user-info">
+      <form role="form" id="login-user" name="loginUser">
+        <fieldset name="user-info" id="user-info">
           <label> Username:
-            <input type ="text" name="userName" maxLength="20"/>
+            <input type ="text" class="username" name="username" required/>
           </label>
           <label> Password:
-            <input type ="password" name= "password" maxlength="20"/>
+            <input type ="password" class="password" name="password" required/>
           </label>
-          <input id="existingUser" input type = "button" value = "Login" onclick = "loginUser()"/>
-          <p>OR</p>
-          <input id="new-user" type="button" value="Join Now!" onclick="createAccountForm()"/>
+          <div id="profile-buttons-container">
+            <input id="existingUser" type = "submit" value = "Login"/>
+            <p>OR</p>
+            <input id="new-user" type="button" value="Join Now!"/>
+          </div>
         </fieldset>
       </form>
       </div>
-      <script type= "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <script type= "text/javascript" src = "scripts/app.js"></script>
     </main>
     <footer role="content info"></footer>
+    <script type= "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script type= "text/javascript" src = "scripts/app.js"></script>
   </body>
   </html>
