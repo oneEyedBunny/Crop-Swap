@@ -26,9 +26,16 @@ function logOutUser() {
 
 //submits GET request for all swaps by user using path variables
 function loadUserSwaps() {
+  $('#no-posts-message').remove();
   $.get('/posts/user/' + id)
   .then(res => {
-    renderUserSwapList(res);
+    console.log(res.swapPosts);
+    console.log("length=", res.swapPosts.length);
+    if(!res.swapPosts.length) {
+      $('<p>').fadeIn().appendTo('#active-swap-list').html('Your dont have any posts yet').attr('id', 'no-posts-message');
+    } else {
+      renderUserSwapList(res);
+    }
   });
 };
 
@@ -100,9 +107,9 @@ function renderUserSwapList(data) {
          <fieldset>
            <legend>Edit My Swap Post</legend>
            <label for="description">Description of what you have:</label>
-           <textarea id="edit-swap-posting-have" name="swapPostingHave" value=${res.swapPost.have} rows="3" maxlength="100" wrap="hard"></textarea>
+           <textarea id="edit-swap-posting-have" name="swapPostingHave" value=${res.swapPost.have} rows="5" maxlength="100" wrap="hard"></textarea>
            <label>What would you like to swap for (not required):
-           <textarea id="edit-swap-posting-want" name="swapPostingWant" value=${res.swapPost.want} rows="3" maxlength="100"></textarea>
+           <textarea id="edit-swap-posting-want" name="swapPostingWant" value=${res.swapPost.want} rows="5" maxlength="100"></textarea>
            </label>
            <button role="button" type="submit" id="edit-swap-button" value=${res.swapPost.id}>Submit</button>
          </fieldset>

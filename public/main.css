@@ -239,6 +239,10 @@ h5, h6 {
   background-color: white;
 } */
 
+#no-posts-message {
+  margin-right: 40px;
+}
+
 #swap-posting-have, #swap-posting-want, #edit-swap-posting-have, #edit-swap-posting-want {
   border: 1px solid #DBDBDB;
   border-radius: 4px;

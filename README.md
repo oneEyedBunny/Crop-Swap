@@ -1,22 +1,23 @@
-#Pending
+# Pending
 
 # server side
-1. NEED TO MODIFY GET REQUEST WITH SEARCH TO INCLUDE ZIPCODE/CITY
-1. FIX CREATED DATE IN SERIALIZE
+1. ***NEED TO MODIFY GET REQUEST WITH SEARCH TO INCLUDE ZIPCODE/CITY***
 1. make sure new user inputs transform to lower case on all items
 1. fix tests GET/POST routes >>> swapPosts
 1. Create put test case >>> swapposts
 1. create post test case >>>users
+1. Heroku isn't working, build says error with get request
 
 # CSS
 1. Create non mobile css
-1. Picture boarders off on all pgs
-1. format layout of My Active swaps section
+1. Picture borders off on all pgs
 
 # index.HTML
 1. Error handling for new users > not displaying helpful message
+1. ***get username to not have quotes around it >> app.js line12***
 
-
+ # createPost.HTML
+ 1. after delete, message saying your post was created needs to be removed...
 ---------------------------------
 # If time permits
 
@@ -24,8 +25,8 @@
 1. renderEditSwap() isn't populating values in text area fields
 
 # index.HTML
-1. get username to not have quotes around it
-1. refactor (DRY) renderCreateAccountForm() >> app.js
+1. refactor (DRY) renderCreateAccountForm() >> app.js. Use string and return instead
+
 
 -----------------------------
 

@@ -58,7 +58,7 @@ swapPostSchema.methods.serialize = function() {
     have: this.have,
     username: this.user.username,
     email: this.user.email,
-    created: this.createdAt,
+    created: this.createdAt.toDateString(),
     want: this.want,
   };
 };
