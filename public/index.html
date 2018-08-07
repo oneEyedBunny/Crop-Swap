@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <nav role="navigation" id="navigation-container">
+  <nav role="navigation" id="navigation-container" class="not-logged-in">
     <div class="left-nav-container">
       <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
     </div>
@@ -19,6 +19,17 @@
       <a href="results.html" class="nav-link">Search Swaps</a>
     </div>
   </nav>
+  <nav role="navigation" id="navigation-container" class="logged-in hidden">
+    <div class="left-nav-container">
+      <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
+    </div>
+    <div class="right-nav-container">
+      <a href="/" class="nav-link" onclick="logOutUser()">Logout</a>
+      <a href="results.html" class="nav-link">Search Swaps</a>
+    </div>
+  </nav>
+
+
 
   <main role="main">
     <img src="images/indexBackground.jpg" id="background-image"/>

@@ -1,6 +1,26 @@
 "use strict"
 
-//DONE: validate the username/password inputs, recieves token from server if so
+//checks to see if user info is in local storage to customize what displays on page
+function isUserLoggedIn() {
+  let authToken = localStorage.getItem('authToken');
+  let username = localStorage.getItem('username');
+  console.log(username);
+  if(authToken) {
+    $(".not-logged-in").addClass('hidden');
+    $(".logged-in").removeClass('hidden');
+    $("#login-user").addClass('hidden');
+    $('<p>').appendTo('#profile-forms-container').html(`Welcome back ${username}! `);
+  }
+}
+
+//function that clears user data from local storage, and directs them to the appropriate page
+function logOutUser() {
+  localStorage.clear();
+  $(".logged-in").addClass('hidden');
+  $(".not-logged-in").removeClass('hidden');
+}
+
+//validate the username/password inputs, recieves token from server if so
 $('#login-user').submit(event => {
   event.preventDefault();
   let userData = {
@@ -18,7 +38,7 @@ $('#login-user').submit(event => {
        localStorage.setItem("userId", JSON.stringify(res.userId));
        localStorage.setItem("username", JSON.stringify(res.username));
        $('#login-user').hide();
-       $('<p>').appendTo('#profile-forms-container').addClass('login-success-message').html(`Welcome back ${userData.username}! `);
+       isUserLoggedIn();
      },
       error: function() {
         $('#login-user').hide();
@@ -30,7 +50,7 @@ $('#login-user').submit(event => {
   });
 });
 
-//DONE: removes existing form and calls function that renders new form
+//removes existing form and calls function that renders new form
 $('#new-user').click(event => {
   event.preventDefault()
   $('#login-user').hide();
@@ -46,19 +66,19 @@ function renderCreateAccountForm() {
   $('<div>').appendTo('#new-user-fieldset').addClass('new-user-div');
 
   $('<label>').appendTo('.new-user-div').html("First Name: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "firstName").attr("id", "firstName").attr('required');
+  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "firstName").attr("id", "firstName").attr('required',true);
   $('<label>').appendTo('.new-user-div').html("Last Name: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "lastName").attr("id", "lastName").attr('required');
+  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "lastName").attr("id", "lastName").attr('required',true);
   $('<label>').appendTo('.new-user-div').html("Email: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "email").attr("id", "email").attr('required');
+  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "email").attr("id", "email").attr('required',true);
   $('<label>').appendTo('.new-user-div').html("City: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "city").attr("id", "city").attr('required');
+  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "city").attr("id", "city").attr('required',true);
   $('<label>').appendTo('.new-user-div').html("Zip Code: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "zipCode").attr("id", "zipCode").attr('required');
+  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "zipCode").attr("id", "zipCode").attr('required',true);
   $('<label>').appendTo('.new-user-div').html("User Name: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "username").attr("id", "username").attr('required');
+  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "username").attr("id", "username").attr('required',true);
   $('<label>').appendTo('.new-user-div').html("Password: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "password").attr("id", "password").attr("type","password").attr('required');
+  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "password").attr("id", "password").attr("type","password").attr('required',true);
 
   $('<input>').attr({
       type: "submit",
@@ -67,7 +87,7 @@ function renderCreateAccountForm() {
     }).appendTo('#new-user-fieldset');
 }
 
-//DONE: submits a post request for users, clears form & displays success message
+//submits a post request for users, clears form & displays success message
 $('#profile-forms-container').on('submit','#new-user-form', (event => {
     event.preventDefault();
     let userData = {
@@ -101,6 +121,12 @@ $('#profile-forms-container').on('submit','#new-user-form', (event => {
        contentType: "application/json"
     });
   }));
+
+//document ready function for jQuery
+$(function() {
+  isUserLoggedIn();
+});
+
 
 // function renderCreateAccountForm() {
 //   $('<form>').fadeIn().appendTo('#profile-forms-container').attr('id', 'new-user-form');

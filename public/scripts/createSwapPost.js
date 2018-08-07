@@ -3,6 +3,27 @@
 let id = JSON.parse(localStorage.getItem("userId"));
 let authToken = JSON.parse(localStorage.getItem("authToken"));
 
+//checks to see if user info is in local storage to customize what displays on page
+function isUserLoggedIn() {
+  let authToken = localStorage.getItem('authToken');
+  let username = localStorage.getItem('username');
+  if(authToken) {
+    $(".not-logged-in").addClass('hidden');
+    $(".logged-in").removeClass('hidden');
+    $("#login-user").addClass('hidden');
+  } else {
+    $(".logged-in").addClass('hidden');
+    $(".not-logged-in").removeClass('hidden')
+  }
+}
+
+//function that clears user data from local storage, and directs them to the appropriate page
+function logOutUser() {
+  localStorage.clear();
+  $(".logged-in").addClass('hidden');
+  $(".not-logged-in").removeClass('hidden')
+}
+
 //submits GET request for all swaps by user using path variables
 function loadUserSwaps() {
   $.get('/posts/user/' + id)
@@ -151,5 +172,6 @@ $('.create-post-button').click(function(event) {
 
 //Document ready functions for jQuery
 $(function() {
+  isUserLoggedIn();
   loadUserSwaps();
 });
