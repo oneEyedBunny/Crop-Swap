@@ -1,7 +1,6 @@
 #Pending
 
 # server side
-1. Restructure pages, so when it loads, it checks if your set in local storage. If yes> welcome back message. if no> login form/join now load. Check in Server.js???
 1. NEED TO MODIFY GET REQUEST WITH SEARCH TO INCLUDE ZIPCODE/CITY
 1. FIX CREATED DATE IN SERIALIZE
 1. make sure new user inputs transform to lower case on all items
@@ -16,7 +15,6 @@
 
 # index.HTML
 1. Error handling for new users > not displaying helpful message
-1. Form not requiring all inputs
 
 
 ---------------------------------
@@ -26,6 +24,7 @@
 1. renderEditSwap() isn't populating values in text area fields
 
 # index.HTML
+1. get username to not have quotes around it
 1. refactor (DRY) renderCreateAccountForm() >> app.js
 
 -----------------------------

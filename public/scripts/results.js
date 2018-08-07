@@ -1,5 +1,20 @@
 "use strict"
 
+//checks to see if user info is in local storage to customize what displays on page
+function isUserLoggedIn() {
+  let authToken = localStorage.getItem('authToken');
+  let username = localStorage.getItem('username');
+  if(authToken) {
+    $(".not-logged-in").addClass('hidden');
+    $(".logged-in").removeClass('hidden');
+    $("#login-user").addClass('hidden');
+  }
+}
+//function that clears user data from local storage, and directs them to the appropriate page
+function logOutUser() {
+  localStorage.clear();
+}
+
 //get request for all posts, happens when page loads
 function loadSwaps() {
   $.get('/posts')
@@ -47,54 +62,9 @@ $('.search-button').click(function(event) {
 
 //Document ready functions for jQuery
 $(function() {
+  isUserLoggedIn();
   loadSwaps();
 });
 
 
-
-
-
-
-
-
-//------------------------------------------------
-
-//clicking on username > provides email address in popup??
-// $(document).on("mouseenter", "li", function() {
-//     // hover starts code here
-// });
-//
-// $(document).on("mouseleave", ".username", function() {
-//     // hover ends code here
-// });
-
-
-
-// function testing() {
-// $.get('/posts')
-// .then(function(swapPosts) {
-//   console.log(swapPosts);
-//   swapPosts.forEach(function (post) {
-//     var $option = $('<option>').attr('value', post.have).text(post.want);
-//       $('#search-results-container').append($option)
-//     })
-// });
-// }
-
-
-// function renderSwapPosts(swapPosts) {
-//   console.log(swapPosts);
-//   let results;
-//   swapPosts.forEach(function (swapPost) {
-//    swapPost.map(swapPost => {
-//      return results = `
-//       <div class="search-results-card">
-//       <h5>${swapPost.username}</h5>
-//       <h6>${swapPost.created}</h6>
-//       <h5>${swapPost.have}<h5>
-//       </div>
-//       `
-//     })
-//     $('#search-results-container').append("Hello");
-//   })
-// })
+//-----------------------------------------------

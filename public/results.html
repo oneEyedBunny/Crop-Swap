@@ -9,13 +9,22 @@
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Nunito" rel="stylesheet" />
 </head>
 <body>
-  <nav role="navigation" id="navigation-container">
+  <nav role="navigation" id="navigation-container" class="not-logged-in">
     <div class="left-nav-container">
       <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
     </div>
     <div class="right-nav-container">
-      <a href="/" class="nav-link">Logout</a>
-      <a href="createPost.html" class="nav-link">New Post</a>
+      <a href="/#login-user" class="nav-link">Login</a>
+      <a href="/#new-user" class="nav-link">Create Account</a>
+    </div>
+  </nav>
+  <nav role="navigation" id="navigation-container" class="logged-in hidden">
+    <div class="left-nav-container">
+      <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
+    </div>
+    <div class="right-nav-container">
+      <a href="results.html" class="nav-link" onclick="logOutUser()">Logout</a>
+      <a href="createPost.html" class="nav-link">Create Swap</a>
     </div>
   </nav>
 
