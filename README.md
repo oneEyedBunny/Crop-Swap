@@ -22,7 +22,8 @@
 
 #results.HTML
 1. user inputs transform to lower case on all items, or search is off
------------------------------
+
+-----------------------------------------------------------------
 
 # Stretch Goals
 1. Create way for user to use gravatar for photo of self or users to upload a
