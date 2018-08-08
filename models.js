@@ -48,6 +48,8 @@ const swapPostSchema = mongoose.Schema({
       have: { type: String, required: true },
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true },
       want: { type: String },
+      zipCode: { type: String, required: true },
+      city: { type: String, required: true }
 });
 
 //Mongoogse uses timestamps for createAt and updateAt for specified schemas

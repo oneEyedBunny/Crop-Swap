@@ -15,6 +15,7 @@ mongoose.Promise = global.Promise;
 
 // Modularize routes
 const {SwapPost} = require('../models');
+const {User} = require('../models');
 
 //applies body parser to all router calls
 router.use(bodyParser.json({ limit: '500kb', extended: true }));
@@ -28,18 +29,8 @@ router.get('/', (req, res) => {
     item = {'want': new RegExp(req.query.item, 'i')};
   }
   SwapPost
-  .find(item)
-  //.find(item).or([{zipCode: req.query.loc}, {city: req.query.loc}])
-  //.find({$or:[
-    //   {'have': new RegExp(req.query.item, 'i')},
-    //   {'want': new RegExp(req.query.item, 'i')},
-    //   {'zipCode' :req.query.loc},
-    //   {'city' :req.query.loc}
-    // ]})
-  // .find({item} ,{ $or: [
-  //     {'zipCode' :req.query.loc},
-  //     {'city' :req.query.loc}
-  //     ] })
+  //.find(item)
+  .find(item).or([{zipCode: req.query.loc}, {city: req.query.loc}])
   .populate('user')
   .then(swapPosts => {
 
@@ -104,29 +95,30 @@ router.get('/', (req, res) => {
         return res.status(400).send(errorMessage);
       }
     }
-    // SwapPost
-    // .populate('user')
-    // .then(swapPost => {
-    SwapPost
-    .create({
-      have: req.body.have,
-      user: req.body.user,
-      want: req.body.want,
-      // city: this.user.city,
-      // zipCode: this.user.zipCode
+    User
+    .findOne({id:req.body.id})
+    .then(res => {
+      console.log("res =", res);
+      return SwapPost
+      .create({
+        have: req.body.have,
+        user: req.body.user,
+        want: req.body.want,
+        zipCode: res.zipCode,
+        city: res.city
+        })
     })
-    //})
-    .then(swapPost => {
-      SwapPost.populate(swapPost, "user")
       .then(swapPost => {
-      res.status(201).json(swapPost.serialize())
+        SwapPost.populate(swapPost, "user")
+        .then(swapPost => {
+        res.status(201).json(swapPost.serialize())
+        })
       })
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({message: "Internal server error"})
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({message: "Internal server error"})
+      });
     });
-  });
 
   //deletes a specified swap
   router.delete('/:id', jwtAuth, (req, res) => {
