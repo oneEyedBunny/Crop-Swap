@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 //import dependencies
 const chai = require('chai');
@@ -12,7 +12,7 @@ const { tearDownDb, get, seedAllData } = require('./database');
 // const { SwapPost } = require('../models');
 // // const { SwapPost } = require('../routes/swapPostsRouter');
 //
-// // const { seedUsers } = require("./seed/users");
+// // const { seedUsers } = require('./seed/users');
 //
 // //lets us use expect & should style syntax in tests
 // const expect = chai.expect;
@@ -22,7 +22,7 @@ const { tearDownDb, get, seedAllData } = require('./database');
 // chai.use(chaiHttp);
 //
 // //hooks to return promises
-// describe("Obtaining swap posts", function () {
+// describe('Obtaining swap posts', function () {
 //
 //   before(function() {
 //     return runServer(TEST_DATABASE_URL, PORT);
@@ -53,7 +53,7 @@ const { tearDownDb, get, seedAllData } = require('./database');
 //         expect(res).to.have.status(200);
 //         expect(res).to.be.json;
 //         expect(res).to.be.a('object');
-//         console.log("Swap Posts", res.body.swapPosts)
+//         console.log('Swap Posts', res.body.swapPosts)
 //         expect(res.body.swapPosts).to.have.lengthOf.at.least(1);
 //         return SwapPost.count();
 //       })
@@ -68,13 +68,13 @@ const { tearDownDb, get, seedAllData } = require('./database');
 //       return chai.request(app)
 //       .get('/posts')
 //       .then(function(res) {
-//         console.log("BODY", res.body.swapPosts);
+//         console.log('BODY', res.body.swapPosts);
 //         res.body.swapPosts.forEach(function(swapPost) {
 //           expect(swapPost).to.include.all.keys(
 //             'id', 'have', 'username','email','created','want');
 //           });
 //           post = res.body.swapPosts[0];
-//           console.log("POST", post);
+//           console.log('POST', post);
 //           return SwapPost.findById(post.id);
 //         })
 //         .then(function(swapPost) {
@@ -97,7 +97,7 @@ const { tearDownDb, get, seedAllData } = require('./database');
 //         .then(function(res) {
 //           expect(res).to.have.status(200);
 //           expect(res).to.be.json;
-//           expect(res).to.be.a("object");
+//           expect(res).to.be.a('object');
 //           expect(res).to.have.lengthOf(2); //visually checked how many posts have cucumber in them
 //         });
 //       });
@@ -115,17 +115,17 @@ const { tearDownDb, get, seedAllData } = require('./database');
 //           res = _res;
 //           expect(res).to.have.status(200);
 //           expect(res).to.be.json;
-//           expect(res).to.be.a("object");
+//           expect(res).to.be.a('object');
 //
 //           res.body.swapPosts.forEach(function(swapPost) {
 //             expect(swapPost).to.include.all.keys(
 //               'id', 'have', 'username','email','created','want');
 //             });
-//           console.log("res.body=", res.body, typeof res.body);
+//           console.log('res.body=', res.body, typeof res.body);
 //           return SwapPost.find({user: testUserId});
 //         })
 //         .then(function(swapPosts) {
-//           console.log("swapPosts=", swapPosts);
+//           console.log('swapPosts=', swapPosts);
 //           //expect(swapPosts[0].user).equals(test); //need to find a way to connect username and user
 //           expect(swapPosts).to.have.lengthOf(res.body.swapPosts.length);
 //         });
@@ -136,9 +136,9 @@ const { tearDownDb, get, seedAllData } = require('./database');
 //     //
 //     //   it.only('should add a new swapPost', function() {
 //     //     const newPost = {
-//     //       "have": "Carrots",
-//     //       "want": "Mushrooms",
-//     //       "user": "5b566d443fedefe19eb684d9"
+//     //       'have': 'Carrots',
+//     //       'want': 'Mushrooms',
+//     //       'user': '5b566d443fedefe19eb684d9'
 //     //     };
 //     //     let res;
 //     //
@@ -147,7 +147,7 @@ const { tearDownDb, get, seedAllData } = require('./database');
 //     //     .send(newPost)
 //     //     .then(function(_res) {
 //     //       res= _res;
-//     //       console.log("Body", res.body);
+//     //       console.log('Body', res.body);
 //     //       expect(res).to.have.status(201);
 //     //       expect(res).to.be.json;
 //     //       expect(res.body).to.be.a('object');

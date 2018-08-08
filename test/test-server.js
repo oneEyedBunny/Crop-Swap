@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 //import dependencies
 const chai = require('chai');
@@ -39,12 +39,12 @@ describe('posts page', function() {
 });
 
 //testing if nonexist page is opened
-describe("404 handler", () => {
-  it("should respond with 404 when given a bad path", () => {
+describe('404 handler', () => {
+  it('should respond with 404 when given a bad path', () => {
     return chai.request(app)
-      .get('/badpath')
-      .then(res => {
-        expect(res).to.have.status(404);
-      });
+    .get('/badpath')
+    .then(res => {
+      expect(res).to.have.status(404);
     });
   });
+});

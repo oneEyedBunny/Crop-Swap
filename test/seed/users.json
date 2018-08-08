@@ -4,9 +4,9 @@
     "firstName": "Sally",
     "lastName": "Harris",
     "username": "theConsimentGardener89",
-    "password":"testing123",
+    "password":"testing0101",
     "city": "Portland",
-    "zipCode": "97212",
+    "zipCode": "97211",
     "email":"sallyh@yahoo.com"
   },
   {
@@ -14,7 +14,7 @@
     "firstName": "Justin",
     "lastName": "Swanson",
     "username": "dkIrvington",
-    "password":"testing1234",
+    "password":"testing0101",
     "city": "Portland",
     "zipCode": "97218",
     "email":"justins@yahoo.com"
@@ -24,9 +24,19 @@
     "firstName": "Tessa",
     "lastName": "Pena",
     "username": "veggieGirl89",
-    "password":"testing12345",
+    "password":"testing0101",
     "city": "Portland",
-    "zipCode": "97211",
+    "zipCode": "97212",
     "email":"tessap@gmail.com"
+  },
+  {
+    "_id":"5b5a357b6445e3cbfb35cea2",
+    "firstName": "Tommy",
+    "lastName": "Gardner",
+    "username": "tommyGardner01",
+    "password":"testing0101",
+    "city": "Portland",
+    "zipCode": "97212",
+    "email":"tommyg@gmail.com"
   }
 ]

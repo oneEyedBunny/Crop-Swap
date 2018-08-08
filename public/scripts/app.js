@@ -4,11 +4,10 @@
 function isUserLoggedIn() {
   let authToken = localStorage.getItem('authToken');
   let username = localStorage.getItem('username');
-  console.log(username);
   if(authToken) {
-    $(".not-logged-in").addClass('hidden');
-    $(".logged-in").removeClass('hidden');
-    $("#login-user").addClass('hidden');
+    $('.not-logged-in').addClass('hidden');
+    $('.logged-in').removeClass('hidden');
+    $('#login-user').addClass('hidden');
     $('<p>').appendTo('#profile-forms-container').html(`Welcome back ${username}! `);
   }
 }
@@ -16,8 +15,8 @@ function isUserLoggedIn() {
 //function that clears user data from local storage, and directs them to the appropriate page
 function logOutUser() {
   localStorage.clear();
-  $(".logged-in").addClass('hidden');
-  $(".not-logged-in").removeClass('hidden');
+  $('.logged-in').addClass('hidden');
+  $('.not-logged-in').removeClass('hidden');
 }
 
 //validate the username/password inputs, recieves token from server if so
@@ -27,25 +26,23 @@ $('#login-user').submit(event => {
     username: $('.username').val(),
     password: $('.password').val()
   }
-  console.log("userData=", userData);
-   $.ajax({
-     type: "POST",
-     url: '/auth/login',
-     data: JSON.stringify(userData),
-     success: function(res) {
-       console.log(res);
-       localStorage.setItem("authToken", res.authToken);
-       localStorage.setItem("userId", res.userId);
-       localStorage.setItem("username", res.username);
-       $('#login-user').hide();
-       isUserLoggedIn();
-     },
-      error: function() {
-        $("#login-user")[0].reset();
-        $('<p>').appendTo('#profile-forms-container').addClass('login-error-message').html("Your username or password was incorrect, please try again");
-       },
-     dataType: 'json',
-     contentType: "application/json"
+  $.ajax({
+    type: 'POST',
+    url: '/auth/login',
+    data: JSON.stringify(userData),
+    success: function(res) {
+      localStorage.setItem('authToken', res.authToken);
+      localStorage.setItem('userId', res.userId);
+      localStorage.setItem('username', res.username);
+      $('#login-user').hide();
+      isUserLoggedIn();
+    },
+    error: function() {
+      $('#login-user')[0].reset();
+      $('<p>').appendTo('#profile-forms-container').addClass('login-error-message').html('Your username or password was incorrect, please try again');
+    },
+    dataType: 'json',
+    contentType: 'application/json'
   });
 });
 
@@ -56,97 +53,74 @@ $('#new-user').click(event => {
   renderCreateAccountForm();
 });
 
-//NEED TO REFACTOR THIS CODE < STARTED DOWN BELOW
 //creates the new user form
 function renderCreateAccountForm() {
-  $('<form>').fadeIn().appendTo('#profile-forms-container').attr('id', 'new-user-form');
-  $('<fieldset>').appendTo('#new-user-form').attr('id', 'new-user-fieldset');
-  $('<legend>').appendTo('#new-user-fieldset').html("Profile Info");
-  $('<div>').appendTo('#new-user-fieldset').addClass('new-user-div');
-
-  $('<label>').appendTo('.new-user-div').html("First Name: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "firstName").attr("id", "firstName").attr('required',true);
-  $('<label>').appendTo('.new-user-div').html("Last Name: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "lastName").attr("id", "lastName").attr('required',true);
-  $('<label>').appendTo('.new-user-div').html("Email: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "email").attr("id", "email").attr('required',true);
-  $('<label>').appendTo('.new-user-div').html("City: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "city").attr("id", "city").attr('required',true);
-  $('<label>').appendTo('.new-user-div').html("Zip Code: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "zipCode").attr("id", "zipCode").attr('required',true);
-  $('<label>').appendTo('.new-user-div').html("User Name: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "username").attr("id", "username").attr('required',true);
-  $('<label>').appendTo('.new-user-div').html("Password: ");
-  $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "password").attr("id", "password").attr("type","password").attr('required',true);
-
-  $('<input>').attr({
-      type: "submit",
-      value: "Create Profile",
-      id: "create-profile-button",
-    }).appendTo('#new-user-fieldset');
+  let form = `
+    <form id ="new-user-form">
+      <fieldset id = "new-user-fieldset">
+        <legend>Profile Info</legend>
+          <div class = "new-user-div">
+            <label>First Name: </label>
+            <input class ="new-form-fields" id = "firstName" name = "firstName" required>
+            <label>Last Name: </label>
+            <input class ="new-form-fields" id = "lastName" name = "lastName" required>
+            <label>Email: </label>
+            <input class ="new-form-fields" id = "email" name = "email" required>
+            <label>City: </label>
+            <input class ="new-form-fields" id = "city" name = "city" required>
+            <label>Zip Code: </label>
+            <input class ="new-form-fields" id = "zipCode" name = "zipCode" required>
+            <label>Username: </label>
+            <input class ="new-form-fields" id = "username" name = "username" required>
+            <label>Password: </label>
+            <input class ="new-form-fields" id = "password" name = "password" type= "password" required>
+            <button role="button" type = "submit" id = "create-profile-button">Create Profile</button>
+        </div>
+      </fieldset>
+    </form>
+    `
+  $("#profile-forms-container").html(form);
 }
 
 //submits a post request for users, clears form & displays success message
 $('#profile-forms-container').on('submit','#new-user-form', (event => {
-    event.preventDefault();
-    let userData = {
-        firstName: $('#firstName').val(),
-        lastName: $('#lastName').val(),
-        email: $('#email').val(),
-        city: $('#city').val(),
-        zipCode: $('#zipCode').val(),
-        username: $('#username').val(),
-        password: $('#password').val(),
-    };
-    console.log("userData=", userData);
-     $.ajax({
-       type: "POST",
-       url: '/users',
-       data: JSON.stringify(userData),
-       success: function(res) {
-         console.log(res);
-         localStorage.setItem("authToken", JSON.stringify(res.authToken));
-         localStorage.setItem("userId", JSON.stringify(res.userId));
-         localStorage.setItem("username", JSON.stringify(res.username));
-         $('#new-user-form').hide();
-         $('<p>').appendTo('#profile-forms-container').addClass('create-account-success-message').html(`Welcome to the swap community ${userData.firstName}!`);
-       },
-        error: function() {
-          $('#login-user').hide();
-          $('<p>').appendTo('#profile-forms-container').addClass('login-error-message').html("There was an error processing your info, please try again");
-          $("#new-user-form")[0].reset();
-         },
-       dataType: 'json',
-       contentType: "application/json"
-    });
-  }));
+  event.preventDefault();
+  let userData = {
+    firstName: $('#firstName').val(),
+    lastName: $('#lastName').val(),
+    email: $('#email').val(),
+    city: $('#city').val(),
+    zipCode: $('#zipCode').val(),
+    username: $('#username').val(),
+    password: $('#password').val(),
+  };
+
+  $.ajax({
+    type: 'POST',
+    url: '/users',
+    data: JSON.stringify(userData),
+    success: function(res) {
+      localStorage.setItem('authToken', res.authToken);
+      localStorage.setItem('userId', res.userId);
+      localStorage.setItem('username', res.username);
+      $('.login-error-message').remove();
+      $('.not-logged-in').addClass('hidden');
+      $('.logged-in').removeClass('hidden');
+      $('#new-user-form').hide();
+      $('<p>').appendTo('#profile-forms-container').addClass('create-account-success-message').html(`Welcome to the swap community ${userData.firstName}!`);
+
+    },
+    error: function() {
+      $('#login-user').hide();
+      $('.login-error-message').remove();
+      $('<p>').appendTo('#profile-forms-container').addClass('login-error-message').html('There was an error processing your info, please try again');
+    },
+    dataType: 'json',
+    contentType: 'application/json'
+  });
+}));
 
 //document ready function for jQuery
 $(function() {
   isUserLoggedIn();
 });
-
-
-// function renderCreateAccountForm() {
-//   $('<form>').fadeIn().appendTo('#profile-forms-container').attr('id', 'new-user-form');
-//   $('<fieldset>').appendTo('#new-user-form').attr('id', 'new-user-fieldset');
-//   $('<legend>').appendTo('#new-user-fieldset').html("Profile Info");
-//   $('<div>').appendTo('#new-user-fieldset').addClass('new-user-div');
-//
-//   let labels = ["First Name", "Last Name", "Email", "City", "Zip Code", "User Name"];
-//   let name = ["firstName", "lastName", "email", "city", "zipCode", "username"];
-// for(let i =0 ; i < labels.length; i++) {
-//   $('<label>').appendTo('.new-user-div').html(labels[0]);
-//   $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", name[0]).attr('required');
-// }
-//   $('<label>').appendTo('.new-user-div').html("Password: ");
-//   $('<input>').appendTo('.new-user-div').addClass('new-form-fields').attr("name", "password").attr("type","password").attr('required');
-//
-//   $('<input>').attr({
-//     type: "submit",
-//     value: "Create Profile",
-//     id: "create-profile-button",
-//   }).appendTo('#new-user-fieldset');
-// }
-
-//text(`${labels[0]: }');

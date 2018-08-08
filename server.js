@@ -50,7 +50,7 @@ app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {
   //add check here to see if they're info is in local storage
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 //Mongoose uses built in es6 promises
@@ -58,7 +58,7 @@ mongoose.Promise = global.Promise;
 
 //catch all in case user enters non-existent endpoint
 app.use('*', function(req, res) {
-    res.status(404).json({message: "Sorry, Not Found"});
+  res.status(404).json({message: 'Sorry, Not Found'});
 })
 
 let server;
@@ -68,21 +68,21 @@ function runServer(databaseURL, port = PORT) {
   return new Promise((resolve, reject) => {
     //tried adding this in for 2nd param and it's throwing error ...{ useNewUrlParser: true }
     mongoose.connect(databaseURL, err => {
-        if(err) {
-          return reject(err);
-        }
-        server = app
-        .listen(port, () => {
-          console.log(`Your app is listening on port ${port}`);
-          resolve();
-        })
-        .on("error", err => {
-          mongoose.disconnect();
-          reject(err);
-        });
+      if(err) {
+        return reject(err);
       }
-    );
-  });
+      server = app
+      .listen(port, () => {
+        console.log(`Your app is listening on port ${port}`);
+        resolve();
+      })
+      .on('error', err => {
+        mongoose.disconnect();
+        reject(err);
+      });
+    }
+  );
+});
 }
 
 //stops the server and returns a promise > facilitates async testing

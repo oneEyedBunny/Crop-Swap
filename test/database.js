@@ -1,12 +1,12 @@
 "use strict";
 //used to tear down test db
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 // const { TEST_DATABASE_URL } = require('../config');
 const { SwapPost, User } = require('../models');
 
-const seedSwapPosts = require("./seed/swapPosts");
-const seedUsers = require("./seed/users");
+const seedSwapPosts = require('./seed/swapPosts');
+const seedUsers = require('./seed/users');
 
 
 function get() {
