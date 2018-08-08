@@ -156,7 +156,7 @@ $('.create-post-button').click(function(event) {
       have: $('#swap-posting-have').val(),
       want: $('#swap-posting-want').val(),
       user:  id,
-      authToken: authToken
+      authToken: authToken,
     }
   console.log("requested data=", requestData);
   $.ajax({

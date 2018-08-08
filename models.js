@@ -26,7 +26,9 @@ userSchema.methods.serialize = function() {
     firstName: this.firstName || '',
     lastName: this.lastName || '',
     id: this.id || '',
-    email: this.email || ''
+    email: this.email || '',
+    zipCode: this.zipCode || '',
+    city: this.city || ''
   };
 };
 
@@ -46,6 +48,8 @@ const swapPostSchema = mongoose.Schema({
       have: { type: String, required: true },
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true },
       want: { type: String },
+      zipCode: { type: String, required: true },
+      city: { type: String, required: true }
 });
 
 //Mongoogse uses timestamps for createAt and updateAt for specified schemas
@@ -60,6 +64,8 @@ swapPostSchema.methods.serialize = function() {
     email: this.user.email,
     created: this.createdAt.toDateString(),
     want: this.want,
+    zipCode: this.zipCode,
+    city: this.city
   };
 };
 
