@@ -34,16 +34,15 @@ $('#login-user').submit(event => {
      data: JSON.stringify(userData),
      success: function(res) {
        console.log(res);
-       localStorage.setItem("authToken", JSON.stringify(res.authToken));
-       localStorage.setItem("userId", JSON.stringify(res.userId));
-       localStorage.setItem("username", JSON.stringify(res.username));
+       localStorage.setItem("authToken", res.authToken);
+       localStorage.setItem("userId", res.userId);
+       localStorage.setItem("username", res.username);
        $('#login-user').hide();
        isUserLoggedIn();
      },
       error: function() {
-        $('#login-user').hide();
-        $('<p>').appendTo('#profile-forms-container').addClass('login-error-message').html("We could not find an account. Please create one here -----> ");
-        renderCreateAccountForm();
+        $("#login-user")[0].reset();
+        $('<p>').appendTo('#profile-forms-container').addClass('login-error-message').html("Your username or password was incorrect, please try again");
        },
      dataType: 'json',
      contentType: "application/json"
@@ -106,16 +105,16 @@ $('#profile-forms-container').on('submit','#new-user-form', (event => {
        data: JSON.stringify(userData),
        success: function(res) {
          console.log(res);
-         localStorage.setItem("authToken", JSON.stringify(res.authToken)); //need JWT in usersRouter for this
+         localStorage.setItem("authToken", JSON.stringify(res.authToken));
          localStorage.setItem("userId", JSON.stringify(res.userId));
          localStorage.setItem("username", JSON.stringify(res.username));
          $('#new-user-form').hide();
          $('<p>').appendTo('#profile-forms-container').addClass('create-account-success-message').html(`Welcome to the swap community ${userData.firstName}!`);
-         //need to add> switch header from login to logout
        },
         error: function() {
           $('#login-user').hide();
-          $('<p>').appendTo('#profile-forms-container').addClass('login-error-message').html("woops ");
+          $('<p>').appendTo('#profile-forms-container').addClass('login-error-message').html("There was an error processing your info, please try again");
+          $("#new-user-form")[0].reset();
          },
        dataType: 'json',
        contentType: "application/json"

@@ -1,7 +1,6 @@
 # Pending
 
 # server side
-1. ***make sure new user inputs transform to lower case on all items***
 1. fix tests GET/POST routes >>> swapPosts
 1. Create put test case >>> swapposts
 1. create post test case >>>users
@@ -11,22 +10,18 @@
 1. Create non mobile css
 1. Picture borders off on all pgs
 
-# index.HTML
-1. Error handling for new users > not displaying helpful message
-1. ***get username to not have quotes around it >> app.js line12***
-
- # createPost.HTML
- 1. ***after delete, message saying your post was created needs to be removed...***
 ---------------------------------
 # If time permits
 
 # createPost.html
 1. renderEditSwap() isn't populating values in text area fields
+1. active swaps has issue after 4 swaps are entered > not displaying
 
 # index.HTML
 1. refactor (DRY) renderCreateAccountForm() >> app.js. Use string and return instead
 
-
+#results.HTML
+1. user inputs transform to lower case on all items, or search is off
 -----------------------------
 
 # Stretch Goals

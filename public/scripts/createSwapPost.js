@@ -68,8 +68,9 @@ function renderUserSwapList(data) {
       url: '/posts/' + requestId,
       data: JSON.stringify(requestData),
       success: function() {
+        $('#create-post-sucess-message').remove();
+        $('#create-post-error-message').remove();
         console.log("delete worked!");
-        console.log($('#' + requestId));
         $('#' + requestId).remove();
        },
       error: function(err) {
@@ -92,6 +93,8 @@ function renderUserSwapList(data) {
     .then(res => {
       renderEditSwap(res);
       $(".popup, .popup-content").addClass("active");
+      $('#create-post-sucess-message').remove();
+      $('#create-post-error-message').remove();
     });
   });
 
@@ -165,9 +168,13 @@ $('.create-post-button').click(function(event) {
     data: JSON.stringify(requestData),
     success: function() {
       $("#create-post-form")[0].reset();
+      $('#create-post-sucess-message').remove();
+      $('#create-post-error-message').remove();
       $('<p>').fadeIn().appendTo('#create-post-form').html('Your post was created successfully, see below').attr('id', 'create-post-sucess-message');
     },
      error: function() {
+       $('#create-post-sucess-message').remove();
+       $('#create-post-error-message').remove();
        $('<p>').appendTo('#create-post-form').html("We had some trouble with your post, please try again").attr('id', 'create-post-error-message');
       },
     dataType: 'json',
