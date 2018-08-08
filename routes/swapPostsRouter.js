@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
 
   if (req.query.loc) {
     postResults =
-    postResults.or([{zipCode: req.query.loc}, {city: req.query.loc}]);
+    postResults.or([{zipCode: new RegExp(req.query.loc, 'i')}, {city: new RegExp(req.query.loc, 'i')}]);
   }
 
   postResults

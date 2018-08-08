@@ -9,9 +9,6 @@
 1. Create non mobile css
 1. Picture borders off on all pgs
 
-#results.HTML
-1. ***user inputs transform to lower case on all items, or search is off***
-
 1. OVERALL- check all code for: non necessary comments/code, remove console logs
 
 ---------------------------------
