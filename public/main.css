@@ -1,6 +1,13 @@
 body {
   font-family: 'Nunito', serif;
   min-height: 100vh;
+  margin: 0;
+}
+
+/*may not need this*/
+#testing {
+  width: 100%;
+  margin: 0 auto;
 }
 
 .hidden {
@@ -24,6 +31,7 @@ body {
   background-color: rgba(255,255,255,0.90);
   z-index: 1;
   top: 0;
+
 }
 
 .right-nav-container {
@@ -62,8 +70,9 @@ a:active {
 .welcome-quote {
   text-align: center;
   color: green;
-  font-size: 50px;
+  font-size: 40px;
   margin: 45px 0px 45px;
+  font-weight: bold;
 }
 
 .welcome-message {
@@ -73,6 +82,7 @@ a:active {
   color: black;
   margin: 5px;
   font-family: 'Indie Flower', cursive;
+  font-weight: bold;
 }
 
 #what-to-do {
@@ -135,7 +145,7 @@ a:active {
   font-size: 15px;
 }
 
-#new-user, #existingUser, #create-profile-button, .search-button, .submit-button, .create-post-button, .edit-button, .delete-button, #edit-swap-button  {
+#new-user, #existing-user, #create-profile-button, .search-button, .submit-button, .create-post-button, .edit-button, .delete-button, #edit-swap-button  {
   border: 1px solid black;
   border-radius: 3px;
   font-size: 15px;

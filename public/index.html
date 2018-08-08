@@ -9,19 +9,19 @@
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Nunito" rel="stylesheet" />
 </head>
 <body>
-
+  <div id="testing">
   <nav role="navigation" id="navigation-container" class="not-logged-in">
     <div class="left-nav-container">
-      <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
+      <a href="/"><img src="images/CropSwap.png" id="logo" /></a>
     </div>
     <div class="right-nav-container">
-      <a href="#profile-forms-container" class="nav-link">Login</a>
+      <a href="#login-user" class="nav-link">Login</a>
       <a href="results.html" class="nav-link">Search Swaps</a>
     </div>
   </nav>
   <nav role="navigation" id="navigation-container" class="logged-in hidden">
     <div class="left-nav-container">
-      <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
+      <a href="/"><img src="images/CropSwap.png" id="logo" /></a>
     </div>
     <div class="right-nav-container">
       <a href="/" class="nav-link" onclick="logOutUser()">Logout</a>
@@ -42,10 +42,10 @@
     <div id="what-to-do">
       <p> It's simple...</p>
       <ul id="welcome-list">
-        <li> Create an account below</li>
+        <li> <a href = "#login-user">Create</a> an account below</li>
         <li> <a href = "createPost.html">Post</a> what fruits, veggies, or herbs you have to swap</li>
         <li> <a href = "results.html"> Find</a> produce that you want to swap for</li>
-        <li> Then message your neighbors to see if they want to swap</li>
+        <li> --> Then message your neighbors to see if they want to swap</li>
       </ul>
     </div>
     <div id="profile-forms-container" class="profile-forms">
@@ -58,7 +58,7 @@
             <input type ="password" class="password" name="password" required/>
           </label>
           <div id="profile-buttons-container">
-            <input id="existingUser" type = "submit" value = "Login"/>
+            <input id="existing-user" type = "submit" value = "Login"/>
             <p>OR</p>
             <input id="new-user" type="button" value="Join Now!"/>
           </div>
@@ -69,5 +69,6 @@
     <footer role="content info"></footer>
     <script type= "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
     <script type= "text/javascript" src = "scripts/app.js"></script>
+  </div>
   </body>
   </html>
