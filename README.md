@@ -1,8 +1,7 @@
 # Pending
 
 # server side
-1. ***NEED TO MODIFY GET REQUEST WITH SEARCH TO INCLUDE ZIPCODE/CITY***
-1. make sure new user inputs transform to lower case on all items
+1. ***make sure new user inputs transform to lower case on all items***
 1. fix tests GET/POST routes >>> swapPosts
 1. Create put test case >>> swapposts
 1. create post test case >>>users
@@ -17,7 +16,7 @@
 1. ***get username to not have quotes around it >> app.js line12***
 
  # createPost.HTML
- 1. after delete, message saying your post was created needs to be removed...
+ 1. ***after delete, message saying your post was created needs to be removed...***
 ---------------------------------
 # If time permits
 
