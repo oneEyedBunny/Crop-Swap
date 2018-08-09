@@ -13,7 +13,7 @@ body {
   height: 60px;
 }
 
-#background-image {
+.background-image {
   opacity: .4;
   position: fixed;
   z-index: -1;
@@ -265,6 +265,14 @@ h5, h6 {
   padding: 5px;
 }
 
+#create-post-form label {
+  margin: 10px;
+}
+
+#create-post-form textarea {
+  margin: 8px;
+}
+
 .create-post-button {
   margin: 20px auto;
 }
@@ -331,4 +339,5 @@ visibility:visible;
 
 #edit-post-form {
   width: 85%;
+  margin: 10px;
 }

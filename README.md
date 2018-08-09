@@ -6,8 +6,9 @@
 1. create post test case >>>users
 
 # CSS
-1. Create non mobile css
+1. Check font size on all pages at 1000px & above
 1. Nav bar not centering at 585 media
+1. format new form fields at all sizes
 
 1. OVERALL- check all code for: non necessary comments/code, remove console logs
 1. check aria
@@ -55,3 +56,12 @@ eating the same thing day in and out, and who wants to waste the food? Once a we
 * JWT/Passport
 * HTML
 * CSS
+
+### Home page-----
+![](README-images/home-page.png)
+
+### Search results page-----
+![](README-images/search-results.png)
+
+### Create a Swap page-------
+![](README-images/create-post.png)

@@ -47,21 +47,20 @@
   #user-info input {
       font-size: 16px;
   }
-
 }
 
 @media only screen and (min-width: 584px) {
 
   .navigation-container {
     width: 85%;
-    margin-left: 45px;
-    /* margin: 0 auto;
-    margin-left: auto;
+    /* margin-left: 45px; */
+    margin: 0 auto;
+    /*margin-left: auto;
     margin-right: auto;
     display: inline-block; */
   }
 
-  #background-image {
+  .background-image {
     width: 85%;
     height: 100%;
     left: 50%;
@@ -84,22 +83,27 @@
   }
 
   #user-info label {
-      font-size: 18px;
+    font-size: 18px;
   }
 
   #user-info input {
-      font-size: 18px;
+    font-size: 18px;
+  }
+
+  #page-display-container, #page-display-container-2 {
+    width: 60%;
+    margin: 50px auto;
+    display: block;
+  }
+
+   #form-container, #post-form-container {
+    /* width: 100%; */
+    margin: 50px auto;
   }
 }
 
-
-
 @media only screen and (min-width: 680px) {
-  .navigation-container {
-    width: 75%;
-  }
-
-  #background-image {
+  .navigation-container, .background-image {
     width: 75%;
   }
 
@@ -113,6 +117,10 @@
 
   #login-user {
     width: 60%;
+  }
+
+  #page-display-container, #page-display-container-2 {
+    width: 50%;
   }
 }
 
@@ -130,11 +138,7 @@
 
 @media only screen and (min-width: 843px) {
 
-  .navigation-container {
-    width: 65%;
-  }
-
-  #background-image {
+  .navigation-container, .background-image  {
     width: 65%;
   }
 
@@ -157,6 +161,10 @@
   #user-info input  {
       font-size: 19px;
   }
+
+  #page-display-container, #page-display-container-2 {
+    width: 42%;
+  }
 }
 
 @media only screen and (min-width: 982px) {
@@ -167,28 +175,78 @@
   #what-to-do > p {
     font-size: 25px;
   }
+}
 
+@media only screen and (min-width: 1085px) {
+  .navigation-container, .background-image  {
+    width: 60%;
+  }
 
-  @media only screen and (min-width: 1085px) {
-    .navigation-container {
-      width: 60%;
-    }
+  #welcome-message-container {
+    width: 50%;
+  }
 
-    #background-image {
-      width: 60%;
-    }
+  #what-to-do, #login-user {
+    width: 40%;
+  }
 
-    #welcome-message-container {
-      width: 50%;
-    }
+  #page-display-container, #page-display-container-2 {
+    width: 38%;
+  }
+  #form-container, #post-form-container {
+    width: 90%;
+  }
+}
 
-    #what-to-do {
-      width: 40%;
-    }
+@media only screen and (min-width: 1211px) {
+  .navigation-container, .background-image {
+    width: 55%;
+  }
 
-    #login-user {
-      width: 40%;
-    }
+  #welcome-message-container {
+    width: 40%;
+  }
 
+  #what-to-do, #login-user {
+    width: 30%;
+  }
+}
 
+@media only screen and (min-width: 1591px) {
+  .navigation-container, .background-image  {
+    width: 50%;
+  }
+
+  #welcome-message-container {
+    width: 35%;
+  }
+
+  #what-to-do, #login-user {
+    width: 25%;
+  }
+}
+
+@media only screen and (min-width: 1591px) {
+  .navigation-container, .background-image  {
+    width: 50%;
+  }
+
+  #welcome-message-container {
+    width: 35%;
+  }
+
+  #what-to-do {
+    width: 25%;
+  }
+
+  #login-user {
+    width: 20%;
+  }
+
+  #page-display-container, #page-display-container-2 {
+    width: 35%;
+  }
+  #form-container, #post-form-container {
+    width: 90%;
+  }
 }
