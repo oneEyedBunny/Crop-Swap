@@ -9,8 +9,8 @@
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Nunito" rel="stylesheet" />
 </head>
 <body>
-  <div id="testing">
-  <nav role="navigation" id="navigation-container" class="not-logged-in">
+
+  <nav role="navigation" class="navigation-container not-logged-in">
     <div class="left-nav-container">
       <a href="/"><img src="images/CropSwap.png" id="logo" /></a>
     </div>
@@ -19,7 +19,7 @@
       <a href="results.html" class="nav-link">Search Swaps</a>
     </div>
   </nav>
-  <nav role="navigation" id="navigation-container" class="logged-in hidden">
+  <nav role="navigation" class="navigation-container logged-in hidden">
     <div class="left-nav-container">
       <a href="/"><img src="images/CropSwap.png" id="logo" /></a>
     </div>
@@ -29,10 +29,9 @@
     </div>
   </nav>
 
-
-
   <main role="main">
-    <img src="images/indexBackground.jpg" id="background-image"/>
+    <!-- <div class="background-image-container"> -->
+      <img src="images/indexBackground.jpg" id="background-image"/>
     <div id="welcome-message-container">
       <h1 class="welcome-quote"> SHARE WHAT YOU GROW</h1>
       <p class ="welcome-message"> Welcome to Crop Swap </p>
@@ -49,6 +48,7 @@
       </ul>
     </div>
     <div id="profile-forms-container" class="profile-forms">
+      <!-- <img src="images/indexBackground.jpg" id="background-image"/> -->
       <form role="form" id="login-user" name="loginUser">
         <fieldset name="user-info" id="user-info">
           <label> Username:
@@ -65,6 +65,7 @@
         </fieldset>
       </form>
       </div>
+      <!--</div> background image close -->
     </main>
     <footer role="content info"></footer>
     <script type= "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>

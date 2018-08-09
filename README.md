@@ -7,9 +7,11 @@
 
 # CSS
 1. Create non mobile css
-1. Picture borders off on all pgs
+1. Nav bar not centering at 585 media
 
 1. OVERALL- check all code for: non necessary comments/code, remove console logs
+1. check aria
+1. readMe pics
 
 ---------------------------------
 # If time permits

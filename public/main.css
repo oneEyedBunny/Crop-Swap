@@ -4,12 +4,6 @@ body {
   margin: 0;
 }
 
-/*may not need this*/
-#testing {
-  width: 100%;
-  margin: 0 auto;
-}
-
 .hidden {
   display: none;
 }
@@ -25,13 +19,13 @@ body {
   z-index: -1;
 }
 
-#navigation-container {
+.navigation-container {
   position: fixed;
   width: 100%;
-  background-color: rgba(255,255,255,0.90);
-  z-index: 1;
+  background-color: rgba(255,255,255);
+  /* background-color: rgba(255,255,255,0.90); */
+  /* z-index: 1; */
   top: 0;
-
 }
 
 .right-nav-container {
@@ -62,7 +56,6 @@ a:active {
 /********** index.html ************/
 
 #welcome-message-container {
-  display: inline-block;
   margin-top: 50px;
   padding: 25px;
 }
@@ -143,6 +136,7 @@ a:active {
   border: 1px solid #DBDBDB;
   border-radius: 4px;
   font-size: 15px;
+  margin: 4px auto;
 }
 
 #new-user, #existing-user, #create-profile-button, .search-button, .submit-button, .create-post-button, .edit-button, .delete-button, #edit-swap-button  {

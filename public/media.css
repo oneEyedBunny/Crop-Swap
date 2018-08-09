@@ -39,33 +39,156 @@
     font-size: 17px;
     padding: 10px;
   }
+
+  #user-info label {
+      font-size: 16px;
+  }
+
+  #user-info input {
+      font-size: 16px;
+  }
+
+}
+
+@media only screen and (min-width: 584px) {
+
+  .navigation-container {
+    width: 85%;
+    margin-left: 45px;
+    /* margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block; */
+  }
+
+  #background-image {
+    width: 85%;
+    height: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    object-fit: cover;
+    /* overflow: hidden; */
+  }
+
+  #welcome-message-container {
+    width: 75%;
+    margin: 50px auto;
+  }
+
+  #what-to-do {
+    width: 65%;
+}
+
+  #login-user {
+    width: 70%;
+  }
+
+  #user-info label {
+      font-size: 18px;
+  }
+
+  #user-info input {
+      font-size: 18px;
+  }
 }
 
 
 
-/*
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 680px) {
+  .navigation-container {
+    width: 75%;
+  }
 
+  #background-image {
+    width: 75%;
+  }
 
+  #welcome-message-container {
+    width: 65%;
+  }
 
+  #what-to-do {
+    width: 55%;
+  }
 
-
+  #login-user {
+    width: 60%;
+  }
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 780px) {
 
+  #login-user {
+    width: 55%;
+  }
 
-
+  #what-to-do > p {
+    font-size: 24px;
+  }
 }
 
-@media only screen and (min-width: 800px) {
 
+@media only screen and (min-width: 843px) {
 
+  .navigation-container {
+    width: 65%;
+  }
 
+  #background-image {
+    width: 65%;
+  }
+
+  #welcome-message-container {
+    width: 55%;
+  }
+
+  #what-to-do {
+    width: 45%;
+  }
+
+  #login-user {
+    width: 50%;
+  }
+
+  #user-info label {
+      font-size: 19px;
+  }
+
+  #user-info input  {
+      font-size: 19px;
+  }
 }
-@media only screen and (min-width: 900px) {
+
+@media only screen and (min-width: 982px) {
+  #login-user {
+    width: 45%;
+  }
+
+  #what-to-do > p {
+    font-size: 25px;
+  }
 
 
-} */
+  @media only screen and (min-width: 1085px) {
+    .navigation-container {
+      width: 60%;
+    }
+
+    #background-image {
+      width: 60%;
+    }
+
+    #welcome-message-container {
+      width: 50%;
+    }
+
+    #what-to-do {
+      width: 40%;
+    }
+
+    #login-user {
+      width: 40%;
+    }
+
 
 }
