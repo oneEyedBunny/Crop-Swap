@@ -7,84 +7,83 @@ const chaiHttp = require('chai-http');
 const { app, runServer, closeServer } = require('../server');
 const { tearDownDb, get, seedAllData } = require('./database');
 
-// const { PORT, TEST_DATABASE_URL } = require('../config');
-//
-// const { SwapPost } = require('../models');
-// // const { SwapPost } = require('../routes/swapPostsRouter');
-//
-// // const { seedUsers } = require('./seed/users');
-//
-// //lets us use expect & should style syntax in tests
-// const expect = chai.expect;
-// const should = chai.should();
-//
-// //lets us make http requests in tests
-// chai.use(chaiHttp);
-//
-// //hooks to return promises
-// describe('Obtaining swap posts', function () {
-//
-//   before(function() {
-//     return runServer(TEST_DATABASE_URL, PORT);
-//   });
-//
-//   beforeEach(function () {
-//     return seedAllData();
-//   });
-//
-//   afterEach(function() {
-//     return tearDownDb();
-//   });
-//
-//   after(function() {
-//     return closeServer();
-//   });
-//
-//
-//   describe('GET all endpoint', function() {
-//
-//     //normal test case for returning all posts- no filter, checking count
-//     it.only('should return the correct number of swap posts', function() {
-//       let res;
-//       return chai.request(app)
-//       .get('/posts')
-//       .then(function(_res) {
-//         res = _res;
-//         expect(res).to.have.status(200);
-//         expect(res).to.be.json;
-//         expect(res).to.be.a('object');
-//         console.log('Swap Posts', res.body.swapPosts)
-//         expect(res.body.swapPosts).to.have.lengthOf.at.least(1);
-//         return SwapPost.count();
-//       })
-//       .then(function(count) {
-//         expect(res.body.swapPosts).to.have.lengthOf(count);
-//       });
-//     });
-//
-//     //normal test case for returning all posts- no filter, checking fields accuracy
-//     it('should return swaps with the correct fields', function() {
-//       let post;
-//       return chai.request(app)
-//       .get('/posts')
-//       .then(function(res) {
-//         console.log('BODY', res.body.swapPosts);
-//         res.body.swapPosts.forEach(function(swapPost) {
-//           expect(swapPost).to.include.all.keys(
-//             'id', 'have', 'username','email','created','want');
-//           });
-//           post = res.body.swapPosts[0];
-//           console.log('POST', post);
-//           return SwapPost.findById(post.id);
-//         })
-//         .then(function(swapPost) {
-//           expect(post.id).to.equal(swapPost.id);
-//           expect(post.have).to.equal(swapPost.have);
-//           //expect(post.created).to.equal(swapPost.created);
-//           expect(post.want).to.equal(swapPost.want);
-//         });
-//       });
-//     });
+const { PORT, TEST_DATABASE_URL } = require('../config');
+
+const { SwapPost } = require('../models');
+// const { SwapPost } = require('../routes/swapPostsRouter');
+// const { seedUsers } = require('./seed/users');
+
+//lets us use expect & should style syntax in tests
+const expect = chai.expect;
+const should = chai.should();
+
+//lets us make http requests in tests
+chai.use(chaiHttp);
+
+//hooks to return promises
+describe('Obtaining swap posts', function () {
+
+  before(function() {
+    return runServer(TEST_DATABASE_URL, PORT);
+  });
+
+  beforeEach(function () {
+    return seedAllData();
+  });
+
+  afterEach(function() {
+    return tearDownDb();
+  });
+
+  after(function() {
+    return closeServer();
+  });
+
+
+  describe('GET all endpoint', function() {
+
+    //normal test case for returning all posts- no filter, checking count
+    it('should return the correct number of swap posts', function() {
+      let res;
+      return chai.request(app)
+      .get('/posts')
+      .then(function(_res) {
+        res = _res;
+        expect(res).to.have.status(200);
+        expect(res).to.be.json;
+        expect(res).to.be.a('object');
+        console.log('Swap Posts', res.body.swapPosts)
+        expect(res.body.swapPosts).to.have.lengthOf.at.least(1);
+        return SwapPost.count();
+      })
+      .then(function(count) {
+        expect(res.body.swapPosts).to.have.lengthOf(count);
+      });
+    });
+
+    //normal test case for returning all posts- no filter, checking fields accuracy
+    // it.only('should return swaps with the correct fields', function() {
+    //   let post;
+    //   return chai.request(app)
+    //   .get('/posts')
+    //   .then(function(res) {
+    //     console.log('BODY', res.body.swapPosts);
+    //     res.body.swapPosts.forEach(function(swapPost) {
+    //       expect(swapPost).to.include.all.keys(
+    //         'id', 'have', 'username','email','created','want');
+    //       });
+    //       post = res.body.swapPosts[0];
+    //       console.log('POST', post);
+    //       return SwapPost.findById(post.id);
+    //     })
+    //     .then(function(swapPost) {
+    //       expect(post.id).to.equal(swapPost.id);
+    //       expect(post.have).to.equal(swapPost.have);
+    //       //expect(post.created).to.equal(swapPost.created);
+    //       expect(post.want).to.equal(swapPost.want);
+    //     });
+    //   });
+}); //closes describe
 //
 //     //normal test case for returning all posts- with a filter condition
 //     describe('GET all endpoint with filter', function() {
@@ -196,5 +195,4 @@ const { tearDownDb, get, seedAllData } = require('./database');
 //       //   it('updates a swapPost by id', function() {
 //       //   })
 //       // })
-//
-//     }) //closes describe stmt with hooks
+}); //closes describe stmt with hooks

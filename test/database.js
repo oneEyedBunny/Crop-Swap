@@ -8,7 +8,6 @@ const { SwapPost, User } = require('../models');
 const seedSwapPosts = require('./seed/swapPosts');
 const seedUsers = require('./seed/users');
 
-
 function get() {
   return mongoose;
 }
@@ -36,7 +35,5 @@ function tearDownDb() {
 //     .then(
 //     );
 // });
-
-
 
 module.exports = { tearDownDb, get, seedAllData };

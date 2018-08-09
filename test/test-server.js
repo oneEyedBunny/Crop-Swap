@@ -16,7 +16,7 @@ chai.use(chaiHttp);
 
 //testing html page loads
 describe('index page', function() {
-  it('should return the main index page', function() {
+  it('should return index.html', function() {
     return chai.request(app)
     .get('/')
     .then(function(res) {
@@ -27,10 +27,22 @@ describe('index page', function() {
 });
 
 //testing html page loads
-describe('posts page', function() {
+describe('create posts page', function() {
   it('should return createPost.html', function() {
     return chai.request(app)
     .get('/createPost.html')
+    .then(function(res) {
+      expect(res).to.have.status(200);
+      expect(res).to.be.html;
+    });
+  });
+});
+
+//testing html page loads
+describe('results page', function() {
+  it('should return results.html', function() {
+    return chai.request(app)
+    .get('/results.html')
     .then(function(res) {
       expect(res).to.have.status(200);
       expect(res).to.be.html;
