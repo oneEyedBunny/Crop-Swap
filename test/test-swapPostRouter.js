@@ -52,7 +52,7 @@ describe('Obtaining swap posts', function () {
         expect(res).to.have.status(200);
         expect(res).to.be.json;
         expect(res).to.be.a('object');
-        console.log('Swap Posts', res.body.swapPosts)
+        console.log('Swap Posts =', res.body.swapPosts)
         expect(res.body.swapPosts).to.have.lengthOf.at.least(1);
         return SwapPost.count();
       })
