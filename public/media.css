@@ -51,13 +51,8 @@
 
 @media only screen and (min-width: 584px) {
 
-  .navigation-container {
+  .logo-link-container {
     width: 85%;
-    /* margin-left: 45px; */
-    margin: 0 auto;
-    /*margin-left: auto;
-    margin-right: auto;
-    display: inline-block; */
   }
 
   .background-image {
@@ -103,7 +98,8 @@
 }
 
 @media only screen and (min-width: 680px) {
-  .navigation-container, .background-image {
+
+  .background-image, .logo-link-container {
     width: 75%;
   }
 
@@ -138,7 +134,7 @@
 
 @media only screen and (min-width: 843px) {
 
-  .navigation-container, .background-image  {
+  .background-image, .logo-link-container  {
     width: 65%;
   }
 
@@ -178,7 +174,7 @@
 }
 
 @media only screen and (min-width: 1085px) {
-  .navigation-container, .background-image  {
+  .background-image, .logo-link-container  {
     width: 60%;
   }
 
@@ -199,7 +195,7 @@
 }
 
 @media only screen and (min-width: 1211px) {
-  .navigation-container, .background-image {
+  .background-image, .logo-link-container  {
     width: 55%;
   }
 
@@ -213,7 +209,7 @@
 }
 
 @media only screen and (min-width: 1591px) {
-  .navigation-container, .background-image  {
+  .background-image, .logo-link-container  {
     width: 50%;
   }
 
@@ -227,7 +223,7 @@
 }
 
 @media only screen and (min-width: 1591px) {
-  .navigation-container, .background-image  {
+  .background-image, .logo-link-container   {
     width: 50%;
   }
 
