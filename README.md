@@ -1,7 +1,7 @@
 # Pending
 
 # server side
-1. fix tests GET/POST routes >>> swapPosts
+1. fix tests POST routes >>> swapPosts
 1. Create put test case >>> swapposts
 1. create post test case >>>users
 

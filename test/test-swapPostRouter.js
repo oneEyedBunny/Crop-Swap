@@ -10,8 +10,6 @@ const { tearDownDb, get, seedAllData } = require('./database');
 const { PORT, TEST_DATABASE_URL } = require('../config');
 
 const { SwapPost } = require('../models');
-// const { SwapPost } = require('../routes/swapPostsRouter');
-// const { seedUsers } = require('./seed/users');
 
 //lets us use expect & should style syntax in tests
 const expect = chai.expect;
@@ -62,75 +60,75 @@ describe('Obtaining swap posts', function () {
     });
 
     //normal test case for returning all posts- no filter, checking fields accuracy
-    // it.only('should return swaps with the correct fields', function() {
-    //   let post;
-    //   return chai.request(app)
-    //   .get('/posts')
-    //   .then(function(res) {
-    //     console.log('BODY', res.body.swapPosts);
-    //     res.body.swapPosts.forEach(function(swapPost) {
-    //       expect(swapPost).to.include.all.keys(
-    //         'id', 'have', 'username','email','created','want');
-    //       });
-    //       post = res.body.swapPosts[0];
-    //       console.log('POST', post);
-    //       return SwapPost.findById(post.id);
-    //     })
-    //     .then(function(swapPost) {
-    //       expect(post.id).to.equal(swapPost.id);
-    //       expect(post.have).to.equal(swapPost.have);
-    //       //expect(post.created).to.equal(swapPost.created);
-    //       expect(post.want).to.equal(swapPost.want);
-    //     });
-    //   });
-}); //closes describe
-//
-//     //normal test case for returning all posts- with a filter condition
-//     describe('GET all endpoint with filter', function() {
-//
-//       it('should return the correct swap posts when filtered', function() {
-//         const type = 'have';
-//         const item = 'cucumbers';
-//         return chai.request(app)
-//         .get(`/posts?type=${type}&item=${item}`)
-//         .then(function(res) {
-//           expect(res).to.have.status(200);
-//           expect(res).to.be.json;
-//           expect(res).to.be.a('object');
-//           expect(res).to.have.lengthOf(2); //visually checked how many posts have cucumber in them
-//         });
-//       });
-//     });
-//
-//      //normal test case for returning all posts for a specific user
-//     describe('GET all for a specific user endpoint', function() {
-//
-//       it('should return the correct number of swap posts for a user', function() {
-//         let testUserId = '5b566d443fedefe19eb684d9';
-//         let res ;
-//         return chai.request(app)
-//         .get(`/posts/user/${testUserId}`)
-//         .then(function(_res) {
-//           res = _res;
-//           expect(res).to.have.status(200);
-//           expect(res).to.be.json;
-//           expect(res).to.be.a('object');
-//
-//           res.body.swapPosts.forEach(function(swapPost) {
-//             expect(swapPost).to.include.all.keys(
-//               'id', 'have', 'username','email','created','want');
-//             });
-//           console.log('res.body=', res.body, typeof res.body);
-//           return SwapPost.find({user: testUserId});
-//         })
-//         .then(function(swapPosts) {
-//           console.log('swapPosts=', swapPosts);
-//           //expect(swapPosts[0].user).equals(test); //need to find a way to connect username and user
-//           expect(swapPosts).to.have.lengthOf(res.body.swapPosts.length);
-//         });
-//       });
-//     });
-//
+    it('should return swaps with the correct fields', function() {
+      let post;
+      return chai.request(app)
+      .get('/posts')
+      .then(function(res) {
+        //console.log('BODY', res.body.swapPosts);
+        res.body.swapPosts.forEach(function(swapPost) {
+          expect(swapPost).to.include.all.keys(
+            'id', 'have', 'username','email','created','want', "zipCode", "city");
+          });
+          post = res.body.swapPosts[0];
+          //console.log('POST', post);
+          return SwapPost.findById(post.id);
+        })
+        .then(function(swapPost) {
+          console.log("swapPost = ", swapPost)
+          console.log('POST', post);
+          expect(post.id).to.equal(swapPost.id);
+          expect(post.have).to.equal(swapPost.have);
+          // expect(post.id).to.equal(swapPost.user);
+          expect(post.want).to.equal(swapPost.want);
+          expect(post.zipCode).to.equal(swapPost.zipCode);
+          expect(post.city).to.equal(swapPost.city);
+        });
+      });
+    }); //closes describe
+
+  //normal test case for returning all posts- with a filter condition
+  describe('GET all endpoint with filter', function() {
+
+    it('should return the correct swap posts when filtered', function() {
+      const type = 'have';
+      const item = 'cucumbers';
+      const location = 'portland';
+      return chai.request(app)
+      .get(`/posts?type=${type}&item=${item}&loc=${location}`)
+      .then(function(res) {
+        console.log('res.body', res.body);
+        expect(res).to.have.status(200);
+        expect(res).to.be.json;
+        expect(res).to.be.a('object');
+        expect(res.body.swapPosts).to.have.lengthOf(2); //visually checked how many posts have cucumber in them
+      });
+    });
+  });
+
+     //normal test case for returning all posts for a specific user
+    describe('GET all for a specific user endpoint', function() {
+
+      it('should return the correct number of swap posts for a user', function() {
+        let testUserId = '5b566d443fedefe19eb684d9';
+        let res ;
+        return chai.request(app)
+        .get(`/posts/user/${testUserId}`)
+        .then(function(_res) {
+          res = _res;
+          expect(res).to.have.status(200);
+          expect(res).to.be.json;
+          expect(res).to.be.a('object');
+          console.log('res.body=', res.body, typeof res.body);
+          return SwapPost.find({user: testUserId});
+        })
+        .then(function(swapPosts) {
+          console.log('swapPosts=', swapPosts);
+          expect(swapPosts).to.have.lengthOf(res.body.swapPosts.length);
+        });
+      });
+    });
+
 //     // describe('POST endpoint', function() {
 //     //
 //     //   it.only('should add a new swapPost', function() {
@@ -168,28 +166,31 @@ describe('Obtaining swap posts', function () {
 //     //       });
 //     //     });
 //     //   });
-//
-//       describe('DELETE endpoint', function() {
-//
-//         it('delete a swapPost by id', function() {
-//           let swapPost;
-//           return SwapPost
-//           .findOne()
-//           .then(function(_swapPost) {
-//             swapPost = _swapPost;
-//             return chai.request(app)
-//             .delete(`/posts/${swapPost.id}`);
-//           })
-//           .then(function(res) {
-//             expect(res).to.have.status(204);
-//             return SwapPost.findById(swapPost.id);
-//           })
-//           .then(function(_swapPost) {
-//             expect(_swapPost).to.be.null;
-//           });
-//         });
-//       });
-//
+
+//normal test case for deleting a swap post......................NEED JWT FOR THIS< POST AND PUT
+  // describe('DELETE endpoint', function() {
+  //
+  //   it.only('delete a swapPost by id', function() {
+  //     let swapPost;
+  //     return SwapPost
+  //     .findOne()
+  //     .then(function(_swapPost) {
+  //       swapPost = _swapPost;
+  //       console.log("swapPost=", swapPost)
+  //       return chai.request(app)
+  //       .delete(`/posts/${swapPost._id}`);
+  //     })
+  //     .then(function(res) {
+  //       console.log("res=", res)
+  //       expect(res).to.have.status(204);
+  //       return SwapPost.findById(swapPost._id);
+  //     })
+  //     .then(function(_swapPost) {
+  //       expect(_swapPost).to.be.null;
+  //     });
+  //   });
+  // });
+
 //       // describe('PUT endpoint', function() {
 //       //
 //       //   it('updates a swapPost by id', function() {
