@@ -88,6 +88,10 @@ router.post('/', (req, res, next) => {
       // Username and password come in pre-trimmed, otherwise we throw an error before this
       firstName = firstName.trim();
       lastName = lastName.trim();
+      email = email.trim();
+      city = city.trim();
+      zipCode = zipCode.trim();
+
 
       return User.find({username})
       .count()
