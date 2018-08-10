@@ -21,6 +21,24 @@ chai.use(chaiHttp);
 //hooks to return promises
 describe('Obtaining swap posts', function () {
 
+  const username = "exampleUser";
+  const password = "examplePass";
+  const firstName = "exampleFirstName";
+  const lastName = "exampleLastName";
+  const email = "exampleEmail";
+  const city = "exampleCity";
+  const zipCode = "exampleZipCode";
+
+  let newUser= {
+    firstName: "Terry",
+    lastName: "Tester",
+    username: "testing9090",
+    password: "testing0101",
+    city: "Portland",
+    zipCode: "97212",
+    email: "testing@yahoo.com"
+  }
+
   before(function() {
     return runServer(TEST_DATABASE_URL, PORT);
   });
@@ -39,17 +57,8 @@ describe('Obtaining swap posts', function () {
 
   describe("POST /users", function () {
 
-    it.only("Should create a new user", function () {
+    it("Should create a new user", function () {
       let res;
-      let newUser= {
-        firstName: "Terry",
-        lastName: "Tester",
-        username: "testing9090",
-        password: "testing0101",
-        city: "Portland",
-        zipCode: "97212",
-        email: "testing@yahoo.com"
-      }
       return chai
         .request(app)
         .post("/users")
@@ -74,5 +83,174 @@ describe('Obtaining swap posts', function () {
           //expect(user.zipCode).to.equal(newUser.zipCode);
         })
     });
-  });
+
+    // it("Should trim username", function () {
+    //   return chai
+    //     .request(app)
+    //     .post("/users")
+    //     .send({ firstName, lastName, password, username: ` ${username} ` , email, city, zipCode })
+    //     .then(res => {
+    //       expect(res).to.have.status(201);
+    //       expect(res.body).to.be.an("object");
+    //       expect(res.body).to.have.all.keys('id', 'have', 'username','email','created','want', "zipCode", "city");
+    //       return User.findOne({ username });
+    //     })
+    //     .then(user => {
+    //       expect(user).to.not.be.null;
+    //     });
+    // });
+
+  it("Should reject users with missing first name", function () {
+        return chai
+          .request(app)
+          .post("/users")
+          .send(lastName, username, password, email, city, zipCode)
+
+          .then(res => {
+            expect(res).to.have.status(422);
+            expect(res.body.message).to.equal("Missing field");
+          });
+      });
+
+    it("Should reject users with missing last name", function () {
+      return chai
+        .request(app)
+        .post("/users")
+        .send(firstName, username, password, email, city, zipCode)
+
+        .then(res => {
+          expect(res).to.have.status(422);
+          expect(res.body.message).to.equal("Missing field");
+        });
+      });
+
+      it("Should reject users with missing email", function () {
+        return chai
+          .request(app)
+          .post("/users")
+          .send(firstName, lastName, username, password, city, zipCode)
+
+          .then(res => {
+            expect(res).to.have.status(422);
+            expect(res.body.message).to.equal("Missing field");
+          });
+        });
+      it("Should reject users with missing city", function () {
+        return chai
+          .request(app)
+          .post("/users")
+          .send(firstName, lastName, username, password, email, zipCode)
+
+          .then(res => {
+            expect(res).to.have.status(422);
+            expect(res.body.message).to.equal("Missing field");
+          });
+        });
+      it("Should reject users with missing zipCode", function () {
+        return chai
+          .request(app)
+          .post("/users")
+          .send(firstName, lastName, username, password, email, city)
+
+          .then(res => {
+            expect(res).to.have.status(422);
+            expect(res.body.message).to.equal("Missing field");
+          });
+        });
+
+      it("Should reject users with non-string username", function () {
+        return chai
+          .request(app)
+          .post("/users")
+          .send({ username: 1234, firstName, lastName, password, email, city, zipCode})
+
+          .then(res => {
+            expect(res).to.have.status(422);
+            expect(res.body.message).to.equal("Incorrect field type: expected string");
+          });
+      });
+
+      it("Should reject users with non-string password", function () {
+        return chai
+          .request(app)
+          .post("/users")
+          .send({ password: 1234, firstName, lastName, username, email, city, zipCode })
+
+          .then(res => {
+            expect(res).to.have.status(422);
+            expect(res.body.message).to.equal("Incorrect field type: expected string");
+          });
+      });
+
+      // it.only("Should reject users with non-trimmed username", function () {
+      //   return chai
+      //     .request(app)
+      //     .post("/users")
+      //     .send({ username: ` ${username} `, firstName, lastName, password, email, city, zipCode })
+      //
+      //     .then(res => {
+      //       expect(res).to.have.status(422);
+      //       expect(res.body.message).to.equal("Field: 'username' cannot start or end with whitespace");
+      //     });
+      // });
+      //
+      // it.only("Should reject users with non-trimmed password", function () {
+      //   return chai
+      //     .request(app)
+      //     .post("/users")
+      //     .send({ password: ` ${password}`, firstName, lastName, username, email, city, zipCode })
+      //
+      //     .then(res => {
+      //       expect(res).to.have.status(422);
+      //       expect(res.body.message).to.equal("Field: 'password' cannot start or end with whitespace");
+      //     });
+      // });
+
+      it("Should reject users with password less than 10 characters", function () {
+        return chai
+          .request(app)
+          .post("/users")
+          .send({ password: "asdfghj", firstName, lastName, username, email, city, zipCode })
+
+          .then(res => {
+            expect(res).to.have.status(422);
+            expect(res.body.message).to.equal("Must be at least 10 characters long");
+          });
+      });
+
+      it("Should reject users with password greater than 72 characters", function () {
+        return chai
+          .request(app)
+          .post("/users")
+          .send({ password: new Array(73).fill("a").join(""),firstName, lastName, username, email, city, zipCode })
+
+          .then(res => {
+            expect(res).to.have.status(422);
+            expect(res.body.message).to.equal("Must be at most 72 characters long");
+          });
+      });
+
+  //     it.only("Should reject users with duplicate username", function () {
+  //       return User
+  //         .create({ newUser })
+  //         .then(() => {
+  //           return chai
+  //             .request(app)
+  //             .post("/users")
+  //             .send({ newUser });
+  //         })
+  //
+  //         .then(res => {
+  //           expect(res).to.have.status(400);
+  //           expect(res.body.message).to.equal("The username already exists");
+  //         });
+  //     });
+  // });
+
+
+
+
+
+
+
 }); //closes hook

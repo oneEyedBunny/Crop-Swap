@@ -56,7 +56,7 @@ router.post('/', (req, res, next) => {
   );
   const sizedFields = {
     username: {
-      min: 5
+      min: 3
     },
     password: {
       min: 10,
@@ -97,7 +97,7 @@ router.post('/', (req, res, next) => {
           return Promise.reject({
             code: 422,
             reason: 'ValidationError',
-            message: 'Username already taken',
+            message: 'The username already exists',
             location: 'username'
           });
         }
@@ -136,12 +136,12 @@ router.post('/', (req, res, next) => {
 
     // Never expose all your users like below in a prod application, we're just
     // this so we have a quick way to see if we're creating users.
-    router.get('/', (req, res) => {
-      return User.find()
-      .then(users =>
-        res.json(users.map(user => user.serialize())))
-        .catch(err =>
-          res.status(500).json({message: 'Internal server error'}));
-        });
+    // router.get('/', (req, res) => {
+    //   return User.find()
+    //   .then(users =>
+    //     res.json(users.map(user => user.serialize())))
+    //     .catch(err =>
+    //       res.status(500).json({message: 'Internal server error'}));
+    //     });
 
         module.exports = router;
