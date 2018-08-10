@@ -166,7 +166,7 @@ describe('Obtaining swap posts', function () {
       });
     });
 
-    it.only("Should trim firstName", function () {
+    it("Should trim firstName", function () {
       return chai
         .request(app)
         .post("/users")

@@ -4,6 +4,7 @@
 1. fix tests POST routes >>> swapPosts
 1. Create put test case >>> swapposts
 1. Need to check code to see where I'm rejecting non trimmed username/pw (userroutes.js line 54)
+1. ******************* left off here****************
 1. Need to create auth test cases
 
 # CSS
