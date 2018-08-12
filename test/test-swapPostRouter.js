@@ -3,11 +3,12 @@
 //import dependencies
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const jwt = require('jsonwebtoken');
 
 const { app, runServer, closeServer } = require('../server');
 const { tearDownDb, get, seedAllData } = require('./database');
 
-const { PORT, TEST_DATABASE_URL } = require('../config');
+const { PORT, TEST_DATABASE_URL, JWT_SECRET } = require('../config');
 
 const { SwapPost } = require('../models');
 
@@ -21,12 +22,22 @@ chai.use(chaiHttp);
 //hooks to return promises
 describe('Obtaining swap posts', function () {
 
+  let user ;
+  let authToken;
+
   before(function() {
     return runServer(TEST_DATABASE_URL, PORT);
   });
 
   beforeEach(function () {
-    return seedAllData();
+    return Promise.all([
+      seedAllData()
+    ])
+    .then(([users]) => {
+        user = users[0];
+        console.log("user", user);
+        authToken = jwt.sign({ user }, JWT_SECRET);
+      });
   });
 
   afterEach(function() {
@@ -167,29 +178,29 @@ describe('Obtaining swap posts', function () {
 //     //     });
 //     //   });
 
-//normal test case for deleting a swap post......................NEED JWT FOR THIS< POST AND PUT
-  // describe('DELETE endpoint', function() {
-  //
-  //   it.only('delete a swapPost by id', function() {
-  //     let swapPost;
-  //     return SwapPost
-  //     .findOne()
-  //     .then(function(_swapPost) {
-  //       swapPost = _swapPost;
-  //       console.log("swapPost=", swapPost)
-  //       return chai.request(app)
-  //       .delete(`/posts/${swapPost._id}`);
-  //     })
-  //     .then(function(res) {
-  //       console.log("res=", res)
-  //       expect(res).to.have.status(204);
-  //       return SwapPost.findById(swapPost._id);
-  //     })
-  //     .then(function(_swapPost) {
-  //       expect(_swapPost).to.be.null;
-  //     });
-  //   });
-  // });
+//normal test case for deleting a swap post
+  describe('DELETE endpoint', function() {
+
+    it.only('delete a swapPost by id', function() {
+      let swapPost;
+      return SwapPost
+      .findOne()
+      .then(function(_swapPost) {
+        swapPost = _swapPost;
+        console.log("swapPost=", swapPost)
+        return chai.request(app)
+        .delete(`/posts/${swapPost._id}`)
+        .set("Authorization", `Bearer ${authToken}`)
+      })
+      .then(function(res) {
+        expect(res).to.have.status(204);
+        return SwapPost.findById(swapPost._id);
+      })
+      .then(function(_swapPost) {
+        expect(_swapPost).to.be.null;
+      });
+    });
+  });
 
 //       // describe('PUT endpoint', function() {
 //       //

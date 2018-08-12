@@ -192,7 +192,7 @@ context("When sent a valid username and password", function () {
 
     context("When sent 'Authorization' header contains a valid JWT 'Bearer' token", function () {
 
-      it.only("Should return 200 OK and a object with a 'authToken' property and a valid JWT", function () {
+      it("Should return 200 OK and a object with a 'authToken' property and a valid JWT", function () {
         const token = jwt.sign({ user }, JWT_SECRET, { subject: username, expiresIn: "1m" });
         return chai.request(app)
           .post("/auth/refresh")
