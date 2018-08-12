@@ -35,8 +35,8 @@ describe('Obtaining swap posts', function () {
     ])
     .then(([users]) => {
         user = users[0];
-        console.log("user", user);
         authToken = jwt.sign({ user }, JWT_SECRET);
+        //console.log("user", user);
       });
   });
 
@@ -61,7 +61,7 @@ describe('Obtaining swap posts', function () {
         expect(res).to.have.status(200);
         expect(res).to.be.json;
         expect(res).to.be.a('object');
-        console.log('Swap Posts =', res.body.swapPosts)
+        //console.log('Swap Posts =', res.body.swapPosts)
         expect(res.body.swapPosts).to.have.lengthOf.at.least(1);
         return SwapPost.count();
       })
@@ -86,8 +86,8 @@ describe('Obtaining swap posts', function () {
           return SwapPost.findById(post.id);
         })
         .then(function(swapPost) {
-          console.log("swapPost = ", swapPost)
-          console.log('POST', post);
+          //console.log("swapPost = ", swapPost)
+          //console.log('POST', post);
           expect(post.id).to.equal(swapPost.id);
           expect(post.have).to.equal(swapPost.have);
           // expect(post.id).to.equal(swapPost.user);
@@ -108,7 +108,7 @@ describe('Obtaining swap posts', function () {
       return chai.request(app)
       .get(`/posts?type=${type}&item=${item}&loc=${location}`)
       .then(function(res) {
-        console.log('res.body', res.body);
+        //console.log('res.body', res.body);
         expect(res).to.have.status(200);
         expect(res).to.be.json;
         expect(res).to.be.a('object');
@@ -130,64 +130,71 @@ describe('Obtaining swap posts', function () {
           expect(res).to.have.status(200);
           expect(res).to.be.json;
           expect(res).to.be.a('object');
-          console.log('res.body=', res.body, typeof res.body);
+          //console.log('res.body=', res.body, typeof res.body);
           return SwapPost.find({user: testUserId});
         })
         .then(function(swapPosts) {
-          console.log('swapPosts=', swapPosts);
+          //console.log('swapPosts=', swapPosts);
           expect(swapPosts).to.have.lengthOf(res.body.swapPosts.length);
         });
       });
     });
 
-//     // describe('POST endpoint', function() {
-//     //
-//     //   it.only('should add a new swapPost', function() {
-//     //     const newPost = {
-//     //       'have': 'Carrots',
-//     //       'want': 'Mushrooms',
-//     //       'user': '5b566d443fedefe19eb684d9'
-//     //     };
-//     //     let res;
-//     //
-//     //     return chai.request(app)
-//     //     .post('/posts')
-//     //     .send(newPost)
-//     //     .then(function(_res) {
-//     //       res= _res;
-//     //       console.log('Body', res.body);
-//     //       expect(res).to.have.status(201);
-//     //       expect(res).to.be.json;
-//     //       expect(res.body).to.be.a('object');
-//     //       expect(res.body).to.include.all.keys(
-//     //         'id', 'have', 'want', 'username', 'email', 'created');
-//     //         expect(res.body.id).to.not.be.null; // cause Mongo should have created id on insertion
-//     //         expect(res.body.have).to.equal(newPost.have);
-//     //         expect(res.body.want).to.equal(newPost.want);
-//     //         expect(res.body.user).to.equal(newPost.user);
-//     //
-//     //         return SwapPost.findById(res.body.id);
-//     //       })
-//     //       .then(function(swapPost) {
-//     //         expect(swapPost.have).to.equal(newPost.have);
-//     //         expect(swapPost.want).to.equal(newPost.want);
-//     //         expect(swapPost.username).to.equal(res.body.username);
-//     //         expect(swapPost.created).to.equal(res.body.created);
-//     //         expect(swapPost.email).to.equal(res.body.email);
-//     //       });
-//     //     });
-//     //   });
+    //normal test case for creating a new post
+    describe('POST endpoint', function() {
+
+      it('should add a new swapPost', function() {
+        const newPost = {
+          'have': 'Carrots',
+          'want': 'Mushrooms',
+          'user': '5b566d443fedefe19eb684d9',
+          'city': 'Portland',
+          'zipCode': '97211'
+        };
+        let res;
+        let postId;
+        return chai.request(app)
+        .post('/posts')
+        .set("Authorization", `Bearer ${authToken}`)
+        .send(newPost)
+        .then(function(_res) {
+          res= _res;
+          //console.log('Body', res.body);
+          expect(res).to.have.status(201);
+          expect(res).to.be.json;
+          expect(res.body).to.be.a('object');
+          expect(res.body).to.include.all.keys(
+            'id', 'have', 'want', 'username', 'email', 'created','zipCode', 'city', );
+          expect(res.body.id).to.not.be.null;
+          expect(res.body.have).to.equal(newPost.have);
+          expect(res.body.want).to.equal(newPost.want);
+          postId= res.body.id;
+          //console.log("id", postId);
+
+          return SwapPost.findById(res.body.id);
+          })
+          .then(function(swapPost) {
+            //console.log('swapPost', swapPost);
+            expect(swapPost._id.toString()).to.equal(postId);
+            expect(swapPost.user.toString()).to.equal(newPost.user);
+            expect(swapPost.have).to.equal(newPost.have);
+            expect(swapPost.want).to.equal(newPost.want);
+            expect(swapPost.city).to.equal(newPost.city);
+            expect(swapPost.zipCode).to.equal(newPost.zipCode);
+          });
+        });
+      });
 
 //normal test case for deleting a swap post
   describe('DELETE endpoint', function() {
 
-    it.only('delete a swapPost by id', function() {
+    it('delete a swapPost by id', function() {
       let swapPost;
       return SwapPost
       .findOne()
       .then(function(_swapPost) {
         swapPost = _swapPost;
-        console.log("swapPost=", swapPost)
+        //console.log("swapPost=", swapPost)
         return chai.request(app)
         .delete(`/posts/${swapPost._id}`)
         .set("Authorization", `Bearer ${authToken}`)
@@ -202,9 +209,10 @@ describe('Obtaining swap posts', function () {
     });
   });
 
-//       // describe('PUT endpoint', function() {
-//       //
-//       //   it('updates a swapPost by id', function() {
-//       //   })
-//       // })
+      // describe('PUT endpoint', function() {
+      //
+      //   it('updates a swapPost by id', function() {
+      //   })
+      // })
+
 }); //closes describe stmt with hooks

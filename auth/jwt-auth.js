@@ -9,7 +9,7 @@ const { JWT_SECRET } = require("../config");
 function jwtAuth(req, res, next) {
 
   const auth = req.header("Authorization");
-  console.log("req.header=", req.header);
+  //console.log("req.header from jwt-auth file is=", req.header);
 
   if (!auth) {
     const err = new Error("No 'Authorization' header found");
