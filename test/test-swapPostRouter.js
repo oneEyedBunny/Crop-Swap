@@ -209,10 +209,36 @@ describe('Obtaining swap posts', function () {
     });
   });
 
-      // describe('PUT endpoint', function() {
-      //
-      //   it('updates a swapPost by id', function() {
-      //   })
-      // })
+//normal test case for updating a swap post
+  describe('PUT endpoint', function() {
+
+    it('updates a swapPost by id', function() {
+      const updatedPost = {
+        "have": "testing have",
+        "want": "testing want"
+      };
+      return chai
+      .request(app)
+      .get('/posts')
+      .then(function(res) {
+        updatedPost.id = res.body.swapPosts[0].id;
+        console.log("updatedPost=", updatedPost);
+        return chai.request(app)
+        .put(`/posts/${updatedPost.id}`)
+        .send(updatedPost)
+        .set("Authorization", `Bearer ${authToken}`)
+      })
+      .then(res => {
+        expect(res).to.have.status(204);
+        return SwapPost.findById(updatedPost.id);
+      })
+      .then(res => {
+        console.log("final res", res);
+        expect(res).to.be.a("object");
+        expect(res.have).to.equal(updatedPost.have);
+        expect(res.want).to.equal(updatedPost.want);
+      });
+    });
+  })
 
 }); //closes describe stmt with hooks
