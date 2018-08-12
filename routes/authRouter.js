@@ -2,59 +2,54 @@
 
 //importing 3rd party dependencies
 const express = require('express');
-const passport = require('passport');
-const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
-const config = require('../config');
 const router = express.Router();
 
-//testing this
-// const {router: authRouter, localStrategy, jwtStrategy} = require('../auth/authStrategy');
-// passport.use(localStrategy);
-// passport.use(jwtStrategy);
-// end testing this
-
-
-
-
+const localAuth = require("../auth/local-auth");
+const jwtAuth = require("../auth/jwt-auth");
+const { JWT_SECRET, JWT_EXPIRY } = require("../config");
 
 //create a signed jwt
-const createAuthToken = function(user) {
-  return jwt.sign({user}, config.JWT_SECRET, {
-    subject: user.username,
-    expiresIn: config.JWT_EXPIRY,
-    algorithm: 'HS256'
+const createAuthToken = function (user) {
+  return new Promise(function (resolve, reject) {
+    jwt.sign({ user }, JWT_SECRET, { expiresIn: JWT_EXPIRY }, function (err, authToken) {
+      if (err) {
+        return reject(err);
+      }
+      resolve(authToken);
+    });
   });
 };
 
-const localAuth = passport.authenticate('local', {
-  session: false,
-  failWithError: true
-});
-
-router.use(express.json());
-
-// The user provides a username and password to login and is given a token
-router.post('/login', localAuth, (req, res) => {
-  const authToken = createAuthToken(req.user.serialize());
-  const user = req.user.serialize();
-  res.json({
-    authToken: authToken,
-    userId: user.id,
-    username: user.username
-  });
-});
-
-const jwtAuth = passport.authenticate('jwt', {
-  session: false,
-  failWithError: true
+// The user provides a username and password to login and is given an authtoken
+router.post("/login", localAuth, (req, res, next) => {
+  createAuthToken(req.user)
+    .then(authToken => {
+      res.json({
+        authToken: authToken,
+        userId: req.user._id,
+        username: req.user.username
+       });
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 // The user exchanges a valid JWT for a new one with a later expiration
-router.post('/refresh', jwtAuth, (req, res) => {
-  const authToken = createAuthToken(req.user);
-  res.json({authToken});
+router.post("/refresh", jwtAuth, (req, res, next) => {
+  createAuthToken(req.user)
+    .then(authToken => {
+      res.json({
+        authToken: authToken,
+        userId: req.user._id,
+        username: req.user.username
+      });
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
-module.exports = {router, createAuthToken};
+module.exports = router;

@@ -5,28 +5,16 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const passport = require('passport'); //protects endpoints
 
 //creates new express app
 const app = express()
 
 // Modularize routes
-const swapPostsRouter = require('./routes/swapPostsRouter'); //why am I not renaming this from router as well??
-const usersRouter = require('./routes/usersRouter'); //why am I not renaming this from router as well??
-const { router: authRouter } = require('./routes/authRouter'); //or why am I bothering to specify router?
-const { localStrategy, jwtStrategy } = require('./auth/authStrategy');
-
-//use strategy to protect endpoint
-const jwtAuth = passport.authenticate('jwt', {
-  session: false,
-  failWithError: true
- });
-
-// constants for the app
 const {PORT, DATABASE_URL} = require('./config');
-
-passport.use(localStrategy);
-passport.use(jwtStrategy);
+const swapPostsRouter = require('./routes/swapPostsRouter');
+const usersRouter = require('./routes/usersRouter');
+const authRouter = require('./routes/authRouter'); //removed required:
+const jwtAuth = require("./auth/jwt-auth");
 
 //log the http layer
 app.use(morgan('common'));
@@ -34,41 +22,39 @@ app.use(morgan('common'));
 //creates a static web server, servers static assets
 app.use(express.static('public'));
 
+// Parse request body
+app.use(express.json());
+
 //when requests come in, they get routed to the express router
 app.use('/posts', swapPostsRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {
-  //add check here to see if they're info is in local storage
   res.sendFile(__dirname + '/public/index.html');
 });
-
-//Mongoose uses built in es6 promises
-mongoose.Promise = global.Promise;
 
 //catch all in case user enters non-existent endpoint
 app.use('*', function(req, res) {
   res.status(404).json({message: 'Sorry, Not Found'});
 })
 
+// Custom 404 Not Found route handler
+app.use((req, res, next) => {
+  const err = new Error("Not Found");
+  err.status = 404;
+  next(err);
+});
+
+// Custom Error Handler
 // app.use((err, req, res, next) => {
-//   if (!err.status || err.status >= 500) {
-//     return next(err);
+//   if (err.status) {
+//     const errBody = Object.assign({}, err, { message: err.message });
+//     res.status(err.status).json(errBody);
+//   } else {
+//     res.status(500).json({ message: "Internal Server Error" });
+//     console.error(err);
 //   }
-//   res.status(err.status).json(
-//     Object.assign({}, err, {
-//       message: err.message
-//     })
-//   );
-// });
-//
-// app.use((err, req, res, next) => {
-//   console.error(err);
-//
-//   return res.status(req.status || 500).json({
-//     message: 'Internal Server Error'
-//   });
 // });
 
 

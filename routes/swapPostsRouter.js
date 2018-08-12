@@ -6,9 +6,9 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const timestamps = require('mongoose-timestamp');
 const bodyParser = require('body-parser');
-const passport = require('passport');
 
-const jwtAuth = passport.authenticate('jwt', {session: false});
+//const jwtAuth = passport.authenticate('jwt', {session: false});
+const jwtAuth = require("../auth/jwt-auth");
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
@@ -16,10 +16,6 @@ mongoose.Promise = global.Promise;
 // Modularize routes
 const {SwapPost} = require('../models');
 const {User} = require('../models');
-
-//applies body parser to all router calls
-router.use(bodyParser.json({ limit: '500kb', extended: true }));
-router.use(bodyParser.urlencoded({ limit: '500kb', extended: true }));
 
 //return all the posts or if a specified item is searched for, only those items
 router.get('/', (req, res) => {

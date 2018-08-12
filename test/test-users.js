@@ -202,7 +202,7 @@ describe('Obtaining swap posts', function () {
       .send({ password: new Array(73).fill("a").join(""),firstName, lastName, username, email, city, zipCode })
 
       .then(res => {
-        expect(res).to.have.status(400);
+        expect(res).to.have.status(422);
         expect(res.body.message).to.equal("Must be at most 72 characters long");
       });
     });
