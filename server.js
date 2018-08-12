@@ -7,32 +7,23 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport'); //protects endpoints
 
-//creates the new express app
+//creates new express app
 const app = express()
 
 // Modularize routes
-const swapPostsRouter = require('./routes/swapPostsRouter');
-const usersRouter = require('./routes/usersRouter');
-const { router: authRouter } = require('./routes/authRouter');
-
+const swapPostsRouter = require('./routes/swapPostsRouter'); //why am I not renaming this from router as well??
+const usersRouter = require('./routes/usersRouter'); //why am I not renaming this from router as well??
+const { router: authRouter } = require('./routes/authRouter'); //or why am I bothering to specify router?
 const { localStrategy, jwtStrategy } = require('./auth/authStrategy');
 
 //use strategy to protect endpoint
-const jwtAuth = passport.authenticate('jwt', { session: false });
+const jwtAuth = passport.authenticate('jwt', {
+  session: false,
+  failWithError: true
+ });
 
 // constants for the app
 const {PORT, DATABASE_URL} = require('./config');
-
-// CORS
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-//   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
-//   if (req.method === 'OPTIONS') {
-//     return res.send(204);
-//   }
-//   next();
-// });
 
 passport.use(localStrategy);
 passport.use(jwtStrategy);
@@ -60,6 +51,26 @@ mongoose.Promise = global.Promise;
 app.use('*', function(req, res) {
   res.status(404).json({message: 'Sorry, Not Found'});
 })
+
+// app.use((err, req, res, next) => {
+//   if (!err.status || err.status >= 500) {
+//     return next(err);
+//   }
+//   res.status(err.status).json(
+//     Object.assign({}, err, {
+//       message: err.message
+//     })
+//   );
+// });
+//
+// app.use((err, req, res, next) => {
+//   console.error(err);
+//
+//   return res.status(req.status || 500).json({
+//     message: 'Internal Server Error'
+//   });
+// });
+
 
 let server;
 

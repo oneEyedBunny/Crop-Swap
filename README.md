@@ -1,7 +1,9 @@
+[![Build Status](https://travis-ci.org/oneEyedBunny/Crop-Swap.svg?branch=master)](https://travis-ci.org/oneEyedBunny/Crop-Swap)
+
 # Pending
 
 # server side
-1. fix tests POST routes >>> swapPosts
+1. fix tests POST/Delete routes for auth >>> swapPosts
 1. Create put test case >>> swapposts
 1. Need to check code to see where I'm rejecting non trimmed username/pw (userroutes.js line 54)
 1. ******************* left off here****************

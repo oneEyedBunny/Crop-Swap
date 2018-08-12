@@ -9,6 +9,16 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 const router = express.Router();
 
+//testing this
+// const {router: authRouter, localStrategy, jwtStrategy} = require('../auth/authStrategy');
+// passport.use(localStrategy);
+// passport.use(jwtStrategy);
+// end testing this
+
+
+
+
+
 //create a signed jwt
 const createAuthToken = function(user) {
   return jwt.sign({user}, config.JWT_SECRET, {
@@ -18,7 +28,10 @@ const createAuthToken = function(user) {
   });
 };
 
-const localAuth = passport.authenticate('local', {session: false});
+const localAuth = passport.authenticate('local', {
+  session: false,
+  failWithError: true
+});
 
 router.use(express.json());
 
@@ -33,7 +46,10 @@ router.post('/login', localAuth, (req, res) => {
   });
 });
 
-const jwtAuth = passport.authenticate('jwt', {session: false});
+const jwtAuth = passport.authenticate('jwt', {
+  session: false,
+  failWithError: true
+});
 
 // The user exchanges a valid JWT for a new one with a later expiration
 router.post('/refresh', jwtAuth, (req, res) => {

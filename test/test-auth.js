@@ -20,6 +20,7 @@ chai.use(chaiHttp);
 
 //hooks to return promises
 describe('login validation', function () {
+  let user;
 
   const username = "testing9090";
   const password = "testing0101";
@@ -34,10 +35,14 @@ describe('login validation', function () {
   });
 
   beforeEach(function () {
-    return User.hashPassword(password).then(password =>
+    return User.hashPassword(password)
+    .then(password =>
       User.create({ firstName, lastName, username, password, email, city, zipCode })
-    );
-  });
+    )
+    .then(_user => {
+        user = _user;
+      });
+  })
 
   afterEach(function () {
     return User.remove({});
@@ -48,25 +53,23 @@ describe('login validation', function () {
   })
 
 
-
   describe('auth/login', function () {
 
   it.only('Should reject requests with no credentials', function () {
+    console.log("Hiiiiii");
     return chai
       .request(app)
       .post('auth/login')
-      .then(() =>
-        expect.fail(null, null, 'Request should not succeed')
-      )
-      .catch(err => {
-        if (err instanceof chai.AssertionError) {
-          throw err;
-        }
-
-        const res = err.response;
-        expect(res).to.have.status(400);
+      .send({})
+      .then(res => {
+        console.log("Hello", res.body.message);
+          expect(res).to.have.status(400);
+          expect(res.body.message).to.equal("No credentials provided");
       });
-  });
+   });
+
+ }); ////////////////////////////////Closes describe
+}); ////////////closes hook
 
 //   it('Should reject requests with incorrect usernames', function () {
 //     return chai
@@ -242,5 +245,3 @@ describe('login validation', function () {
 //         expect(payload.exp).to.be.at.least(decoded.exp);
 //       });
 //   });
- });
-});
