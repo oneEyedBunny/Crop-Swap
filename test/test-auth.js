@@ -56,19 +56,6 @@ describe('login validation', function () {
 
   describe('auth/login', function () {
 
-  // it.only('Should reject requests with no credentials', function () {
-  //   console.log("Did I make it here");
-  //   return chai
-  //     .request(app)
-  //     .post('auth/login')
-  //     .send({})
-  //     .then(res => {
-  //       console.log("res.body=", res.body.message);
-  //         expect(res).to.have.status(400);
-  //         expect(res.body.message).to.equal("No credentials provided");
-  //     });
-  //  });
-
   it("Should return 401 error 'Invalid credentials' at 'username' when sent an invalid 'username'", function () {
         return chai.request(app)
           .post("/auth/login")
@@ -243,3 +230,18 @@ context("When sent a valid username and password", function () {
 
  }); ////////////////////////////////Closes describe
 }); ////////////closes hook
+
+
+
+// it.only('Should reject requests with no credentials', function () {
+//   console.log("Did I make it here");
+//   return chai
+//     .request(app)
+//     .post('auth/login')
+//     .send({})
+//     .then(res => {
+//       console.log("res.body=", res.body.message);
+//         expect(res).to.have.status(400);
+//         expect(res.body.message).to.equal("No credentials provided");
+//     });
+//  });

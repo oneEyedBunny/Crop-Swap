@@ -95,12 +95,10 @@
     display: block;
     position: relative;
     top: 65px;
-    padding: 1px 25px;
-    z-index: -1;
+    padding: 1px 25px 30px;
   }
 
    #form-container, #post-form-container {
-    /* width: 100%; */
     margin: 50px auto;
   }
 }
@@ -139,26 +137,17 @@
   }
 
   #search-selection, #search-details  > label {
-    font-size: 18px;
-  }
-
-  .username, .want {
     font-size: 15px;
   }
 
-  .email {
-    font-size: 14px;
+  .username, .have, .want {
+    font-size: 15px;
   }
 
   .created, .edit-button, .delete-button {
     font-size: 12px;
   }
-
-  .have {
-    font-size: 18px;
-  }
 }
-
 
 @media only screen and (min-width: 830px) {
 
@@ -227,6 +216,20 @@
 
   #user-info input  {
     font-size: 18px;
+  }
+
+  .email {
+    font-size: 13px;
+  }
+
+  #swap-posting-have::placeholder , #swap-posting-want::placeholder, #search-data::placeholder , #search-loc::placeholder  {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 1142px) {
+  #login-user {
+    width: 35%;
   }
 }
 

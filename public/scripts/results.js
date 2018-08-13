@@ -31,8 +31,8 @@ function renderSwapPosts(data) {
     <h5 class="username">${swapPost.username}</h5>
     <h5 class="email">${swapPost.email}</h5>
     <h6 class="created">${swapPost.created}</h6>
-    <h5 class="have">I have: ${swapPost.have}</h5>
-    <h5 class="want">Swap for: ${swapPost.want}</h5>
+    <h5 class="have"><span>I have:</span> ${swapPost.have}</h5>
+    <h5 class="want"><span>Swap for:</span> ${swapPost.want}</h5>
     </div>
     `
   })
@@ -40,7 +40,7 @@ function renderSwapPosts(data) {
 };
 
 //submit button > AJAX get request to server for specified search params
-$('.search-button').click(function(event) {
+$('.search-button').click(event => {
   event.preventDefault();
   let requestData = {
     type: event.target.form.search.value,

@@ -39,6 +39,7 @@ $('#login-user').submit(event => {
     },
     error: function() {
       $('#login-user')[0].reset();
+      $('.error-message-container').html("");
       $('<p>').appendTo('.error-message-container').addClass('login-error-message').html('Your username or password was incorrect, please try again');
     },
     dataType: 'json',

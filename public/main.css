@@ -8,7 +8,7 @@ body {
   display: none;
 }
 
-/********** Navigation ************/
+/******************************* Navigation ********************************/
 .logo {
   height: 60px;
 }
@@ -29,7 +29,7 @@ body {
   background-color: rgba(255,255,255);
   /* background-color: rgba(255,255,255,0.90); */
   top: 0;
-  /* margin: 0 auto; */
+  z-index: 1;
 }
 
 .right-nav-container {
@@ -57,7 +57,7 @@ a:active {
   color: green;
 }
 
-/********** index.html ************/
+/******************************* index.html *********************************/
 
 #welcome-message-container {
   margin-top: 50px;
@@ -145,12 +145,20 @@ a:active {
 }
 
 #user-info input {
-  /* background-color: #E8E8E8; */
+  background-color: #E8E8E8;
   border: 1px solid #DBDBDB;
   border-radius: 4px;
   font-size: 15px;
   margin: 4px auto;
 }
+
+/* input[type=text]:focus{
+  outline: 2px solid #e5870b;
+  /* border-bottom: 1px solid #e5870b;
+  -webkit-box-shadow: 0 1px 0 0 #e5870b;
+  -moz-box-shadow: 0 1px 0 0 #e5870b;
+  box-shadow: 0 1px 0 0 #e5870b;
+} */
 
 #new-user, #existing-user, #create-profile-button, .search-button, .submit-button, .create-post-button, .edit-button, .delete-button, #edit-swap-button  {
   border: 1px solid black;
@@ -183,7 +191,7 @@ a:active {
 }
 
 .demo-info {
-  color: blue;
+  color: #5E9ED6;
   display: block;
 }
 
@@ -197,17 +205,17 @@ a:active {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 .create-account-success-message {
   text-align: center;
 }
 
-/********** results.html ************/
+/********************************** results.html ****************************/
 
 #page-display-container, #page-display-container-2  {
   display: inline-block;
   margin: 90px 20px;
   padding: 25px;
-  /* padding: 0px 25px 25px; */
   background-color: white;
 }
 
@@ -255,6 +263,10 @@ h5, h6 {
   margin: 0;
 }
 
+span {
+  color: green;
+}
+
 .username {
   display: inline-block;
   margin-right: 5px;
@@ -262,19 +274,19 @@ h5, h6 {
 
 .email {
   display: inline-block;
-  color: blue;
+  color: #5E9ED6;
   font-size: 12px;
 }
 
 .have {
-  font-size: 15px;
+  font-size: 13px;
 }
 
 #no-data-error {
   text-align: center;
 }
 
-/********** createPost.html ************/
+/****************************** createPost.html ******************************/
 
 #no-posts-message {
   margin-right: 40px;
@@ -289,8 +301,6 @@ h5, h6 {
   width: 90%;
   resize: none; /* removes corner dashes */
 }
-
-/* need to set a margin on the label still */
 
 #swap-posting-have::placeholder , #swap-posting-want::placeholder {
   color: #C8C8C8;
@@ -351,7 +361,6 @@ h5, h6 {
 
 .popup-overlay {
 visibility:hidden;
-/* text-align: center; */
 }
 
 .popup-content {
