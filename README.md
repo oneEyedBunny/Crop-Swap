@@ -18,7 +18,6 @@
 
 # createPost.html
 1. renderEditSwap() isn't populating values in text area fields
-1. active swaps has issue after 4 swaps are entered > not displaying
 
 # Overall
 1. create function for login/logout, that works more cohesively, so I don't have to copy paste the and tweak it in each file. Also could I do a require in each file and export from just one place?

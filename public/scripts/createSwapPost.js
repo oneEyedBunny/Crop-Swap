@@ -171,6 +171,7 @@ $('.create-post-button').click(function(event) {
       $('#create-post-sucess-message').remove();
       $('#create-post-error-message').remove();
       $('<p>').fadeIn().appendTo('#create-post-form').html('Your post was created successfully, see below').attr('id', 'create-post-sucess-message');
+      loadUserSwaps();
     },
     error: function() {
       $('#create-post-sucess-message').remove();
@@ -181,7 +182,6 @@ $('.create-post-button').click(function(event) {
     contentType: 'application/json',
     headers: { 'Authorization': 'Bearer ' + authToken }
   });
-  loadUserSwaps();
 });
 
 //Document ready functions for jQuery
