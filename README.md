@@ -1,9 +1,9 @@
+[![Build Status](https://travis-ci.org/oneEyedBunny/Crop-Swap.svg?branch=master)](https://travis-ci.org/oneEyedBunny/Crop-Swap)
+
 # Pending
 
 # server side
-1. fix tests GET/POST routes >>> swapPosts
-1. Create put test case >>> swapposts
-1. create post test case >>>users
+1. Need to check code to see where I'm rejecting non trimmed username/pw (userroutes.js line 54)
 
 # CSS
 1. when errors happen, boxes need formatting (index page)

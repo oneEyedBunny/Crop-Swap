@@ -1,5 +1,6 @@
 [
   {
+    "_id": "5b5a630a805b2f20691b5caa",
     "have": "I have some delicious tomatoes, about 10. They're pretty decent size and are beefstake",
     "user": "5b566d443fedefe19eb684d9",
     "want": "I am looking for carrots or apples",
@@ -7,6 +8,7 @@
     "zipCode": "97211"
   },
   {
+    "_id": "5b60791da30eda608b59c2fd",
     "have": "Tons of cucumbers. My plany went gangbusters this year. I have plenty to go around, so just message me and I'm open to swap for most things",
     "user": "5b566d443fedefe19eb684d8",
     "want": "lettuce, apples, beans",
@@ -14,7 +16,7 @@
     "zipCode": "97218"
   },
   {
-
+    "_id": "5b5a8cdc568e19259ebae28a",
     "have": "Apples, Apples, Apples. Super crispy red delicious. I also have a few cucumbers",
     "user": "5b5a357b6445e3cbfb35cea2",
     "want": "Tomatoes or lettuce",
@@ -22,6 +24,7 @@
     "zipCode": "97212"
   },
   {
+    "_id": "5b6280f71eb5bd883188ebfe",
     "have": "Tons of lettuce",
     "user": "5b566d443fedefe19eb684d9",
     "want": "spinach",

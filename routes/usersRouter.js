@@ -8,23 +8,28 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const morgan = require('morgan');
 const jwt = require('jsonwebtoken');
-const passport = require('passport');
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
 
 // Modularize routes
 const {User} = require('../models');
-const {createAuthToken} = require('./authRouter')
+const { JWT_SECRET, JWT_EXPIRY } = require("../config");
 
-//applies body parser to all router calls
-router.use(bodyParser.json({ limit: '500kb', extended: true }));
-router.use(bodyParser.urlencoded({ limit: '500kb', extended: true }));
-
-const localAuth = passport.authenticate('local', {session: false});
+//create a signed jwt
+const createAuthToken = function (user) {
+  return new Promise(function (resolve, reject) {
+    jwt.sign({ user }, JWT_SECRET, { expiresIn: JWT_EXPIRY }, function (err, authToken) {
+      if (err) {
+        return reject(err);
+      }
+      resolve(authToken);
+      console.log("authtoken =" , authToken);
+    });
+  });
+};
 
 //called when a new user has created a profile
-//router.post('/', localAuth, (req, res, next) => {
 router.post('/', (req, res, next) => {
   const requiredFields = ['firstName', 'lastName', 'username', 'password', 'email', 'city', 'zipCode'];
   const missingField = requiredFields.find(field => !(field in req.body));
@@ -56,7 +61,7 @@ router.post('/', (req, res, next) => {
   );
   const sizedFields = {
     username: {
-      min: 5
+      min: 3
     },
     password: {
       min: 10,
@@ -88,6 +93,10 @@ router.post('/', (req, res, next) => {
       // Username and password come in pre-trimmed, otherwise we throw an error before this
       firstName = firstName.trim();
       lastName = lastName.trim();
+      email = email.trim();
+      city = city.trim();
+      zipCode = zipCode.trim();
+
 
       return User.find({username})
       .count()
@@ -97,7 +106,7 @@ router.post('/', (req, res, next) => {
           return Promise.reject({
             code: 422,
             reason: 'ValidationError',
-            message: 'Username already taken',
+            message: 'The username already exists',
             location: 'username'
           });
         }
@@ -116,13 +125,15 @@ router.post('/', (req, res, next) => {
         });
       })
       .then(user => {
-        console.log('user1 = ', user);
-        const authToken = createAuthToken(user.serialize());
-        return res.status(201).json({
-          authToken: authToken,
-          userId: user._id,
-          username: user.username
-        })
+        console.log("user", user);
+        return createAuthToken(user)
+        .then(authToken => {
+          return res.status(201).json({
+            authToken: authToken,
+            userId: user._id,
+            username: user.username
+          })
+       })
       })
       .catch(err => {
         // Forward validation errors on to the client, otherwise give a 500
@@ -136,12 +147,12 @@ router.post('/', (req, res, next) => {
 
     // Never expose all your users like below in a prod application, we're just
     // this so we have a quick way to see if we're creating users.
-    router.get('/', (req, res) => {
-      return User.find()
-      .then(users =>
-        res.json(users.map(user => user.serialize())))
-        .catch(err =>
-          res.status(500).json({message: 'Internal server error'}));
-        });
+    // router.get('/', (req, res) => {
+    //   return User.find()
+    //   .then(users =>
+    //     res.json(users.map(user => user.serialize())))
+    //     .catch(err =>
+    //       res.status(500).json({message: 'Internal server error'}));
+    //     });
 
-        module.exports = router;
+module.exports = router;
