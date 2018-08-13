@@ -1,0 +1,269 @@
+@media only screen and (min-width: 400px) {
+
+  .welcome-quote {
+    font-size: 45px;
+  }
+
+  #user-info {
+    padding: 25px;
+  }
+
+  #existing-user, #new-user{
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+
+  #login-user {
+    width: 75%;
+  }
+
+  #logo {
+      height: 70px;
+  }
+
+  .nav-link {
+    font-size: 18px;
+  }
+
+  .welcome-message {
+    font-size: 25px;
+  }
+
+  #what-to-do > p {
+    font-size: 22px;
+  }
+
+  #welcome-list {
+    font-size: 17px;
+    padding: 10px;
+  }
+
+  #new-user-form {
+    width: 70%;
+}
+
+  #user-info label {
+      font-size: 16px;
+  }
+
+  #user-info input {
+      font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 584px) {
+
+  .logo-link-container {
+    width: 85%;
+  }
+
+  .background-image {
+    width: 85%;
+    height: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    object-fit: cover;
+    /* overflow: hidden; */
+  }
+
+  #welcome-message-container {
+    width: 75%;
+    margin: 50px auto;
+  }
+
+  #what-to-do, #new-user-form {
+    width: 65%;
+}
+
+  #login-user {
+    width: 70%;
+  }
+
+  #user-info label {
+    font-size: 17px;
+  }
+
+  #user-info input {
+    font-size: 17px;
+  }
+
+  #page-display-container, #page-display-container-2 {
+    width: 60%;
+    margin: 50px auto;
+    display: block;
+  }
+
+   #form-container, #post-form-container {
+    /* width: 100%; */
+    margin: 50px auto;
+  }
+}
+
+@media only screen and (min-width: 680px) {
+
+  .background-image, .logo-link-container {
+    width: 75%;
+  }
+
+  #welcome-message-container {
+    width: 65%;
+  }
+
+  #what-to-do, #new-user-form {
+    width: 55%;
+  }
+
+  #login-user {
+    width: 60%;
+  }
+
+  #page-display-container, #page-display-container-2 {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 780px) {
+
+  #login-user {
+    width: 55%;
+  }
+
+  #what-to-do > p {
+    font-size: 24px;
+  }
+
+  #search-selection, #search-details  > label {
+    font-size: 18px;
+  }
+
+  .username, .want {
+    font-size: 15px;
+  }
+
+  .email {
+    font-size: 14px;
+  }
+
+  .created, .edit-button, .delete-button {
+    font-size: 12px;
+  }
+
+  .have {
+    font-size: 18px;
+  }
+}
+
+
+@media only screen and (min-width: 830px) {
+
+  .background-image, .logo-link-container  {
+    width: 65%;
+  }
+
+  #welcome-message-container {
+    width: 55%;
+  }
+
+  #what-to-do, #new-user-form {
+    width: 45%;
+  }
+
+  #login-user {
+    width: 50%;
+  }
+
+  .new-form-fields {
+    font-size: 18px;
+  }
+
+  .new-user-div > label {
+    font-size: 18px;
+  }
+
+  #page-display-container, #page-display-container-2 {
+    width: 42%;
+  }
+}
+
+@media only screen and (min-width: 905px) {
+  #login-user {
+    width: 45%;
+  }
+
+  #what-to-do > p {
+    font-size: 25px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .background-image, .logo-link-container  {
+    width: 60%;
+  }
+
+  #welcome-message-container {
+    width: 50%;
+  }
+
+  #what-to-do, #login-user, #new-user-form {
+    width: 40%;
+  }
+
+  #page-display-container, #page-display-container-2 {
+    width: 38%;
+  }
+  #form-container, #post-form-container {
+    width: 90%;
+  }
+
+  #user-info label {
+    font-size: 18px;
+  }
+
+  #user-info input  {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 1211px) {
+  .background-image, .logo-link-container  {
+    width: 55%;
+  }
+
+  #welcome-message-container {
+    width: 40%;
+  }
+
+  #what-to-do, #login-user, #new-user-form {
+    width: 30%;
+  }
+}
+
+@media only screen and (min-width: 1490px) {
+  .background-image, .logo-link-container  {
+    width: 50%;
+  }
+
+  #welcome-message-container {
+    width: 35%;
+  }
+
+  #what-to-do, #login-user, #new-user-form {
+    width: 25%;
+  }
+
+  #page-display-container, #page-display-container-2 {
+    width: 35%;
+  }
+  #form-container, #post-form-container {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 1530px) {
+
+#login-user, #new-user-form {
+    width: 20%;
+  }
+}

@@ -6,10 +6,12 @@
 1. create post test case >>>users
 
 # CSS
-1. Create non mobile css
-1. Picture borders off on all pgs
+1. when errors happen, boxes need formatting (index page)
+1. fix 2 pages #page-display-container, #page-display-container-2
 
 1. OVERALL- check all code for: non necessary comments/code, remove console logs
+1. check aria
+1. readMe pics
 
 ---------------------------------
 # If time permits
@@ -53,3 +55,12 @@ eating the same thing day in and out, and who wants to waste the food? Once a we
 * JWT/Passport
 * HTML
 * CSS
+
+### Home page-----
+![](README-images/home-page.png)
+
+### Search results page-----
+![](README-images/search-results.png)
+
+### Create a Swap page-------
+![](README-images/create-post.png)

@@ -9,7 +9,9 @@
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Nunito" rel="stylesheet" />
 </head>
 <body>
-  <nav role="navigation" id="navigation-container" class="not-logged-in">
+
+  <nav role="navigation" class="navigation-container not-logged-in">
+   <div class="logo-link-container">
     <div class="left-nav-container">
       <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
     </div>
@@ -17,8 +19,10 @@
       <a href="/#login-user" class="nav-link">Login</a>
       <a href="/#new-user" class="nav-link">Create Account</a>
     </div>
+   </div>
   </nav>
-  <nav role="navigation" id="navigation-container" class="logged-in hidden">
+  <nav role="navigation" class="navigation-container logged-in hidden">
+   <div class="logo-link-container">
     <div class="left-nav-container">
       <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
     </div>
@@ -26,10 +30,11 @@
       <a href="results.html" class="nav-link" onclick="logOutUser()">Logout</a>
       <a href="createPost.html" class="nav-link">Create Swap</a>
     </div>
+   </div>
   </nav>
 
   <main role="main">
-    <img src="images/indexBackground.jpg" id="background-image"/>
+    <img src="images/indexBackground.jpg" class="background-image"/>
     <div id="page-display-container">
       <div id="form-container">
         <form role="form" id="search-form">

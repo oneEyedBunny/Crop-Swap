@@ -1,6 +1,7 @@
 body {
   font-family: 'Nunito', serif;
   min-height: 100vh;
+  margin: 0;
 }
 
 .hidden {
@@ -12,18 +13,23 @@ body {
   height: 60px;
 }
 
-#background-image {
+.logo-link-container {
+  margin: 0 auto;
+}
+
+.background-image {
   opacity: .4;
   position: fixed;
   z-index: -1;
 }
 
-#navigation-container {
+.navigation-container {
   position: fixed;
   width: 100%;
-  background-color: rgba(255,255,255,0.90);
-  z-index: 1;
+  background-color: rgba(255,255,255);
+  /* background-color: rgba(255,255,255,0.90); */
   top: 0;
+  /* margin: 0 auto; */
 }
 
 .right-nav-container {
@@ -54,7 +60,6 @@ a:active {
 /********** index.html ************/
 
 #welcome-message-container {
-  display: inline-block;
   margin-top: 50px;
   padding: 25px;
 }
@@ -62,8 +67,9 @@ a:active {
 .welcome-quote {
   text-align: center;
   color: green;
-  font-size: 50px;
+  font-size: 40px;
   margin: 45px 0px 45px;
+  font-weight: bold;
 }
 
 .welcome-message {
@@ -73,6 +79,7 @@ a:active {
   color: black;
   margin: 5px;
   font-family: 'Indie Flower', cursive;
+  font-weight: bold;
 }
 
 #what-to-do {
@@ -133,9 +140,10 @@ a:active {
   border: 1px solid #DBDBDB;
   border-radius: 4px;
   font-size: 15px;
+  margin: 4px auto;
 }
 
-#new-user, #existingUser, #create-profile-button, .search-button, .submit-button, .create-post-button, .edit-button, .delete-button, #edit-swap-button  {
+#new-user, #existing-user, #create-profile-button, .search-button, .submit-button, .create-post-button, .edit-button, .delete-button, #edit-swap-button  {
   border: 1px solid black;
   border-radius: 3px;
   font-size: 15px;
@@ -175,12 +183,9 @@ a:active {
   display: inline-block;
   margin: 90px 20px;
   padding: 25px;
+  /* padding: 0px 25px 25px; */
   background-color: white;
 }
-
-/* #form-container {
-background-color: #FFCF9E;
-} */
 
 #search-selection {
   margin-bottom: -15px;
@@ -226,18 +231,26 @@ h5, h6 {
   margin: 0;
 }
 
+.username {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.email {
+  display: inline-block;
+  color: blue;
+  font-size: 12px;
+}
+
+.have {
+  font-size: 15px;
+}
+
 #no-data-error {
   text-align: center;
 }
 
 /********** createPost.html ************/
-
-/* #page-display-container-2 {
-  display: inline-block;
-  margin: 90px 20px;
-  padding: 25px;
-  background-color: white;
-} */
 
 #no-posts-message {
   margin-right: 40px;
@@ -259,6 +272,14 @@ h5, h6 {
   color: #C8C8C8;
   font-size: 12px;
   padding: 5px;
+}
+
+#create-post-form label {
+  margin: 10px;
+}
+
+#create-post-form textarea {
+  margin: 8px;
 }
 
 .create-post-button {
@@ -327,4 +348,5 @@ visibility:visible;
 
 #edit-post-form {
   width: 85%;
+  margin: 10px;
 }

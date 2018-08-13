@@ -1,7 +1,7 @@
 "use strict"
 
-let id = JSON.parse(localStorage.getItem('userId'));
-let authToken = JSON.parse(localStorage.getItem('authToken'));
+let id = localStorage.getItem('userId');
+let authToken = localStorage.getItem('authToken');
 
 //checks to see if user info is in local storage to customize what displays on page
 function isUserLoggedIn() {
