@@ -22,10 +22,10 @@ eating the same thing day in and out, and who wants to waste the food? Once a we
 * CSS
 
 ### Home page-----
-![](README-images/home-page.png)
+![](ReadMe-images/index.png)
 
 ### Search results page-----
-![](README-images/search-results.png)
+![](ReadMe-images/results.png)
 
 ### Create a Swap page-------
-![](README-images/create-post.png)
+![](ReadMe-images/create-post.png)
