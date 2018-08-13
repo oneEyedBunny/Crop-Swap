@@ -40,6 +40,10 @@
     padding: 10px;
   }
 
+  #new-user-form {
+    width: 70%;
+}
+
   #user-info label {
       font-size: 16px;
   }
@@ -69,7 +73,7 @@
     margin: 50px auto;
   }
 
-  #what-to-do {
+  #what-to-do, #new-user-form {
     width: 65%;
 }
 
@@ -78,11 +82,11 @@
   }
 
   #user-info label {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   #user-info input {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   #page-display-container, #page-display-container-2 {
@@ -107,7 +111,7 @@
     width: 65%;
   }
 
-  #what-to-do {
+  #what-to-do, #new-user-form {
     width: 55%;
   }
 
@@ -129,10 +133,30 @@
   #what-to-do > p {
     font-size: 24px;
   }
+
+  #search-selection, #search-details  > label {
+    font-size: 18px;
+  }
+
+  .username, .want {
+    font-size: 15px;
+  }
+
+  .email {
+    font-size: 14px;
+  }
+
+  .created, .edit-button, .delete-button {
+    font-size: 12px;
+  }
+
+  .have {
+    font-size: 18px;
+  }
 }
 
 
-@media only screen and (min-width: 843px) {
+@media only screen and (min-width: 830px) {
 
   .background-image, .logo-link-container  {
     width: 65%;
@@ -142,7 +166,7 @@
     width: 55%;
   }
 
-  #what-to-do {
+  #what-to-do, #new-user-form {
     width: 45%;
   }
 
@@ -150,12 +174,12 @@
     width: 50%;
   }
 
-  #user-info label {
-      font-size: 19px;
+  .new-form-fields {
+    font-size: 18px;
   }
 
-  #user-info input  {
-      font-size: 19px;
+  .new-user-div > label {
+    font-size: 18px;
   }
 
   #page-display-container, #page-display-container-2 {
@@ -163,7 +187,7 @@
   }
 }
 
-@media only screen and (min-width: 982px) {
+@media only screen and (min-width: 905px) {
   #login-user {
     width: 45%;
   }
@@ -173,7 +197,7 @@
   }
 }
 
-@media only screen and (min-width: 1085px) {
+@media only screen and (min-width: 1000px) {
   .background-image, .logo-link-container  {
     width: 60%;
   }
@@ -182,7 +206,7 @@
     width: 50%;
   }
 
-  #what-to-do, #login-user {
+  #what-to-do, #login-user, #new-user-form {
     width: 40%;
   }
 
@@ -191,6 +215,14 @@
   }
   #form-container, #post-form-container {
     width: 90%;
+  }
+
+  #user-info label {
+    font-size: 18px;
+  }
+
+  #user-info input  {
+    font-size: 18px;
   }
 }
 
@@ -203,12 +235,12 @@
     width: 40%;
   }
 
-  #what-to-do, #login-user {
+  #what-to-do, #login-user, #new-user-form {
     width: 30%;
   }
 }
 
-@media only screen and (min-width: 1591px) {
+@media only screen and (min-width: 1490px) {
   .background-image, .logo-link-container  {
     width: 50%;
   }
@@ -217,26 +249,8 @@
     width: 35%;
   }
 
-  #what-to-do, #login-user {
+  #what-to-do, #login-user, #new-user-form {
     width: 25%;
-  }
-}
-
-@media only screen and (min-width: 1591px) {
-  .background-image, .logo-link-container   {
-    width: 50%;
-  }
-
-  #welcome-message-container {
-    width: 35%;
-  }
-
-  #what-to-do {
-    width: 25%;
-  }
-
-  #login-user {
-    width: 20%;
   }
 
   #page-display-container, #page-display-container-2 {
@@ -244,5 +258,12 @@
   }
   #form-container, #post-form-container {
     width: 90%;
+  }
+}
+
+@media only screen and (min-width: 1530px) {
+
+#login-user, #new-user-form {
+    width: 20%;
   }
 }

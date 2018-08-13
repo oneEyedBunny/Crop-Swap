@@ -183,12 +183,9 @@ a:active {
   display: inline-block;
   margin: 90px 20px;
   padding: 25px;
+  /* padding: 0px 25px 25px; */
   background-color: white;
 }
-
-/* #form-container {
-background-color: #FFCF9E;
-} */
 
 #search-selection {
   margin-bottom: -15px;
@@ -234,18 +231,26 @@ h5, h6 {
   margin: 0;
 }
 
+.username {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.email {
+  display: inline-block;
+  color: blue;
+  font-size: 12px;
+}
+
+.have {
+  font-size: 15px;
+}
+
 #no-data-error {
   text-align: center;
 }
 
 /********** createPost.html ************/
-
-/* #page-display-container-2 {
-  display: inline-block;
-  margin: 90px 20px;
-  padding: 25px;
-  background-color: white;
-} */
 
 #no-posts-message {
   margin-right: 40px;

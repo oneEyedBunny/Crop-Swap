@@ -6,9 +6,8 @@
 1. create post test case >>>users
 
 # CSS
-1. Check font size on all pages at 1000px & above
-1. Nav bar not centering at 585 media
-1. format new form fields at all sizes
+1. when errors happen, boxes need formatting (index page)
+1. fix 2 pages #page-display-container, #page-display-container-2
 
 1. OVERALL- check all code for: non necessary comments/code, remove console logs
 1. check aria
