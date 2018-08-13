@@ -93,6 +93,9 @@
     width: 60%;
     margin: 50px auto;
     display: block;
+    position: relative;
+    top: 65px;
+    padding: 1px 25px;
   }
 
    #form-container, #post-form-container {

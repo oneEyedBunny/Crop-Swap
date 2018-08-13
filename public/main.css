@@ -135,6 +135,15 @@ a:active {
   margin-bottom: 15px;
 }
 
+.error-message-container {
+  margin-bottom: 20px;
+}
+
+.error-message-container p {
+  margin: 0 auto;
+  padding: 0;
+}
+
 #user-info input {
   /* background-color: #E8E8E8; */
   border: 1px solid #DBDBDB;
@@ -156,7 +165,7 @@ a:active {
   width: 100%;
   color: red;
   text-align: center;
-  padding: 25px;
+  /* padding: 25px; */
 }
 
 .new-form-fields {

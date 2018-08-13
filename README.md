@@ -1,26 +1,8 @@
 [![Build Status](https://travis-ci.org/oneEyedBunny/Crop-Swap.svg?branch=master)](https://travis-ci.org/oneEyedBunny/Crop-Swap)
 
 # Pending
-
-# server side
-1. Need to check code to see where I'm rejecting non trimmed username/pw (userroutes.js line 54)
-
-# CSS
-1. when errors happen, boxes need formatting (index page)
-1. fix 2 pages #page-display-container, #page-display-container-2
-
-1. OVERALL- check all code for: non necessary comments/code, remove console logs
-1. check aria
 1. readMe pics
 
----------------------------------
-# If time permits
-
-# createPost.html
-1. renderEditSwap() isn't populating values in text area fields
-
-# Overall
-1. create function for login/logout, that works more cohesively, so I don't have to copy paste the and tweak it in each file. Also could I do a require in each file and export from just one place?
 -----------------------------------------------------------------
 
 # Stretch Goals
@@ -29,6 +11,10 @@
 1. Create way for users to upload photos of their swaps (S3)
 1. Create way for user to modify their username
 1. Create way for private messaging within the app
+
+# Code Improvements
+1. create function for login/logout, that works more cohesively, so I don't have to copy paste the and tweak it in each file. Also could I do a require in each file and export from just one place?
+1. Need to check code to see where I'm rejecting non trimmed username/pw (userroutes.js line 54)
 
 
 

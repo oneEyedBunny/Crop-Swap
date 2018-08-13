@@ -13,8 +13,8 @@ const app = express()
 const {PORT, DATABASE_URL} = require('./config');
 const swapPostsRouter = require('./routes/swapPostsRouter');
 const usersRouter = require('./routes/usersRouter');
-const authRouter = require('./routes/authRouter'); //removed required:
-const jwtAuth = require("./auth/jwt-auth");
+const authRouter = require('./routes/authRouter');
+const jwtAuth = require('./auth/jwt-auth');
 
 //log the http layer
 app.use(morgan('common'));
@@ -30,10 +30,6 @@ app.use('/posts', swapPostsRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
-
 //catch all in case user enters non-existent endpoint
 app.use('*', function(req, res) {
   res.status(404).json({message: 'Sorry, Not Found'});
@@ -41,7 +37,7 @@ app.use('*', function(req, res) {
 
 // Custom 404 Not Found route handler
 app.use((req, res, next) => {
-  const err = new Error("Not Found");
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -52,7 +48,7 @@ app.use((err, req, res, next) => {
     const errBody = Object.assign({}, err, { message: err.message });
     res.status(err.status).json(errBody);
   } else {
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ message: 'Internal Server Error' });
     console.error(err);
   }
 });

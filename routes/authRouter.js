@@ -6,9 +6,9 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-const localAuth = require("../auth/local-auth");
-const jwtAuth = require("../auth/jwt-auth");
-const { JWT_SECRET, JWT_EXPIRY } = require("../config");
+const localAuth = require('../auth/local-auth');
+const jwtAuth = require('../auth/jwt-auth');
+const { JWT_SECRET, JWT_EXPIRY } = require('../config');
 
 //create a signed jwt
 const createAuthToken = function (user) {
@@ -23,33 +23,33 @@ const createAuthToken = function (user) {
 };
 
 // The user provides a username and password to login and is given an authtoken
-router.post("/login", localAuth, (req, res, next) => {
+router.post('/login', localAuth, (req, res, next) => {
   createAuthToken(req.user)
-    .then(authToken => {
-      res.json({
-        authToken: authToken,
-        userId: req.user._id,
-        username: req.user.username
-       });
-    })
-    .catch(err => {
-      next(err);
+  .then(authToken => {
+    res.json({
+      authToken: authToken,
+      userId: req.user._id,
+      username: req.user.username
     });
+  })
+  .catch(err => {
+    next(err);
+  });
 });
 
 // The user exchanges a valid JWT for a new one with a later expiration
-router.post("/refresh", jwtAuth, (req, res, next) => {
+router.post('/refresh', jwtAuth, (req, res, next) => {
   createAuthToken(req.user)
-    .then(authToken => {
-      res.json({
-        authToken: authToken,
-        userId: req.user._id,
-        username: req.user.username
-      });
-    })
-    .catch(err => {
-      next(err);
+  .then(authToken => {
+    res.json({
+      authToken: authToken,
+      userId: req.user._id,
+      username: req.user.username
     });
+  })
+  .catch(err => {
+    next(err);
+  });
 });
 
 module.exports = router;

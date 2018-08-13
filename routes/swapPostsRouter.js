@@ -8,7 +8,7 @@ const timestamps = require('mongoose-timestamp');
 const bodyParser = require('body-parser');
 
 //const jwtAuth = passport.authenticate('jwt', {session: false});
-const jwtAuth = require("../auth/jwt-auth");
+const jwtAuth = require('../auth/jwt-auth');
 
 //Mongoose uses built in es6 promises
 mongoose.Promise = global.Promise;
@@ -164,4 +164,4 @@ router.get('/', (req, res) => {
     });
 
 
-module.exports = router;
+    module.exports = router;

@@ -14,7 +14,7 @@ mongoose.Promise = global.Promise;
 
 // Modularize routes
 const {User} = require('../models');
-const { JWT_SECRET, JWT_EXPIRY } = require("../config");
+const { JWT_SECRET, JWT_EXPIRY } = require('../config');
 
 //create a signed jwt
 const createAuthToken = function (user) {
@@ -24,7 +24,6 @@ const createAuthToken = function (user) {
         return reject(err);
       }
       resolve(authToken);
-      console.log("authtoken =" , authToken);
     });
   });
 };
@@ -125,7 +124,6 @@ router.post('/', (req, res, next) => {
         });
       })
       .then(user => {
-        console.log("user", user);
         return createAuthToken(user)
         .then(authToken => {
           return res.status(201).json({

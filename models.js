@@ -42,7 +42,6 @@ userSchema.statics.hashPassword = function(password) {
   return bcrypt.hash(password, 10);
 }
 
-
 //defining schema for posts
 const swapPostSchema = mongoose.Schema({
   have: { type: String, required: true },

@@ -39,7 +39,7 @@ $('#login-user').submit(event => {
     },
     error: function() {
       $('#login-user')[0].reset();
-      $('<p>').appendTo('#profile-forms-container').addClass('login-error-message').html('Your username or password was incorrect, please try again');
+      $('<p>').appendTo('.error-message-container').addClass('login-error-message').html('Your username or password was incorrect, please try again');
     },
     dataType: 'json',
     contentType: 'application/json'
@@ -59,13 +59,14 @@ function renderCreateAccountForm() {
     <form id ="new-user-form">
       <fieldset id = "new-user-fieldset">
         <legend>Profile Info</legend>
+          <div class="error-message-container"></div>
           <div class = "new-user-div">
             <label>First Name: </label>
             <input class ="new-form-fields" id = "firstName" name = "firstName" required>
             <label>Last Name: </label>
             <input class ="new-form-fields" id = "lastName" name = "lastName" required>
             <label>Email: </label>
-            <input class ="new-form-fields" id = "email" name = "email" required>
+            <input class ="new-form-fields" id = "email" type= "email" name = "email" required>
             <label>City: </label>
             <input class ="new-form-fields" id = "city" name = "city" required>
             <label>Zip Code: </label>
@@ -113,7 +114,8 @@ $('#profile-forms-container').on('submit','#new-user-form', (event => {
     error: function() {
       $('#login-user').hide();
       $('.login-error-message').remove();
-      $('<p>').appendTo('#profile-forms-container').addClass('login-error-message').html('There was an error processing your info, please try again');
+
+      $('.error-message-container').addClass('login-error-message').html('<p>There was an error processing your info, please try again</p>');
     },
     dataType: 'json',
     contentType: 'application/json'
