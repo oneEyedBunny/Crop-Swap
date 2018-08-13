@@ -96,6 +96,7 @@
     position: relative;
     top: 65px;
     padding: 1px 25px;
+    z-index: -1;
   }
 
    #form-container, #post-form-container {

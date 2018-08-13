@@ -177,6 +177,21 @@ a:active {
   font-size: 13px;
 }
 
+#demo-container {
+ text-align: center;
+ margin-top: 30px;
+}
+
+.demo-info {
+  color: blue;
+  display: block;
+}
+
+.login {
+  display: inline-block;
+  margin: 0 10px;
+}
+
 /* needs to be set like this to stay centered with other settings */
 #create-profile-button {
   margin-top: 10px;

@@ -1,26 +1,6 @@
 [![Build Status](https://travis-ci.org/oneEyedBunny/Crop-Swap.svg?branch=master)](https://travis-ci.org/oneEyedBunny/Crop-Swap)
 
-# Pending
-1. readMe pics
 
------------------------------------------------------------------
-
-# Stretch Goals
-1. Create way for user to use gravatar for photo of self or users to upload a
-    photo of themselves
-1. Create way for users to upload photos of their swaps (S3)
-1. Create way for user to modify their username
-1. Create way for private messaging within the app
-
-# Code Improvements
-1. create function for login/logout, that works more cohesively, so I don't have to copy paste the and tweak it in each file. Also could I do a require in each file and export from just one place?
-1. Need to check code to see where I'm rejecting non trimmed username/pw (userroutes.js line 54)
-
-
-
-
-
--------------------------------
 # Crop-Swap
 https://crop-swap.herokuapp.com/
 
