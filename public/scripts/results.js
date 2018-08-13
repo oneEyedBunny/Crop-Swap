@@ -31,8 +31,8 @@ function renderSwapPosts(data) {
     <h5 class="username">${swapPost.username}</h5>
     <h5 class="email">${swapPost.email}</h5>
     <h6 class="created">${swapPost.created}</h6>
-    <h5 class="have">I have: ${swapPost.have}<h5>
-    <h5 class="want">Swap for: ${swapPost.want}<h5>
+    <h5 class="have">I have: ${swapPost.have}</h5>
+    <h5 class="want">Swap for: ${swapPost.want}</h5>
     </div>
     `
   })

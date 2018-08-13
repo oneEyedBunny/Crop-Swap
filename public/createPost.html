@@ -13,7 +13,7 @@
   <nav role="navigation" class="navigation-container not-logged-in">
    <div class="logo-link-container">
     <div class="left-nav-container">
-      <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
+      <a href="index.html"><img src="images/CropSwap.png" alt="logo" class="logo" /></a>
     </div>
     <div class="right-nav-container">
       <a href="/#login-user" class="nav-link">Login</a>
@@ -24,7 +24,7 @@
   <nav role="navigation" class="navigation-container logged-in hidden">
    <div class="logo-link-container">
     <div class="left-nav-container">
-      <a href="index.html"><img src="images/CropSwap.png" id="logo" /></a>
+      <a href="index.html"><img src="images/CropSwap.png" alt="logo" class="logo" /></a>
     </div>
     <div class="right-nav-container">
       <a href="/" class="nav-link" onclick="logOutUser()">Logout</a>
@@ -34,13 +34,13 @@
   </nav>
 
   <main role="main">
-    <img src="images/indexBackground.jpg" class="background-image"/>
+    <img src="images/indexBackground.jpg" alt="fruits and veggies" class="background-image"/>
     <div id="page-display-container-2">
       <div id="post-form-container">
-        <form role="form" id="create-post-form"> 
+        <form role="form" id="create-post-form">
           <fieldset>
             <legend>Create a New Swap Post</legend>
-            <label for="description">Description of what you have:</label>
+            <label for="swap-posting-have">Description of what you have:</label>
             <textarea id="swap-posting-have" name="swapPostingHave" maxlength="100" wrap="hard" placeholder= "I have approximately 10 large heirloom tomatoes"
               required rows="5"></textarea>
             <label>What would you like to swap for (not required):
@@ -59,7 +59,6 @@
   </div> <!-- closes page container -->
 
     </main>
-    <footer role="content info"></footer>
     <script type= "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type= "text/javascript" src = "scripts/createSwapPost.js"></script>
   </body>

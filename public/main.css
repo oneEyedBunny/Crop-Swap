@@ -9,7 +9,7 @@ body {
 }
 
 /********** Navigation ************/
-#logo {
+.logo {
   height: 60px;
 }
 
